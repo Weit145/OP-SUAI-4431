@@ -2,8 +2,7 @@
     "files.associations": {
         "iostream": "cpp",
         "ostream": "cpp",
-        "limits": "cpp",
-        "random": "cpp",
-        "cmath": "cpp"
+        "*.tcc": "cpp",
+        "limits": "cpp"
     }
 }
