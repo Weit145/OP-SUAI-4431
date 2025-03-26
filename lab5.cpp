@@ -13,7 +13,7 @@ void input(int* arr){
         while(!cin.good()){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout<<"Problem with "<<n<<" repeat"<<endl;
+            cout<<"Problem with "<<i+1<<" repeat"<<endl;
             cin>>l;
         }
         arr[i]=l;
