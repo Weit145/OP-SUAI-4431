@@ -1,98 +1,57 @@
-#include <clocale> 
-#include <iostream> 
-#include <climits> 
+#include <iostream>
 #include <math.h>
+
 using namespace std;
 
-int testN()
-{
-  int i;
-  while (true)
-  {
-    cout << "Введите номер канала [0-15]: ";
-    cin >> i;
-    if ((cin.fail()) or (i < 0) or (i > 15))
-    {
-      cout << "Некорректный ввод";
-      cin.clear();
-      cin.ignore(numeric_limits<streamsize>::max(), '\n');
-      cout << endl;
+double input(char a){
+    double l;
+    cout<<"Input "<<a<<":"<<endl;
+    cin>>l;
+    while(!cin.good()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout<<"Problem with "<<a<<" repeat"<<endl;
+        cin>>l;
     }
-    else break;
-  }
-  return i;
+    return l;
+}
+void func(double n,double c, double a, double b,double &f,bool &flag){
+    if (n<0.6 and b+c!=0){
+        f=a*pow(n,3)-b*pow(n,2)+c;
+    }
+    else if(n>0.6 and b+c==0 and n!=c){
+        f=(n-a)/(n-c);
+    }
+    else if(c!=0 and a!=0){
+        f=n/c;
+    }
+    else{
+        flag=0;
+    }
 }
 
-int testE()
-{
-  int i;
-  while (true)
-  {
-    cout << "Введите признак ошибки [0-1]: ";
-    cin >> i;
-    if ((cin.fail()) or (i < 0) or (i > 1))
-    {
-      cout << "Некорректный ввод";
-      cin.clear();
-      cin.ignore(numeric_limits<streamsize>::max(), '\n');
-      cout << endl;
+int main(){
+    double a,b,c,n,k,x,f;
+    bool flag=1;
+    a=input('a');
+    b=input('b');
+    c=input('c');
+    n=input('n');
+    k=input('k');
+    x=input('x');
+    if(n>=k or x>=abs(k-n)){
+        cout<<"Error"<<endl;
     }
-    else break;
-  }
-  return i;
-}
-
-int testC()
-{
-  int i;
-  while (true)
-  {
-    cout << "Ведите код причины прерывания [0-511]: ";
-    cin >> i;
-    if ((cin.fail()) or (i < 0) or (i > 511))
-    {
-      cout << "Некорректный ввод";
-      cin.clear();
-      cin.ignore(numeric_limits<streamsize>::max(), '\n');
-      cout << endl;
+    else{
+        for(n;n<=k;n=n+x){
+            func(n,c,a,b,f,flag);
+            if (flag==1){
+                cout<<"x: "<<n<<"\t"<<"y: "<<f<<endl;
+            }
+            else{
+                cout<<"Error"<<endl;
+                break;
+            }
+        }
     }
-    else break;
-  }
-  return i;
-} 
-
-int testP()
-{
-  int i;
-  while (true)
-  {
-    cout << "Введите признак завершения программы в канале [0-1]: ";
-    cin >> i;
-    if ((cin.fail()) or (i < 0) or (i > 1))
-    {
-      cout << "Некорректный ввод";
-      cin.clear();
-      cin.ignore(numeric_limits<streamsize>::max(), '\n');
-      cout << endl;
-    }
-    else break;
-  }
-  return i;
-}
-
-unsigned short to_hex(int N,int E, int C, int P)
-{
-  return P | C << 2 | E << 11 | N << 13;
-}
-
-int main()
-{
-  setlocale(LC_ALL, "rus");
-  int N, E, C, P;
-  N = testN();
-  E = testE();
-  C = testC();
-  P = testP();
-  unsigned short X= to_hex(N, E, C, P);
-  cout << hex << X;
 }
