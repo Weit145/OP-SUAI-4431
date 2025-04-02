@@ -17,7 +17,7 @@ unsigned short input(char a){
 }
 
 
-void lab3_2(){
+int main(){
     unsigned short x=input('x');
     int y=x&0x1;
     cout<<"B: "<<dec<<y<<endl;

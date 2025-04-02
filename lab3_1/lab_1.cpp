@@ -16,7 +16,7 @@ int input(char a,int d){
     return l;
 }
 
-int lab3_1(){
+int main(){
     int c,e,u,b;
     short int x=0;
     c=input('c',7);
@@ -26,5 +26,4 @@ int lab3_1(){
     cout<<"Size x: "<<sizeof(x)<<endl;
     x=b|e<<2|u<<8|c<<13;
     cout<<hex<<x<<endl;
-    return x;
 }
