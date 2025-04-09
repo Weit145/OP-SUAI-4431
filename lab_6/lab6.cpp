@@ -50,6 +50,7 @@ void output(double** arr, int n){
 // }
 int main(){
     int n=input_size();
+    // int* arr = new int[size];
     double** mass = new double*[n];
     for(int i = 0; i < n; i++) {
         mass[i] = new double[n];
