@@ -55,20 +55,20 @@ void zad3(double* arr){
             cout<<"Problem  repeat"<<endl;
             cin>>x>>y;
             good=0;
-            continue;
         }
-        for(int d=0;d<n;d++){
-            if(int(arr[d])==x){
-                fal=1;
+        else{
+            for(int d=0;d<n;d++){
+                if(int(arr[d])==x){
+                    fal=1;
+                }
+                else if(int(arr[d])==y and fal==1){
+                    hell=1;
+                }
             }
-            else if(int(arr[d])==y and fal==1){
-                hell=1;
-            }
+            fal=0;
+            good=1;
         }
-        fal=0;
-        good=1;
     }
-    
     for(int i=0;i<n;i++){
         if(int(arr[i])==x or flag==1){
             int(arr[i])==y ? flag=0 : flag=1;
