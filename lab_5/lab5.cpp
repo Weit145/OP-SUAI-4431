@@ -5,8 +5,8 @@ using namespace std;
 
 const int n=5;
 
-void input(int* arr){
-    int l;
+void input(double* arr){
+    double l;
     for (int i=0;i<n;i++){
         cout<<"Input "<<i+1<<":"<<endl;
         cin>>l;
@@ -19,57 +19,71 @@ void input(int* arr){
         arr[i]=l;
     }
 }
-int zad1(int* arr){
-    int min=abs(arr[0]);
+double zad1(double* arr){
+    double max=abs(arr[0]);
     for(int k=0;k<n;k++){
-        if (min>abs(arr[k])){
-            min=abs(arr[k]);
+        if (max<abs(arr[k])){
+            max=abs(arr[k]);
         }
         else{
             continue;
         }
     }
-    return min;
+    return max;
 }
-int zad2(int* arr){
-    int sum=0;
+double zad2(double* arr){
+    double sum=0;
     bool flag=0;
     for(int i=0;i<n;i++){
-        if((arr[i]<0 or flag==1) and i+1<n){
+        if((arr[i]>0 or flag==1) and i+1<n){
             flag=1;
             sum+=abs(arr[i+1]);
         }
     }
     return sum;
 }
-void zad3(int* arr){
-    int x,y;
+void zad3(double* arr){
+    int x,y,l=0;
+    double k;
+    bool flag=0,fal=0,hell=0,good=0;
     cout<<"Input x and y:"<<endl;
     cin>>x>>y;
-    while(!cin.good() or x<1 or y>n or y<x){
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(),'\n');
-        cout<<"Problem  repeat"<<endl;
-        cin>>x>>y;
+    while (hell==0){
+        if (!cin.good() or good==1){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout<<"Problem  repeat"<<endl;
+            cin>>x>>y;
+            good=0;
+            continue;
+        }
+        for(int d=0;d<n;d++){
+            if(int(arr[d])==x){
+                fal=1;
+            }
+            else if(int(arr[d])==y and fal==1){
+                hell=1;
+            }
+        }
+        fal=0;
+        good=1;
     }
-    int k=x;
+    
     for(int i=0;i<n;i++){
-        if (i>=x-1 and i<=y-1){
-            arr[i]=0;
-        }
-        else if(i>=y){
-            arr[k-1]=arr[i];
-            arr[i]=0;
-            k++;
+        if(int(arr[i])==x or flag==1){
+            int(arr[i])==y ? flag=0 : flag=1;
+            k=arr[l];
+            arr[l]=arr[i];
+            arr[i]=k;
+            l++;
         }
     }
-
 }
 
 int main(){
-    int mass[n];
+    double mass[n];
     input(mass);
-    cout<<"Min: "<<zad1(mass)<<endl;
+    cout<<"Max: "<<zad1(mass)<<endl;
     cout<<"Sum: "<<zad2(mass)<<endl;
     zad3(mass);
     for(int i=0;i<n;i++){
