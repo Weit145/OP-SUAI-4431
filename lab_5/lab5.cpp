@@ -17,27 +17,32 @@ void input(double* arr,const int n){
         arr[i]=l;
     }
 }
-double zad1(double* arr,const int n){
+
+int zad1(double* arr,const int n){
+    int f=0;
     double max=abs(arr[0]);
-    for(int k=1;k<n;k++){
-        if (max<abs(arr[k])){
-            max=abs(arr[k]);
+    for(int k=0;k<n;k++){
+        if (max<=abs(arr[k])){
+            f=k+1;
         }
     }
-    return max;
+    return f;
 }
-double zad2(double* arr,const int n){
-    double sum=0;
-    bool flag=0;
+
+int zad2(double* arr,const int n,double &sum){
+    int flag=0;
     for(int i=0;i<n;i++){
-        if((arr[i]>0 or flag==1) and i+1<n){
-            flag=1;
+        if((arr[i]>=0 or flag==1) and i+1<n){
             sum+=abs(arr[i+1]);
         }
+        if(arr[i]>=0){
+            flag=2;
+        }
     }
-    return sum;
+    return flag;
 }
-double info(char a,double* arr,int &x,const int n){
+
+int info(char a,double* arr,int &x,const int n){
     cout<<"Input "<<a<<":"<<endl; 
     cin>>x;
     while(!cin.good()){
@@ -53,6 +58,7 @@ double info(char a,double* arr,int &x,const int n){
     }
     return 0;
 }
+
 void zad3(double* arr,const int n){
     int x,y,l=0;
     double k;
@@ -74,19 +80,31 @@ void zad3(double* arr,const int n){
         }
     }
 }
+
 void output(double* arr,const int n){
     for(int i=0;i<n;i++){
         cout<<arr[i]<<"  ";
     }
     cout<<endl;
 }
+
 int main(){
     const int n=5;
+    double sum=0;
     double mass[n];
     input(mass,n);
     output(mass,n);
     cout<<"Max: "<<zad1(mass,n)<<endl;
-    cout<<"Sum: "<<zad2(mass,n)<<endl;
+    int d=zad2(mass,n,sum);
+    if(d==1){
+        cout<<"Sum: "<<sum<<endl;
+    }
+    else if(d==2){
+        cout<<"No number after positive number"<<endl;
+    }
+    else{
+        cout<<"There is no positive number"<<endl;
+    }
     zad3(mass,n);
     output(mass,n);
 }
