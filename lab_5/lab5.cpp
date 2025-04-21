@@ -32,11 +32,13 @@ int zad1(double* arr,const int n){
 int zad2(double* arr,const int n,double &sum){
     int flag=0;
     for(int i=0;i<n;i++){
-        if((arr[i]>=0 or flag==1) and i+1<n){
-            sum+=abs(arr[i+1]);
+        
+        if(flag>0){
+            sum+=abs(arr[i]);
+            flag++;
         }
-        if(arr[i]>=0){
-            flag=2;
+        else if (arr[i]>=0){
+            flag++;
         }
     }
     return flag;
@@ -95,15 +97,16 @@ int main(){
     input(mass,n);
     output(mass,n);
     cout<<"Max: "<<zad1(mass,n)<<endl;
-    int d=zad2(mass,n,sum);
-    if(d==1){
-        cout<<"Sum: "<<sum<<endl;
-    }
-    else if(d==2){
-        cout<<"No number after positive number"<<endl;
-    }
-    else{
+    switch (zad2(mass,n,sum)){
+    case 0:
         cout<<"There is no positive number"<<endl;
+        break;
+    case 1:
+        cout<<"No number after positive number"<<endl;
+        break;
+    default:
+        cout<<"Sum: "<<sum<<endl;
+        break;
     }
     zad3(mass,n);
     output(mass,n);
