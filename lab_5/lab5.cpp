@@ -67,14 +67,14 @@ void zad3(double* arr,const int n){
     bool flag=0;
     int f=info('a',arr,x,n);
     int u=info('b',arr,y,n);
-    while (f==0 or u==0 or f>=u){
+    while (f==0 or u==0 or f>u){
         cout<<"Problem  repeat"<<endl;
         f=info('a',arr,x,n);
         u=info('b',arr,y,n);
     }
     for(int i=0;i<n;i++){
         if(int(arr[i])==x or flag==1){
-            int(arr[i])==y ? flag=0 : flag=1;
+            int(arr[i])==y ? flag=0 : flag=1; //тернарный условный оператор
             k=arr[l];
             arr[l]=arr[i];
             arr[i]=k;
@@ -91,7 +91,7 @@ void output(double* arr,const int n){
 }
 
 int main(){
-    const int n=5;
+    const int n=6;
     double sum=0;
     double mass[n];
     input(mass,n);
