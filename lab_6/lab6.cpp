@@ -1,14 +1,13 @@
 #include <iostream>
-#include <limits>
 #include <cmath>
 
 using namespace std;
 
-unsigned int input_size() {
-    unsigned int n;
-    cout << "Input Size " << endl;
+unsigned int input_size(char* a) {
+    int n;
+    cout << "Input "<<a<< endl;
     cin >> n;
-    while (!cin.good()) {
+    while (!cin.good() or n<0) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Problem with parametr repyt" << endl;
@@ -17,13 +16,13 @@ unsigned int input_size() {
     return n;
 }
 
-void input(double** arr, int n) {
+void input(double** arr, int row, int col) {
     double l;
-    for (int i = 0; i < n; i++) {
-        for (int k = 0; k < n; k++) {
+    for (int i = 0; i < row; i++) {
+        for (int k = 0; k < col; k++) {
             cout << "Input " << i + 1 << " " << k + 1 << ":" << endl;
             cin >> l;
-            while (!cin.good()) {
+            while (!cin.good() ) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Problem with " << i + 1 << " " << k + 1 << " repeat" << endl;
@@ -32,6 +31,7 @@ void input(double** arr, int n) {
             arr[i][k] = l;
         }
     }
+    cout << endl;
 }
 
 void output(double** arr, int row, int col) {
@@ -41,85 +41,80 @@ void output(double** arr, int row, int col) {
         }
         cout << endl;
     }
+    cout << endl;
 }
 
 bool zad1(double**& arr, int& row, int& col) {
     int str = 0;
     bool* mstr = new bool[row];
     for (int i = 0; i < row; i++) {
-        bool zero = true;
+        bool zero = 0;
         for (int k = 0; k < col; k++) {
             if (arr[i][k] != 0) {
-                zero = false;
+                zero = 1;
                 break;
             }
         }
-        mstr[i] = !zero;
+        mstr[i] = zero;
         if (mstr[i]) {
             str++;
         }
     }
-
     int stolb = 0;
     bool* mstolb = new bool[col];
     for (int k = 0; k < col; k++) {
-        bool zero = true;
+        bool zero = 0;
         for (int i = 0; i < row; i++) {
             if (arr[i][k] != 0) {
-                zero = false;
+                zero = 1;
                 break;
             }
         }
-        mstolb[k] = !zero;
+        mstolb[k] = zero;
         if (mstolb[k]) {
             stolb++;
         }
     }
-
-    if (str == 0 || stolb == 0) {
+    if (str == 0 or stolb == 0) {
         for (int i = 0; i < row; i++) {
             delete[] arr[i];
         }
         delete[] arr;
-        arr = nullptr;
         row = 0;
         col = 0;
         delete[] mstr;
         delete[] mstolb;
-        return true;
+        return 1;
     }
-
     double** mas = new double*[str];
     for (int i = 0; i < str; i++) {
         mas[i] = new double[stolb];
     }
-
     int ni = 0;
     for (int i = 0; i < row; i++) {
-        if (!mstr[i]) continue;
-        
+        if (!mstr[i]) {
+            continue;
+        }
         int nk = 0;
         for (int k = 0; k < col; k++) {
-            if (!mstolb[k]) continue;
-            
+            if (!mstolb[k]) {
+                continue;
+            }
             mas[ni][nk] = arr[i][k];
             nk++;
         }
         ni++;
     }
-
     for (int i = 0; i < row; i++) {
         delete[] arr[i];
     }
     delete[] arr;
-
     arr = mas;
     row = str;
     col = stolb;
-
     delete[] mstr;
     delete[] mstolb;
-    return false;
+    return 0;
 }
 
 int zad2(double** arr, int row, int col) {
@@ -134,32 +129,31 @@ int zad2(double** arr, int row, int col) {
 }
 
 int main() {
-    int n = input_size();
-    int row = n, col = n;
-    
-    double** mass = new double*[n];
-    for (int i = 0; i < n; i++) {
-        mass[i] = new double[n];
+    char sr[]="rows";
+    char sc[]="cols";
+    int row = input_size(sr);
+    int col = input_size(sc);
+    double** mass = new double*[row];
+    for (int i = 0; i < row; i++) {
+        mass[i] = new double[col];
     }
-    
-    input(mass, n);
+    input(mass, row, col);
     output(mass, row, col);
-    
-    bool deleted = zad1(mass, row, col);
-    
-    if (row == 0 && col == 0) {
+    if (zad1(mass, row, col)) {
         cout << "Матрица пуста" << endl;
-    } else {
+    } 
+    else {
         output(mass, row, col);
-        cout << "Unsigned row" << zad2(mass, row, col) << endl;
-    }
-    
-    if (!deleted) {
+        int sum=zad2(mass, row, col);
+        if (sum!=0){
+            cout << "First positive number in row: " << sum << endl;
+        }
+        else{
+            cout << "No positive number" <<endl;
+        }
         for (int i = 0; i < row; i++) {
             delete[] mass[i];
         }
         delete[] mass;
     }
-    
-    return 0;
 }
