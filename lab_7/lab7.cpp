@@ -42,28 +42,54 @@ void output(char* arr,const int n){
     cout<<endl;
 }
 
-bool zad(char* &mas,int &size,int n,int j){
-    int raz=n-j;
-    if (size<n){
-        int i;
-        char* mas2=new char[n];
-        for(i=0;i<size;i++){
-            mas2[i]=mas[i];
-        }
-        mas2[i]='\0';
-        size=n;
-        delete []mas;
-        mas=mas2;
-    }
-    if (raz<=0){
+int zad(char* &mas,int &size,int n,int j){
+    if (n<=j){
         return 0;
     }
-    else{
-        for(int i=0;i<size-2;i++){
-            
+    bool flag=0;
+    int sum=0;
+    for(int i=0;i<size;i++){
+        if (mas[i]!=' ' and !flag){
+            sum++;
+            flag=1;
+        }
+        else if (mas[i]==' '){
+            flag=0;
+
         }
     }
+    if(sum<2){
+        return 1;
+    
+    }
+    int add=n-j;
+    int space=sum-1;
+    int base=add/space;
+    int exta=add%space;
+    char* new_mas = new char[n+1];
 
+    int l=0;
+    int cout=0;
+    bool flag1=0;
+    for(int i = 0; i < n; i++) {
+        if (mas[i] != ' ') {
+            new_mas[l++] = mas[i];
+            flag1 = 1;
+        } else if (flag1 and cout < space) {
+            new_mas[l++] = ' ';
+            int spaces_to_insert = base + (cout < exta ? 1 : 0);
+            for (int j = 0; j < spaces_to_insert; j++) {
+                new_mas[l++] = ' ';
+            }
+            cout++;
+            flag1 = 0;
+        }
+    }
+    new_mas[l] = '\0';
+    delete [] mas;
+    mas = new_mas;
+    size = n+1;
+    return 2;
 }
 
 int main(){
@@ -72,5 +98,17 @@ int main(){
     int j=input(mas,size);
     output(mas,size);
     n=number();
+    switch (zad(mas, size, n, j))
+    {
+    case 0:
+        cout << "String is already long enough" << endl;
+        break;
+    case 1:
+        cout << "Not enough words to add spaces between" << endl;
+        break;
+    default:
+        output(mas,size);
+        break;
+    }
     delete [] mas;
 }
