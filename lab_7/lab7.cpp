@@ -6,6 +6,7 @@ using namespace std;
 int input(char* &mas,int &size){
     char a;
     int n;
+    cout << "Input string"<< endl;
     for(n=0;cin.get(a) and a!='\n';n++){
         if(n>=size-1){
             size*=2;
@@ -36,13 +37,14 @@ int number(){
 }
 
 void output(char* arr,const int n){
-    for(int i=0;i<n;i++){
-        cout<<arr[i];
-    }
+    cout<<arr;
+    // for(int i=0;i<n;i++){
+    //     cout<<arr[i];
+    // }
     cout<<endl;
 }
 
-int zad(char* &mas,int &size,int n,int j){
+int zad(char* &mas,int size,int n,int j){
     if (n<=j){
         return 0;
     }
@@ -75,10 +77,11 @@ int zad(char* &mas,int &size,int n,int j){
         if (mas[i] != ' ') {
             new_mas[l++] = mas[i];
             flag1 = 1;
-        } else if (flag1 and cout < space) {
+        } 
+        else if (flag1 and cout < space) {
             new_mas[l++] = ' ';
-            int spaces_to_insert = base + (cout < exta ? 1 : 0);
-            for (int j = 0; j < spaces_to_insert; j++) {
+            int insert = base + (cout < exta ? 1 : 0);
+            for (int j = 0; j < insert; j++){
                 new_mas[l++] = ' ';
             }
             cout++;
@@ -88,18 +91,16 @@ int zad(char* &mas,int &size,int n,int j){
     new_mas[l] = '\0';
     delete [] mas;
     mas = new_mas;
-    size = n+1;
     return 2;
 }
 
 int main(){
-    int n,size=25;
+    int size=25;
     char* mas = new char[size];
     int j=input(mas,size);
     output(mas,size);
-    n=number();
-    switch (zad(mas, size, n, j))
-    {
+    int n=number();
+    switch (zad(mas, size, n, j)){
     case 0:
         cout << "String is already long enough" << endl;
         break;
