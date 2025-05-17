@@ -31,8 +31,7 @@ int zad1(double* arr,const int n){
 
 int zad2(double* arr,const int n,double &sum){
     int flag=0;
-    for(int i=0;i<n;i++){
-        
+    for(int i=0;i<n;i++){     
         if(flag>0){
             sum+=abs(arr[i]);
             flag++;

@@ -140,7 +140,7 @@ int main() {
     input(mass, row, col);
     output(mass, row, col);
     if (zad1(mass, row, col)) {
-        cout << "Матрица пуста" << endl;
+        cout << "The matrix is empty" << endl;
     } 
     else {
         output(mass, row, col);

@@ -36,11 +36,8 @@ int number(){
     return n;
 }
 
-void output(char* arr,const int n){
+void output(char* arr){
     cout<<arr;
-    // for(int i=0;i<n;i++){
-    //     cout<<arr[i];
-    // }
     cout<<endl;
 }
 
@@ -98,7 +95,7 @@ int main(){
     int size=25;
     char* mas = new char[size];
     int j=input(mas,size);
-    output(mas,size);
+    output(mas);
     int n=number();
     switch (zad(mas, size, n, j)){
     case 0:
@@ -108,7 +105,7 @@ int main(){
         cout << "Not enough words to add spaces between" << endl;
         break;
     default:
-        output(mas,size);
+        output(mas);
         break;
     }
     delete [] mas;
