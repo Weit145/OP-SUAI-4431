@@ -4,13 +4,13 @@
 
 using namespace std;
 
-int prov(char l) {
-    return (l==' ' or l=='\t' or l=='\n');
-}
-int zad(const char* line) {
-    while (*line != '\0') {
-        if (!prov(*line)) {
-            return (*line == '-');
+
+bool zad(char line) {
+    bool f;
+    while (line != '\0') {
+        f=(line==' ' or line=='\t' or line=='\n');
+        if (!f) {
+            return (line == '-');
         }
         line++;
     }
@@ -30,13 +30,27 @@ int main(){
         f1.close();
         return 1;
     }
-    char l[1024];
-    while (!f1.eof())
-    {   
-        f1.getline(l,1024);
-        if (zad(l)) {
-            f2<<l<<endl;
+    char l;
+    int n=0;
+    bool f=0;
+    while (!f1.eof()){   
+        f1.get(l);
+        if (zad(l) or f) {
+            if(l=='.' or l=='!' or l=='?'){
+                f=0;
+                f2<<l<<endl;
+                continue;
+            }
+            f=1;
+            n++;
+            f2<<l;
         }
+    }
+    if (l!='.'){
+        cout<<"Error"<<endl;
+    }
+    if (n==0){
+        cout<<"output.txt is clear"<<endl;
     }
     f1.close();
     f2.close();

@@ -4,13 +4,12 @@
 
 using namespace std;
 
-int prov(char l) {
-    return (l==' ' or l=='\t' or l=='\n');
-}
-int zad(const char* line) {
-    while (*line != '\0') {
-        if (!prov(*line)) {
-            return (*line == '-');
+bool zad(char line) {
+    bool f;
+    while (line != '\0') {
+        f=(line==' ' or line=='\t' or line=='\n');
+        if (!f) {
+            return (line == '-');
         }
         line++;
     }
@@ -30,11 +29,25 @@ int main(){
         fclose(inputFile);  
         return 1;
     }
-    char l[1024];
-    while (fgets(l, sizeof(l), inputFile) != NULL) {
-        if (zad(l)) {
-            fputs(l, outputFile);
+    char l;
+    int n=0;
+    bool f=0;
+    bool j=0;
+    while ((l=fgetc(inputFile)) != EOF) {
+        if (zad(l) or f) {
+            if (l == '.' or l == '!' or l == '?') {
+                f = 0;
+                fputc(l, outputFile);
+                fputc('\n', outputFile);
+                continue;
+            }
+            f = 1;
+            n++;
+            fputc(l, outputFile);
         }
+    }
+    if (n==0){
+        cout<<"output.txt is clear"<<endl;
     }
     fclose(inputFile);
     fclose(outputFile);
