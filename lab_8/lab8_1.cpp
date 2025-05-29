@@ -46,9 +46,6 @@ int main(){
             f2<<l;
         }
     }
-    if (l!='.'){
-        cout<<"Error"<<endl;
-    }
     if (n==0){
         cout<<"output.txt is clear"<<endl;
     }

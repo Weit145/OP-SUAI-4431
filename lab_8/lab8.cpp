@@ -32,7 +32,6 @@ int main(){
     char l;
     int n=0;
     bool f=0;
-    bool j=0;
     while ((l=fgetc(inputFile)) != EOF) {
         if (zad(l) or f) {
             if (l == '.' or l == '!' or l == '?') {
