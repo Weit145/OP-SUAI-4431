@@ -1,4 +1,4 @@
-import math 
+# import math 
 # l="abcde"
 # hobby=[]
 # for i in l:
@@ -474,65 +474,107 @@ import math
 # print(zad2_7_3())
 
 
-def zad2_8_1():
-    l=[]
-    c=1
-    for i in range(10):
-        l.append(c)
-        c+=1
-    return l
+# def zad2_8_1():
+#     l=[]
+#     c=1
+#     for i in range(10):
+#         l.append(c)
+#         c+=1
+#     return l
 
-def zad2_8_2(l="AAffa"):
-    c=0
-    for i in l:
-        if i==i.upper():c+=1
-    if c>2:return None
-    return "Good"
+# def zad2_8_2(l="AAffa"):
+#     c=0
+#     for i in l:
+#         if i==i.upper():c+=1
+#     if c>2:return None
+#     return "Good"
 
-def zad2_8_3(l=['1', '2', '3', '4', '5']):
-    for i in range(len(l)):
-        l[i]=int(l[i])
-    return l
+# def zad2_8_3(l=['1', '2', '3', '4', '5']):
+#     for i in range(len(l)):
+#         l[i]=int(l[i])
+#     return l
 
-def zad2_9_1():
-    l=[]
-    for i in range(1,101):
-        if i%2==0:l.append(i)
-    return l
+# def zad2_9_1():
+#     l=[]
+#     for i in range(1,101):
+#         if i%2==0:l.append(i)
+#     return l
 
-def zad2_9_2(l=[1, 2, 3, 4, 5]):
-    t=l
-    t.reverse()
-    return t
+# def zad2_9_2(l=[1, 2, 3, 4, 5]):
+#     t=l
+#     t.reverse()
+#     return t
 
-def zad2_9_3(txt1 = 'abcde',txt2 = '12345'):
-    if len(txt1)!=len(txt2):return None
-    dic={txt1[i]:txt2[i] for i in range(len(txt1))}
-    return dic
+# def zad2_9_3(txt1 = 'abcde',txt2 = '12345'):
+#     if len(txt1)!=len(txt2):return None
+#     dic={txt1[i]:txt2[i] for i in range(len(txt1))}
+#     return dic
 
-def zad2_10_1(l="123ff123"):
-    t=['1', '2', '3', '4', '5','6','7','8','9','0']
-    c:int=0
-    for i in l:
-        if i not in t:
-            c+=1
-    if c>2: return None
-    return "Good"
+# def zad2_10_1(l="123ff123"):
+#     t=['1', '2', '3', '4', '5','6','7','8','9','0']
+#     c:int=0
+#     for i in l:
+#         if i not in t:
+#             c+=1
+#     if c>2: return None
+#     return "Good"
 
-def zad2_10_2(l=1122345):
-    t=str(l)
-    for i in t[::-1]:
-        if int(i)%2==0:return i
-    return None
+# def zad2_10_2(l=1122345):
+#     '''Получает первую четную цифру с конца.
+    
+#     Args:
+#         l(int):Число с которого получим цифру
+        
+#     Returns:
+#         int: Чётная цифра
+#         None: нет таких
+    
+#     Examples:
+#         >>>zad2_10_2(l=1122345)
+#         4
+#         >>>zad2_10_2(l=11)
+#         None
+#     '''
+#     t=str(l)
+#     for i in t[::-1]:
+#         if int(i)%2==0:return int(i)
+#     return None
 
 
-zad2_10_3=lambda l='abcde abcde abcde': l.replace(l[0],"!")
+# zad2_10_3=lambda l='abcde abcde abcde': l.replace(l[0],"!")
 
-def zad2_10_4(l=['1', '2', '3', '4', '5'])-> int:
+# def zad2_10_4(l=['1', '2', '3', '4', '5'])-> int:
+#     sum=0
+#     for i in l:
+#         sum+=int(i)
+#     return sum
+
+
+# print(zad2_10_4())
+
+def zad3_1_1(lst=[])-> list:
+    lst=[i for i in range(1,7)]
+    return lst
+
+def zad3_1_2(lst1 = [1, 2, 3],lst2 = [4, 5, 6])-> list:
+    return lst1+lst2
+
+def zad3_1_3(lst=[1, 2, 3, 4, 5, 6, 1, 7])->int:
     sum=0
-    for i in l:
-        sum+=int(i)
+    for i in range(len(lst)//2):
+        sum+=lst[i]
     return sum
 
 
-print(zad2_10_4())
+print(zad3_1_3())
+
+
+
+
+
+'''
+    ruff check .py
+    ruff --fix .py
+    ДОКУМЕНТИРОАТЬ КЛАССЫ И ФУНКЦИИ
+    И ЗАПОМНИ ТЫ ЛЕГЕНДА ЕСЛИ НЕ ТЫ ТО НИКТО ДРУГОЙ СТАНЬ ПЕРВЫМ КТО ЭТО СДЕЛАТЬ ВЕДЬ ТЫ ТОТ КТО ЭТОГО ДОСТОИН ДОКАЖИ ИМ ВСЕМ ЭТИ СЛОА КОТОРЫЕ ТЫ ГОВОРИШЬ СЕБЕ. Я ЗНАЮ ТОЛЬКО ДВУХ ТАКИХ ЛЮДЕЙ И Я С НИМ РОДИЛСЯ В ОДИН ДЕНЬ))))
+'''
