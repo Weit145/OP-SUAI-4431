@@ -552,24 +552,35 @@
 
 # print(zad2_10_4())
 
-def zad3_1_1(lst=[])-> list:
-    lst=[i for i in range(1,7)]
-    return lst
+# def zad3_1_1(lst=[])-> list:
+#     lst=[i for i in range(1,7)]
+#     return lst
 
-def zad3_1_2(lst1 = [1, 2, 3],lst2 = [4, 5, 6])-> list:
-    return lst1+lst2
+# def zad3_1_2(lst1 = [1, 2, 3],lst2 = [4, 5, 6])-> list:
+#     return lst1+lst2
 
-def zad3_1_3(lst=[1, 2, 3, 4, 5, 6, 1, 7])->int:
-    sum=0
-    for i in range(len(lst)//2):
-        sum+=lst[i]
-    return sum
-
-
-print(zad3_1_3())
+# def zad3_1_3(lst=[1, 2, 3, 4, 5, 6, 1, 7])->int:
+#     sum=0
+#     for i in range(len(lst)//2):
+#         sum+=lst[i]
+#     return sum
 
 
+# print(zad3_1_3())
 
+
+def qsort(lst:list)->list:
+    if len(lst)<=1:
+        return lst
+    else:
+        pivor=lst[(len(lst)//2)]
+        left=[i for i in lst if i<pivor]
+        right=[i for i in lst if i>pivor]
+        midl=[i for i in lst if i==pivor]
+        return qsort(left)+midl+qsort(right)
+    
+lst=[4,2,5,6,7,7,9,1,3]
+print(qsort(lst))
 
 
 '''
