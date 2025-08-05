@@ -568,6 +568,44 @@
 
 # print(zad3_1_3())
 
+def zad3_2_1()-> list:
+    lst=[i for i in range(1,10,2)]
+    return lst
+
+
+def zad3_2_2(tpl1 = (1, 2, 3),tpl2 = (4, 5, 6))-> tuple:
+    tpl=tpl1+tpl2
+    return tpl
+
+
+def zad3_2_3(dct1 = {'a': 1,'b': 2,},dct2 = {'c': 3, 'd': 4,})-> dict:
+    dic=dct1|dct2
+    return dic
+
+def zad3_2_4(l=[1, 2, 3, 4, 5, 6])->int:
+    sum1=0
+    sum2=0
+    for i in range(len(l)//2):
+        sum1+=l[i]
+        sum2+=l[-i-1]
+    return sum1/sum2
+
+
+print(zad3_2_4())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def qsort(lst:list)->list:
     if len(lst)<=1:
@@ -579,8 +617,7 @@ def qsort(lst:list)->list:
         midl=[i for i in lst if i==pivor]
         return qsort(left)+midl+qsort(right)
     
-lst=[4,2,5,6,7,7,9,1,3]
-print(qsort(lst))
+
 
 
 '''
