@@ -47,7 +47,7 @@ int main(){
     }
     if (n==0){
         cout<<"output.txt is clear"<<endl;
-    }
+    }   
     fclose(inputFile);
     fclose(outputFile);
 }
