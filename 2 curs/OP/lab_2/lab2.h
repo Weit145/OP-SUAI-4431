@@ -10,6 +10,8 @@ private:
     double days;
 public:
 
+    void print();
+
     double getSalary(double,double);
 
     Worker(){
@@ -33,6 +35,9 @@ public:
         days=other.days;
     }
 
+    ~Worker(){
+        cout<<"Worker destroyed"<<endl;
+    }
 
 };
 
