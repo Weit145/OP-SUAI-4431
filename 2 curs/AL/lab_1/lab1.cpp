@@ -58,7 +58,7 @@ int main(){
     int* mas = new int [size];
     int sum=0;
     input_random(mas,size,sum);
-    output(mas,size);
+    output(mas,size);                                                                                                                                                                                                                                                                                                                           
     bool flag=1;
     while(flag){
         cout<<"Enter 1 for Sum number<0 or 2 for Number zero or anything for end"<<endl;
