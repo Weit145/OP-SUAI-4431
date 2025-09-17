@@ -138,7 +138,7 @@ void enter_node(Node*& head,Node*&tail,int index,int num,int&n){
 }
 
 
-void delete_all(Node*&head,Node*&tail){
+void delete_all(Node*&head,Node*&tail,int&n){
     Node* node=head;
     while (node!=nullptr){
         head=node->next;
@@ -146,13 +146,14 @@ void delete_all(Node*&head,Node*&tail){
         node=head;
     }
     tail=nullptr;
+    n=0;
 }
 
 void show_all(Node*head){
     Node* node=head;
     cout<<"******************"<<endl;
     for(int i=0;node!=nullptr;i++){
-        cout<<"Node "<<i<<"\n"<<"Number: "<<node->number<<endl;
+        cout<<"Node "<<i+1<<"\n"<<"Number: "<<node->number<<endl;
         node=node->next;
         if(node!=nullptr)cout<<"\t|"<<endl;
     }
@@ -220,6 +221,7 @@ int main(){
     Node* head=nullptr;
     Node* tail= nullptr;
     int n=0,num=0,index=0,i=0;
+    cout<<"******************"<<endl;
     cout<<"1 - Exit \n2 - Add Node \n3 - Delete one Node \n4 - Enter Node \n5 - Delete ALL Nodes \n6 - Show Nodes \n7 - Zadanie"<<endl;
     cin>>i;
     while (i!=1)
@@ -231,11 +233,13 @@ int main(){
             add_node(head,tail,num,n);
             break;
         case 3:
+            cout<<"Size Node: "<<n<<endl;
             cout<<"Index = ";
             cin>>index;
             delete_node(head,tail,index,n);
             break;
         case 4:
+            cout<<"Size Node: "<<n<<endl;
             cout<<"Number = ";
             cin>>num;
             cout<<"Index = ";
@@ -243,7 +247,7 @@ int main(){
             enter_node(head,tail,index,num,n);
             break;
         case 5:
-            delete_all(head,tail);
+            delete_all(head,tail,n);
             break;
         case 6:
             show_all(head);
@@ -254,10 +258,11 @@ int main(){
         default:
             break;
         }
+        cout<<"******************"<<endl;
         cout<<"1 - Exit \n2 - Add Node \n3 - Delete one Node \n4 - Enter Node \n5 - Delete ALL Nodes \n6 - Show Nodes \n7 - Zadanie"<<endl;
         cin>>i;
     }
-    delete_all(head,tail);
+    delete_all(head,tail,n);
 
 
 
