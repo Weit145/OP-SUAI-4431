@@ -39,7 +39,7 @@ bool operator<( Triangle& t1,  Triangle& t2) {
 }
 
 bool operator==( Triangle& t1,  Triangle& t2) {
-    return std::abs(t1.Area() - t2.Area()) < 1e-10;
+    return abs(t1.Area() - t2.Area()) < 0;
 }
 
 int main(){
@@ -55,8 +55,8 @@ int main(){
     cout << "Triangle 2 area: " << t2.Area() << endl;
     cout << "Triangle 3 area: " << t3.Area() << endl;
     
-    cout << "Triangle 1 is valid: " << boolalpha << static_cast<bool>(t1) << endl;
-    cout << "Triangle 3 is valid: " << boolalpha << static_cast<bool>(t3) << endl;
+    cout << "Triangle 1 is valid: " <<bool(t1) << endl;
+    cout << "Triangle 3 is valid: " << bool(t3) << endl;
     
     cout << "t1 < t2: " << (t1 < t2) << endl;
     cout << "t1 == t2: " << (t1 == t2) << endl;

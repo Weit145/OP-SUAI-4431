@@ -15,10 +15,10 @@ public:
     double getSalary(double,double);
 
     Worker(){
-        name="";
-        surname="";
-        rate=0;
-        days=0;
+        name="Ivan";
+        surname="Ivaniv";
+        rate=10;
+        days=20;
     }
 
     Worker(string name_new,string surname_new, double rate_new, double days_new){
