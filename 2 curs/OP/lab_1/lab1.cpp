@@ -35,5 +35,5 @@ int main(){
     Num.SetB(25);
     cout<<"A:"<<Num.GetA()<<endl;
     cout<<"B:"<<Num.GetB()<<endl;
-    cout<<"Наибольший общий делитель:"<<Num.NOD()<<endl;
+    cout<<"Greatest common divisor:"<<Num.NOD()<<endl;
 }

@@ -39,7 +39,7 @@ D2::~D2(){
     cout<<"D2 Destructor"<<endl;
 }
 
-D3::D3(int b1,int b2,int d1,int d2,int d3):D1(b1,b2,d1),D2(b1,b2,d2){
+D3::D3(int b1,int b2,int d1,int d2,int d3):B1(b1), B2(b2), D1(b1, b2, d1), D2(b1, b2, d2){
     t=d3;
     cout<<"D3 Konstructor "<<t<<endl;
 }
@@ -58,20 +58,18 @@ void B2::B2show(){
 
 void D1::D1show(){
     cout<<"D1: "<<w<<endl;
-    B1s();
-    B2show();
 }
 
 void D2::D2show(){
     cout<<"D2: "<<r<<endl;
-    B1show();
-    B2s();
 }
 
 void D3::D3show(){
     cout<<"D3: "<<t<<endl;
     D1s();
     D2show();
+    B1s();
+    B2s();
 }
 
 int main(){

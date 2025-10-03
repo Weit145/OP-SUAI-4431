@@ -4,7 +4,7 @@ protected:
 public:
     B1(int);
     ~B1();
-    void B1show();
+    virtual void B1show();
 };
 
 class B2{
@@ -16,7 +16,7 @@ public:
     void B2show();
 };
 
-class D1:private B1, public B2{
+class D1:virtual private B1, virtual  public B2{
 protected:
     int w;
 public:
@@ -26,7 +26,7 @@ public:
     void B1s(){B1show();}
 };
 
-class D2:public B1,private B2{
+class D2:virtual public B1,virtual private B2{
 protected:
     int r;
 public:
@@ -36,7 +36,7 @@ public:
     void B2s(){B2show();}
 };
 
-class D3:private D1,public D2{
+class D3:virtual private D1,virtual public D2{
 protected:
     int t;
 public:
