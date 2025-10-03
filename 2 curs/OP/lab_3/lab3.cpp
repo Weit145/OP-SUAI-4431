@@ -11,9 +11,6 @@ Point::Point(double a,double b){
 }
 Point::~Point(){}
 
-double Point::distance(const Point& other)const{
-    return sqrt(pow(x-other.x,2)+pow(y-other.y,2));
-}
 
 double Point::getx()const{return x;}
 double Point::gety()const{return y;}
@@ -51,6 +48,10 @@ int main(){
     Triangle t2(p4, p5, p6);
     Triangle t3(p7, p8, p9);
     
+    cout << "Point 1: " << p1.getx()<<p1.gety()<<" " <<p2.getx()<<p2.gety()<<" "<<p3.getx()<<p3.gety() << endl;
+    cout << "Point 2: " << p4.getx()<<p4.gety()<<" "<<p5.getx()<<p5.gety()<<" "<<p6.getx()<<p9.gety() << endl;
+    cout << "Point 3: " << p7.getx()<<p7.gety()<<" "<<p8.getx()<<p8.gety()<<" "<<p9.getx()<<p9.gety() << endl;
+
     cout << "Triangle 1 area: " << t1.Area() << endl;
     cout << "Triangle 2 area: " << t2.Area() << endl;
     cout << "Triangle 3 area: " << t3.Area() << endl;

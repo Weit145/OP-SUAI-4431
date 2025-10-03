@@ -5,7 +5,6 @@ private:
 public:
     Point(double a,double b);
     ~Point();
-    double distance(const Point& other)const;
 
     double getx()const;
     double gety()const;
@@ -23,4 +22,3 @@ public:
     friend bool operator<(const Triangle& a,const Triangle& b);
     friend bool operator==(const Triangle& a,const Triangle& b);
 };
-
