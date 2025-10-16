@@ -58,18 +58,18 @@ void B2::B2show(){
 
 void D1::D1show(){
     cout<<"D1: "<<w<<endl;
+    B1show();
 }
 
 void D2::D2show(){
     cout<<"D2: "<<r<<endl;
+    B2show();
 }
 
 void D3::D3show(){
     cout<<"D3: "<<t<<endl;
-    D1s();
+    D1show();
     D2show();
-    B1s();
-    B2s();
 }
 
 int main(){
