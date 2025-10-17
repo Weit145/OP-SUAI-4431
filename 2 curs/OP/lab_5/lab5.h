@@ -2,7 +2,8 @@ class B1{
 protected:
     int e;
 public:
-    B1(int);
+    B1();
+    void setB1(int);
     virtual~B1();
     void B1show();
 };
@@ -11,7 +12,8 @@ class B2{
 protected:
     int q;
 public:
-    B2(int);
+    B2();
+    void setB2(int);
     virtual ~B2();
     void B2show();
 };
@@ -34,7 +36,7 @@ public:
     void D2show(); 
 };
 
-class D3:virtual private D1,virtual public D2{
+class D3: private D1, public D2{
 protected:
     int t;
 public:

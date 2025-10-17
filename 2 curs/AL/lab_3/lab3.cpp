@@ -38,7 +38,7 @@ bool dell_queue(int queue[][3],int n,int& head,int& count){
 
 void show_queue(int queue[][3],int n,int& head,int& count){
     if (count==0){
-        cout << "Queue is empty" << endl;
+        cout<<"Queue is empty"<<endl;
         return;
     }
     int d_head=head;
@@ -188,13 +188,22 @@ void show_process(Processor* P1,Processor* P2,Processor* P3){
     if (P1->tact>0){
         cout<<"Busy with task "<<P1->num<<" tacts "<<P1->tact<<endl;
     }
-    cout<<"P1: ";
+    else{
+        cout<<"Free"<<endl;
+    }
+    cout<<"P2: ";
     if (P2->tact>0){
         cout<<"Busy with task "<<P2->num<<" tacts "<<P2->tact<<endl;
     }
-    cout<<"P1: ";
+    else{
+        cout<<"Free"<<endl;
+    }
+    cout<<"P3: ";
     if (P3->tact>0){
         cout<<"Busy with task "<<P3->num<<" tacts "<<P3->tact<<endl;
+    }
+    else{
+        cout<<"Free"<<endl;
     }
 }
 
@@ -261,13 +270,14 @@ int main(){
             }
             if (add_queue(queue,n,head,tail,num,tip,count,tact)){
                 cout<<"Error: queue is full"<<endl;
+                return;
             }
             break;
         case 3:
             process_tact(P1,P2,P3);
             check_and_move_to_stack(P1,P2,P3,queue,n,head,count,stack_head);
-            add_process_queue(P1,P2,P3,queue,n,head,count,stack_head);
             add_process_stack(P1,P2,P3,stack_head);
+            add_process_queue(P1,P2,P3,queue,n,head,count,stack_head);
             break;
         case 4:
             show_stack(stack_head);
