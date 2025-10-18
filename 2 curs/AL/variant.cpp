@@ -7,5 +7,5 @@ int main(){
     int x;
     cout<<"Кол заданий:"<<endl;
     cin>>x;
-    cout<<(x-1)%5<<endl;
+    cout<<(n%x)+1<<endl;
 }
