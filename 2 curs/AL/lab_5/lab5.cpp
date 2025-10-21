@@ -19,7 +19,7 @@ void sort(int*&arr, int n){
         }
     }
     cout<<"Swap: "<<swap<<endl;
-    cout<<"Сomparisons: "<<cmp<<endl;
+    cout<<"Comparisons: "<<cmp<<endl;
 }
 
 int crate_mas(int*& arr){
