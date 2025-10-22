@@ -1,5 +1,5 @@
 
-def qs(arr:list):
+def qs(arr:list)->list:
     if (len(arr)<1):return arr
     target = arr[len(arr)//2]
     left = [x for x in arr if x<target]
@@ -8,7 +8,7 @@ def qs(arr:list):
     return qs(left)+middele+qs(right)
 
 
-def sliv(arr1:list, arr2:list):
+def sliv(arr1:list, arr2:list)->list:
     arr=[]
     a=b=0
     while len(arr1)!=a and len(arr2)!=b:
@@ -29,7 +29,7 @@ def sliv(arr1:list, arr2:list):
 
 
 
-def merg(arr:list):
+def merg(arr:list)->list:
     if (len(arr)<=1):return arr
     target = len(arr)//2
     left = arr[:target]

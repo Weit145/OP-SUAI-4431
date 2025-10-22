@@ -10,10 +10,8 @@ void sort(int*&arr, int n){
         for(int i=0;i<n;i++){
             int temp = arr[i];
             int j = i;
-            while (j >= gap && (++cmp and arr[j - gap] > temp)) {
+            for (j=i;j >= gap and (++cmp and arr[j - gap] > temp);j-=gap, swap++){
                 arr[j] = arr[j - gap];
-                j -= gap;
-                swap++;
             }
             arr[j] = temp;
         }
@@ -41,6 +39,18 @@ void add_index(int*& arr,int n, int index,int num){
     arr[index]=num;
 }
 
+void add_num_in_mas(int*&arr,int& n,int num){
+    int new_size=n+1;
+    int* mas=new int [new_size];
+    for(int i=0;i<n;i++){
+        mas[i]=arr[i];
+    }
+    mas[n]=num;
+    delete[] arr;
+    n=new_size;
+    arr=mas;
+}
+
 void show(int* arr,int n){
     for (int i=0;i<n;i++){
         cout<<arr[i]<<endl;
@@ -55,7 +65,7 @@ int main(){
     int num=0;
     while (true)
     {
-        cout<<"1-Exit\n2-Sort\n3-Delete index\n4-Add index\n5-Create masiv\n6-Show mas"<<endl;
+        cout<<"1-Exit\n2-Sort\n3-Delete index\n4-Add index\n5-Create masiv\n6-Show mas\n7-Add number"<<endl;
         cin>>menu;
         switch (menu)
         {
@@ -83,6 +93,11 @@ int main(){
             break;
         case 6:
             show(arr,n);
+            break;
+        case 7:
+            cout<<"Input number for add in arr"<<endl;
+            cin>>num;
+            add_num_in_mas(arr,n,num);
             break;
         default:
             cout<<"Erorr"<<endl;
