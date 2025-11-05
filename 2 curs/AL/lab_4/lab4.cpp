@@ -155,20 +155,19 @@ void generate_random_key(char* key) {
 
 void test_hash_function() {
     srand(time(0));
+    int hash_counts[SIZE] = {0};
     ofstream file("hash_test_sample.csv");
-    file << "Key,HashIndex\n";
-
+    file << "Key,HashIndex,CollisionsSoFar\n";
     for (int i = 0; i < 4000; i++) {
-        char key[6];
+        char key[7];
         generate_random_key(key);
 
         int hash = hash_function(key);
-        file << key[0] << key[1] << key[2] << key[3] << key[4] << key[5]
-            << "," << hash << "\n";
+        int collisions = hash_counts[hash];
+        hash_counts[hash]++;
+        file << key << "," << hash << "," << collisions << "\n";
     }
-
     file.close();
-    cout << "4000 random keys hashed and exported to 'hash_test_sample.csv'" << endl;
 }
 
 int main() {
