@@ -58,7 +58,7 @@ int hash_function(const char* keys) {
     int hash = 0;
     for (int i = 0; i < 6; i++)
     {
-        hash = (hash * 31 + keys[i]) % SIZE;
+        hash = (hash * 31 + keys[i]) % SIZE;    
     }
     return hash; 
 }
@@ -71,7 +71,7 @@ int step_function( int hash) {
 void add_segment(Segment* hash_table, const char* keys) {
     int hash = hash_function(keys);
     int start = hash;
-    while (!hash_table[hash].isEmpty and !hash_table[hash].isDeleted) {
+    while (!hash_table[hash].isEmpty and !hash_table[hash].isDeleted and is_this_key(keys, hash_table[hash].keys)) {
         hash = step_function(hash);
         if (hash == start) {
             cout << "Hash table is full. Cannot add segment." << endl;
