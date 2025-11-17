@@ -12,15 +12,12 @@ def sliv(arr1:list, arr2:list)->list:
     arr=[]
     a=b=0
     while len(arr1)!=a and len(arr2)!=b:
-        if arr1[a]<arr2[b]:
+        if arr1[a]<=arr2[b]:
             arr.append(arr1[a])
             a=a+1
         elif arr2[b]<arr1[a]:
             arr.append(arr2[b])
             b=b+1
-        else:
-            arr.append(arr1[a])
-            a=a+1
     if b==len(arr2):
         arr.extend(arr1[a:])
     elif a==len(arr1):
