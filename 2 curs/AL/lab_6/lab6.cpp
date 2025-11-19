@@ -51,26 +51,32 @@ void rotateRight(Tree*& list){
     return;
 }
 
+int get_balance(Tree* list){
+    int left_bal = (list->left==nullptr ? -1:list->left->high);
+    int right_bal = (list->right==nullptr ? -1:list->right->high);
+    int result = left_bal - right_bal;
+}
+
 void balance(Tree*& list){
     if(list==nullptr){
         return;
+    int result = get_balance(list);
+    if (result==1){
+        rotateLeft(list);
+        rotateRight(list);
     }
-    int left_bal = (list->left->high==nullptr ? -1:list->left->high);
-    int right_bal = (list->right->high==nullptr ? -1:list->right->high);
-    int result = left_bal - right_bal;
+    if (result==-1){
+        rotateRight(list);
+        rotateLeft(list);
+    }
     if (abs(result) < 2) {
         return;
     }
-
-    
-
     if (result > 0) {
-        
+        rotateLeft(list);
+        return;
     }
-
-    
-    return;
-
+    rotateRight(list);
 }
 
 void update_high(Tree* node){
