@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -11,9 +12,9 @@ private:
 public:
     Example(vector<T> & t,const int size): vec(t), size(size) {}
 
-    int zad1(){
+    T zad1(){
         int sum=0;
-        for(int i : vec){
+        for(T i : vec){
             double k = double(i);
             sum+=k;
         }
@@ -30,6 +31,10 @@ public:
             }
             vec[i]=T(val);
         }
+    }
+
+    void st(){
+        sort(vec.begin(), vec.end());
     }
 
     void show(){

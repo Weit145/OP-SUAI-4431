@@ -2,6 +2,7 @@
 #include <cstdlib> 
 #include <iostream>
 
+
 using namespace std;
 
 
@@ -23,6 +24,8 @@ int main(){
     V.show();
     V.zad2();
     V.show();
+    V.st();
+    V.show();
 
 
     vector<double> k(size);
@@ -32,6 +35,8 @@ int main(){
     K.show();
     K.zad2();
     K.show();
+    K.st();
+    K.show();
 
 
     vector<float> g(size);
@@ -40,5 +45,7 @@ int main(){
     cout<<G.zad1()<<endl;
     G.show();
     G.zad2();
+    G.show();
+    G.st();
     G.show();
 }
