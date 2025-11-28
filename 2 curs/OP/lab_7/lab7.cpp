@@ -1,9 +1,49 @@
 #include "lab7.h"
 #include <cstdlib> 
 #include <iostream>
-
+#include <algorithm>
+#include <iomanip>
 
 using namespace std;
+
+template <typename T>
+T Example<T>::zad1(){
+    double sum=0;
+    for(T i : vec){
+        double k = double(i);
+        sum+=k;
+    }
+    return T(sum);   
+}
+
+template <typename T>
+void Example<T>::zad2(){
+    for(int i=0;i<size;i++){
+        double k = double(vec[i]);
+        double val = 2*k+5;
+        if(val>20){
+            vec[i]=T(10);
+            continue;
+        }
+        vec[i]=T(val);
+    }
+}
+
+template <typename T>
+void Example<T>::st(){
+    sort(vec.begin(), vec.end());
+}
+
+template <typename T>
+void Example<T>::show() {
+    for (const auto& val : vec) {
+        cout << setw(8) << val ;
+    }
+    cout<<endl;
+}
+
+
+
 
 
 template <typename T>
