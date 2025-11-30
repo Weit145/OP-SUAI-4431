@@ -60,7 +60,7 @@ int main(){
 	vector<int> v(size);
     rd(v,size);
     Example V = Example(v,size);
-    cout<<V.zad1()<<endl;
+    cout<<setw(3)<<V.zad1()<<endl;
     V.show();
     V.zad2();
     V.show();
@@ -71,7 +71,7 @@ int main(){
     vector<double> k(size);
     rd(k,size);
     Example K = Example(k,size);
-    cout<<K.zad1()<<endl;
+    cout<<setw(3)<<K.zad1()<<endl;
     K.show();
     K.zad2();
     K.show();
@@ -82,7 +82,7 @@ int main(){
     vector<float> g(size);
     rd(g,size);
     Example G = Example(g,size);
-    cout<<G.zad1()<<endl;
+    cout<<setw(3)<<G.zad1()<<endl;
     G.show();
     G.zad2();
     G.show();
