@@ -39,72 +39,59 @@ bool select(Tree* list, int select_value, Tree*& select_list){
 
 void update_high(Tree* node){
     if (!node) return;
-
-    node->high = std::max(
-        node->left ? node->left->high : -1,
-        node->right ? node->right->high : -1
-    ) + 1;
-
+    int left = node->left ? node->left->high : -1;
+    int right = node->right ? node->right->high : -1;
+    node->high = max(left, right) + 1;
     if (node->parent != nullptr) {
         update_high(node->parent);
     }
 }
 
 
-void rotateLeft(Tree*& root, Tree* x) {
-    if (!x || !x->right) return;
+void rotateLeft(Tree*& root, Tree* node) {
+    if (!node or !node->right) return;
     
-    Tree* y = x->right;
-    x->right = y->left;
-    
-    if (y->left)
-        y->left->parent = x;
-    
-    y->parent = x->parent;
-    
-    if (!x->parent) {
-        root = y;
-    }
-    else if (x == x->parent->left) {
-        x->parent->left = y;
+    Tree* sup = node->right;
+    node->right = sup->left;
+    if (sup->left) sup->left->parent = node;
+
+    sup->parent = node->parent;
+    if (!node->parent) root = sup;
+    else if (node == node->parent->left) {
+        node->parent->left = sup;
     }
     else {
-        x->parent->right = y;
+        node->parent->right = sup;
     }
     
-    y->left = x;
-    x->parent = y;
+    sup->left = node;
+    node->parent = sup;
     
-    update_high(x);
-    update_high(y);
+    update_high(node);
+    update_high(sup);
 }
 
-void rotateRight(Tree*& root, Tree* y) {
-    if (!y || !y->left) return;
+void rotateRight(Tree*& root, Tree* node) {
+    if (!node || !node->left) return;
     
-    Tree* x = y->left;
-    y->left = x->right;
+    Tree* sup = node->left;
+    node->left = sup->right;
+    if (sup->right) sup->right->parent = node;
     
-    if (x->right)
-        x->right->parent = y;
-    
-    x->parent = y->parent;
-    
-    if (!y->parent) {
-        root = x;
-    }
-    else if (y == y->parent->left) {
-        y->parent->left = x;
+    sup->parent = node->parent;
+    if (!node->parent)  root = sup;
+    else if (node == node->parent->left) {
+        node->parent->left = sup;
     }
     else {
-        y->parent->right = x;
+        node->parent->right = sup;
     }
     
-    x->right = y;
-    y->parent = x;
+    sup->right = node;
+    node->parent = sup;
     
-    update_high(y);
-    update_high(x);
+    update_high(node);
+    update_high(sup);
 }
 
 int get_balance(Tree* list){
@@ -117,12 +104,11 @@ int get_balance(Tree* list){
 
 void balance(Tree*& root, Tree* node) {
     if (!node) return;
-
     while (node) {
         update_high(node);
-        int bf = get_balance(node);
+        int result = get_balance(node);
 
-        if (bf > 1) {
+        if (result > 1) {
             if (get_balance(node->left) >= 0) {
                 rotateRight(root, node);
             }
@@ -131,7 +117,7 @@ void balance(Tree*& root, Tree* node) {
                 rotateRight(root, node);
             }
         }
-        else if (bf < -1) {
+        else if (result < -1) {
             if (get_balance(node->right) <= 0) {
                 rotateLeft(root, node);
             }
@@ -147,7 +133,6 @@ void balance(Tree*& root, Tree* node) {
 
 
 void add_list(Tree*& list,int value){
-    Tree* select_list;
     if (list==nullptr){
         list = new Tree;
         list->value = value;
@@ -157,6 +142,7 @@ void add_list(Tree*& list,int value){
         list->right = nullptr;
         return;
     }
+    Tree* select_list;
     if (select(list, value, select_list))return;
 
     Tree* new_list = new Tree;
@@ -173,8 +159,7 @@ void add_list(Tree*& list,int value){
         select_list->right = new_list;
     }
 
-    update_high(select_list);
-    balance(list, new_list);
+    balance(list, select_list);
 
 }
 
@@ -190,19 +175,17 @@ Tree* min_value(Tree* list){
 
 void delete_list(Tree*& root, Tree* node) {
     if (!node) return;
-
     Tree* parent = node->parent;
 
-    // Случай 1: Узел без детей
-    if (!node->left && !node->right) {
+    if (!node->left and !node->right) {
         if (parent) {
-            if (parent->left == node)
+            if (parent->left == node){
                 parent->left = nullptr;
-            else
+            }
+            else{
                 parent->right = nullptr;
-            
+            }
             delete node;
-            update_high(parent);
             balance(root, parent);
         }
         else {
@@ -212,35 +195,32 @@ void delete_list(Tree*& root, Tree* node) {
         return;
     }
 
-    // Случай 2: Узел с одним ребенком
-    if (!node->left || !node->right) {
+    if (!node->left or !node->right) {
         Tree* child = node->left ? node->left : node->right;
         
         if (parent) {
-            if (parent->left == node)
+            if (parent->left == node){
                 parent->left = child;
-            else
+            }
+            else{
                 parent->right = child;
-            
+            }
             child->parent = parent;
             delete node;
-            update_high(child);
-            balance(root, child);
+            balance(root, parent);
         }
         else {
             root = child;
             child->parent = nullptr;
             delete node;
-            update_high(root);
             balance(root, root);
         }
         return;
     }
 
-    // Случай 3: Узел с двумя детьми
-    Tree* successor = min_value(node->right);
-    node->value = successor->value;
-    delete_list(root, successor);
+    Tree* min_list_right = min_value(node->right);
+    node->value = min_list_right->value;
+    delete_list(root, min_list_right);
 }
 
 void delete_tree(Tree* list){
@@ -253,56 +233,50 @@ void delete_tree(Tree* list){
 }
 
 
-
 void show(Tree* node, string indent = "", bool last = true) {
-    if (node == nullptr) return;
+    if (!node) return;
 
     cout << indent;
 
     if (last) {
-        cout << "└─";
+        cout << "+-";
         indent += "  ";
     } else {
-        cout << "├─";
-        indent += "│ ";
+        cout << "|-";
+        indent += "| ";
     }
 
     cout << node->value << "\n";
 
     if (node->left || node->right) {
-        if (node->left) show(node->left, indent, false);
+        if (node->left)  show(node->left,  indent, false);
         if (node->right) show(node->right, indent, true);
     }
 }
 
 
-int arifm(Tree* list, int& sum, int& count){
-    if (!list) return 0;
 
-    if (!list->left && !list->right){
+void arifm(Tree* list, int& sum, int& count){
+    if (!list) return;
+
+    if (!list->left and !list->right){
         sum += list->value;
         count++;
     }
 
     arifm(list->left, sum, count);
     arifm(list->right, sum, count);
-
-    if (count == 0) return 0;
-    if (list->parent == nullptr) return sum / count;
-    return 0;
 }
 
 
 void vechet(Tree* list, int num){
-    if (list==nullptr){
-        return;
-    }
-    if (list->left==nullptr and list->right==nullptr){
+    if (!list) return;
+
+    if (!list->left and !list->right){
         list->value-=num;
     }
     vechet(list->left,num);
     vechet(list->right,num);
-    return;
 }
 
 void zad_del(Tree*& root, Tree* node){
@@ -318,14 +292,10 @@ void zad_del(Tree*& root, Tree* node){
 
 void zad(Tree*& root){
     if (!root) return;
-
     int sum = 0, count = 0;
     arifm(root, sum, count);
-
-    int avg = (count > 0) ? sum / count : 0;
-
-    vechet(root, avg);
-
+    int result = (count == 0) ? 0 : sum / count;
+    vechet(root, result);
     zad_del(root, root);
 }
 
@@ -339,8 +309,8 @@ int main() {
         cout << "1 - Exit\n";
         cout << "2 - Add\n";
         cout << "3 - Delete\n";
-        cout << "4 - Show (in-order)\n";
-        cout << "5 - Zad (арифм. ср + уменьшение листьев + удаление %3)\n";
+        cout << "4 - Show tree\n";
+        cout << "5 - Task (avg of leaves + decrease leaves + remove %3)\n";
         cout << "Enter: ";
 
         cin >> menu;
@@ -377,22 +347,22 @@ int main() {
         }
 
         case 4:
-            cout << "Tree (in-order): "<<endl;
+            cout << "Tree:\n";
             show(root);
             cout << endl;
             break;
 
         case 5:
             if (root == nullptr) {
-                cout << "Tree empty.\n";
+                cout << "Tree is empty.\n";
                 break;
             }
             zad(root);
-            cout << "Zad applied.\n";
+            cout << "Task applied.\n";
             break;
 
         default:
-            cout << "Wrong option.\n";
+            cout << "Invalid option.\n";
             break;
         }
     }
