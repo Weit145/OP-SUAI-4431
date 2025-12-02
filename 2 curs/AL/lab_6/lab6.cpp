@@ -15,13 +15,7 @@ struct Tree{
     Tree* right;
 };
 
-void update_high(Tree* node){
-    node->high=max((node->left==nullptr ? -1:node->left->high),(node->right==nullptr ? -1:node->right->high))+1;
-    if(node->parent==nullptr){
-        return;
-    }
-    return update_high(node->parent);
-}
+
 
 bool select(Tree* list, int select_value, Tree*& select_list){
     if (list == nullptr) {
@@ -43,29 +37,74 @@ bool select(Tree* list, int select_value, Tree*& select_list){
 
 
 
+void update_high(Tree* node){
+    if (!node) return;
 
+    node->high = std::max(
+        node->left ? node->left->high : -1,
+        node->right ? node->right->high : -1
+    ) + 1;
 
-
-void rotateLeft(Tree*& list){
-    Tree* sup = list;
-    list->right->parent=nullptr;
-    sup->right = list->right->left;
-    sup->parent = list->right;
-    sup->right->parent = sup;
-    list->right->left = sup;
-    list = sup->parent;
-    update_high(sup);
+    if (node->parent != nullptr) {
+        update_high(node->parent);
+    }
 }
 
-void rotateRight(Tree*& list){
-    Tree* sup = list;
-    list->left->parent=nullptr;
-    sup->left = list->left->right;
-    sup->parent = list->left;
-    sup->left->parent = sup;
-    list->left->right = sup;
-    list = sup->parent;
-    update_high(sup);
+
+void rotateLeft(Tree*& root, Tree* x) {
+    if (!x || !x->right) return;
+    
+    Tree* y = x->right;
+    x->right = y->left;
+    
+    if (y->left)
+        y->left->parent = x;
+    
+    y->parent = x->parent;
+    
+    if (!x->parent) {
+        root = y;
+    }
+    else if (x == x->parent->left) {
+        x->parent->left = y;
+    }
+    else {
+        x->parent->right = y;
+    }
+    
+    y->left = x;
+    x->parent = y;
+    
+    update_high(x);
+    update_high(y);
+}
+
+void rotateRight(Tree*& root, Tree* y) {
+    if (!y || !y->left) return;
+    
+    Tree* x = y->left;
+    y->left = x->right;
+    
+    if (x->right)
+        x->right->parent = y;
+    
+    x->parent = y->parent;
+    
+    if (!y->parent) {
+        root = x;
+    }
+    else if (y == y->parent->left) {
+        y->parent->left = x;
+    }
+    else {
+        y->parent->right = x;
+    }
+    
+    x->right = y;
+    y->parent = x;
+    
+    update_high(y);
+    update_high(x);
 }
 
 int get_balance(Tree* list){
@@ -76,30 +115,34 @@ int get_balance(Tree* list){
     return result;
 }
 
-void balance(Tree*& list){
-    if(list==nullptr){
-        return;
+void balance(Tree*& root, Tree* node) {
+    if (!node) return;
+
+    while (node) {
+        update_high(node);
+        int bf = get_balance(node);
+
+        if (bf > 1) {
+            if (get_balance(node->left) >= 0) {
+                rotateRight(root, node);
+            }
+            else {
+                rotateLeft(root, node->left);
+                rotateRight(root, node);
+            }
+        }
+        else if (bf < -1) {
+            if (get_balance(node->right) <= 0) {
+                rotateLeft(root, node);
+            }
+            else {
+                rotateRight(root, node->right);
+                rotateLeft(root, node);
+            }
+        }
+        
+        node = node->parent;
     }
-    int result = get_balance(list);
-    if (result==1){
-        rotateLeft(list->left);
-        rotateRight(list);
-    }
-    if (result==-1){
-        rotateRight(list->right);
-        rotateLeft(list);
-    }
-    if (abs(result) < 2) {
-        return;
-    }
-    if (result > 0) {
-        rotateLeft(list);
-        return;
-    }
-    if (result < 0) {
-        rotateRight(list);
-    };
-    return;
 }
 
 
@@ -131,7 +174,7 @@ void add_list(Tree*& list,int value){
     }
 
     update_high(select_list);
-    balance(list);
+    balance(list, new_list);
 
 }
 
@@ -146,58 +189,58 @@ Tree* min_value(Tree* list){
 }
 
 void delete_list(Tree*& root, Tree* node) {
-    if (node == nullptr) return;
+    if (!node) return;
 
     Tree* parent = node->parent;
 
-    if (node->left == nullptr && node->right == nullptr) {
-
+    // Случай 1: Узел без детей
+    if (!node->left && !node->right) {
         if (parent) {
-            if (parent->left == node) parent->left = nullptr;
-            else parent->right = nullptr;
-        } else {
+            if (parent->left == node)
+                parent->left = nullptr;
+            else
+                parent->right = nullptr;
+            
+            delete node;
+            update_high(parent);
+            balance(root, parent);
+        }
+        else {
+            delete node;
             root = nullptr;
         }
-
-        delete node;
-
-        if (parent) {
-            update_high(parent);
-            balance(parent);
-        }
-
         return;
     }
 
-    if (node->left == nullptr || node->right == nullptr) {
-
-        Tree* child = (node->left ? node->left : node->right);
-        child->parent = parent;
-
+    // Случай 2: Узел с одним ребенком
+    if (!node->left || !node->right) {
+        Tree* child = node->left ? node->left : node->right;
+        
         if (parent) {
-            if (parent->left == node) parent->left = child;
-            else parent->right = child;
-        } else {
-            root = child;
-        }
-
-        delete node;
-
-        if (parent) {
-            update_high(parent);
-            balance(parent);
-        } else {
+            if (parent->left == node)
+                parent->left = child;
+            else
+                parent->right = child;
+            
+            child->parent = parent;
+            delete node;
             update_high(child);
-            balance(child);
+            balance(root, child);
         }
-
+        else {
+            root = child;
+            child->parent = nullptr;
+            delete node;
+            update_high(root);
+            balance(root, root);
+        }
         return;
     }
-    Tree* min_right = min_value(node->right);
 
-    node->value = min_right->value;
-
-    delete_list(root, min_right);
+    // Случай 3: Узел с двумя детьми
+    Tree* successor = min_value(node->right);
+    node->value = successor->value;
+    delete_list(root, successor);
 }
 
 void delete_tree(Tree* list){
