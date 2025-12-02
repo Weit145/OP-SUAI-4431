@@ -107,7 +107,7 @@ void balance(Tree*& root, Tree* node) {
     while (node) {
         update_high(node);
         int result = get_balance(node);
-
+        Tree* parent = node->parent;
         if (result > 1) {
             if (get_balance(node->left) >= 0) {
                 rotateRight(root, node);
@@ -127,7 +127,7 @@ void balance(Tree*& root, Tree* node) {
             }
         }
         
-        node = node->parent;
+        node = parent;
     }
 }
 
@@ -269,14 +269,17 @@ void arifm(Tree* list, int& sum, int& count){
 }
 
 
-void vechet(Tree* list, int num){
+void vechet(Tree* list, int num, Tree* root){
     if (!list) return;
 
     if (!list->left and !list->right){
-        list->value-=num;
+        int new_value = list->value - num;
+        delete_list(root, list);
+        add_list(root, new_value);
+        return;
     }
-    vechet(list->left,num);
-    vechet(list->right,num);
+    vechet(list->left,num, root);
+    vechet(list->right,num, root);
 }
 
 void zad_del(Tree*& root, Tree* node){
@@ -295,7 +298,7 @@ void zad(Tree*& root){
     int sum = 0, count = 0;
     arifm(root, sum, count);
     int result = (count == 0) ? 0 : sum / count;
-    vechet(root, result);
+    vechet(root, result, root);
     zad_del(root, root);
 }
 
