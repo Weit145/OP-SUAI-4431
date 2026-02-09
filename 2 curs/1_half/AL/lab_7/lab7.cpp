@@ -49,8 +49,9 @@ bool isOddMatrix(int** matrix, int n, int& trip) {
         }
     }
     trip = oddCount;
-    return (oddCount == 0 || oddCount == 2);
+    return (oddCount == 0);
 }
+
 void copyMatrix(int** source, int** dest, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
