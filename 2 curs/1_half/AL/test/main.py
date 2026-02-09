@@ -1,6 +1,6 @@
-
 def qs(arr:list)->list:
-    if (len(arr)<1):return arr
+    if (len(arr)<1):
+        return arr
     target = arr[len(arr)//2]
     left = [x for x in arr if x<target]
     right = [x for x in arr if x>target]
@@ -27,7 +27,8 @@ def sliv(arr1:list, arr2:list)->list:
 
 
 def merg(arr:list)->list:
-    if (len(arr)<=1):return arr
+    if (len(arr)<=1):
+        return arr
     target = len(arr)//2
     left = arr[:target]
     right = arr[target:]

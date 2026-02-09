@@ -107,6 +107,5 @@ int main()
         shape->draw(screen.get());
     
     screen->draw();
-    std::cin.get();
-    return 0;
+    return;
 }
