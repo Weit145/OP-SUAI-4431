@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <cmath>
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -6,6 +7,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    flag=0;
+
+    connect(ui->lineEdit, &QLineEdit::textChanged,
+            this, &MainWindow::repit);
+
+    connect(ui->lineEdit_2, &QLineEdit::textChanged,
+            this, &MainWindow::repit);
 }
 
 MainWindow::~MainWindow()
@@ -13,69 +22,77 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-int64_t MainWindow::get_labl1(){
-    return  ui->lineEdit->text().toInt();
+double MainWindow::get_labl1(bool &ok){
+    return  ui->lineEdit->text().toDouble(&ok);
 }
 
-int64_t MainWindow::get_labl2(){
-    return  ui->lineEdit_2->text().toInt();
+double MainWindow::get_labl2(bool &ok){
+    return  ui->lineEdit_2->text().toDouble(&ok);
 }
 
-void MainWindow::out_labl3(int result_num){
+void MainWindow::out_labl3(double result_num){
     QString result;
     ui->lineEdit_3->setText(result.setNum(result_num));
 }
 
 
-int MainWindow::sum(int a, int b){
-    return a+b;
+double MainWindow::sum(double a, double b){
+    return fmod(a,b);
 }
 
-int MainWindow::raz(int a, int b){
+double MainWindow::raz(double a, double b){
     return a-b;
 }
 
-int MainWindow::delen(int a, int b){
+double MainWindow::delen(double a, double b){
+    if (b==0){
+            return 0;
+        }
     return a/b;
 }
 
-int MainWindow::umnosh(int a, int b){
+double MainWindow::umnosh(double a, double b){
     return a*b;
 }
 
 void MainWindow::on_pushButton_clicked()
 {
-    int64_t fr = get_labl1();
-    int64_t sk = get_labl2();
-    int result_num = sum(fr,sk);
-    out_labl3(result_num);
+    flag=1;
+    metod = &MainWindow::sum;
+    repit();
 }
-
-
 
 void MainWindow::on_pushButton_raz_clicked()
 {
-    int64_t fr = get_labl1();
-    int64_t sk = get_labl2();
-    int result_num = raz(fr,sk);
-    out_labl3(result_num);
+    flag=1;
+    metod = &MainWindow::raz;
+    repit();
 }
-
 
 void MainWindow::on_pushButton_delen_clicked()
 {
-    int64_t fr = get_labl1();
-    int64_t sk = get_labl2();
-    int result_num = delen(fr,sk);
-    out_labl3(result_num);
+    flag=1;
+    metod = &MainWindow::delen;
+    repit();
 }
-
 
 void MainWindow::on_pushButton_umnosh_clicked()
 {
-    int64_t fr = get_labl1();
-    int64_t sk = get_labl2();
-    int result_num = umnosh(fr,sk);
-    out_labl3(result_num);
+    flag=1;
+    metod = &MainWindow::umnosh;
+    repit();
 }
 
+
+void MainWindow::repit(){
+    bool ok1,ok2;
+    double fr = get_labl1(ok1);
+    double sk = get_labl2(ok2);
+    if (!ok1 || !ok2 || !flag)
+    {
+        ui->lineEdit_3->clear();
+        return;
+    }
+    double result_num = (this->*metod)(fr,sk);
+    out_labl3(result_num);
+}

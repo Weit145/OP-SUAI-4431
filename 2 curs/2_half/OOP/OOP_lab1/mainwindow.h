@@ -18,24 +18,29 @@ public:
     ~MainWindow();
 
 private slots:
-    int64_t get_labl1();
-    int64_t get_labl2();
 
-    void out_labl3(int);
+    double get_labl1(bool&);
+    double get_labl2(bool&);
+
+    void out_labl3(double);
 
     void on_pushButton_clicked();
 
-    int sum(int,int);
-    int raz(int,int);
-    int delen(int,int);
-    int umnosh(int,int);
+    double sum(double,double);
+    double raz(double,double);
+    double delen(double,double);
+    double umnosh(double,double);
     void on_pushButton_raz_clicked();
 
     void on_pushButton_delen_clicked();
 
     void on_pushButton_umnosh_clicked();
 
+    void repit();
+
 private:
+    bool flag;
+    double (MainWindow::*metod)(double,double);
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

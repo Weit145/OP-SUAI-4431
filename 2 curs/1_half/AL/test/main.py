@@ -36,3 +36,23 @@ def merg(arr:list)->list:
 
 
 print(merg(arr=[3,2,1,4,5]))
+
+
+class List():
+    def __init__(self, arr:list):
+        self.arr=arr
+
+    def __str__(self):
+        return str(self.arr)
+
+    def qs(self):
+        self.arr=qs(self.arr)
+
+    def merg(self):
+        self.arr=merg(self.arr)
+
+
+def plus(a:int,b:int)->int:
+    return a+b
+
+a:int =1
