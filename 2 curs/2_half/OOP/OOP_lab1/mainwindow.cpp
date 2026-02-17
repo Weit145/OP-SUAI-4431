@@ -46,7 +46,7 @@ double MainWindow::raz(double a, double b){
 
 double MainWindow::delen(double a, double b){
     if (b==0){
-            return 0;
+            return NAN;
         }
     return a/b;
 }
@@ -91,6 +91,7 @@ void MainWindow::repit(){
     if (!ok1 || !ok2 || !flag)
     {
         ui->lineEdit_3->clear();
+        ui->lineEdit_3->setText("Error");
         return;
     }
     double result_num = (this->*metod)(fr,sk);
