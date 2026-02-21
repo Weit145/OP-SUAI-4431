@@ -38,6 +38,7 @@ private slots:
 
     void repit();
 
+
 private:
     bool flag;
     double (MainWindow::*metod)(double,double);
