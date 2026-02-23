@@ -3,6 +3,8 @@
 *.
 *.exe
 *.out
+*.mp4
+*.mp3
 python/.venv
 python/.ruff_cache
 
