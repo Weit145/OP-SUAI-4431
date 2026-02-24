@@ -21,10 +21,28 @@
     )
 )
 
-(trace f1)
+;; (trace f1)
 
 
-(print (f1 '(1 2 3 4 5 ) '(a b c)))
+;; (print (f1 '(1 2 3 4 5 ) '(a b c)))
+
+
+;; Вход: (1 2 3 4 5 6 7 8 9), N = 3, K = 4.
+;; Выход: (3 4 5 6 7).
+
+;; 2
+
+(defun f2(ls1 N K)
+    (cond
+        ((= K -1) nil)
+        ((= N 1) (cons (car ls1) (f2 (cdr ls1) N (- K 1))))
+        (T (f2 (cdr ls1) (- N 1) K))
+    )
+)
+
+(trace f2)
+
+(print (f2 '(1 2 3 4 5 6 7 8 9) 3 4))
 
 ;;10
 
