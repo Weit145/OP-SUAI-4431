@@ -90,7 +90,7 @@ void MainWindow::repit(){
 
     if (result_chokolate&&result_caremel&&result_honey&&result_peach&&
         result_raspberry&&result_strawberry){
-        this->result*=0.9;
+        this->result=result_dop*0.9+ice_cream;
         out=out +"\nСкидка: 10%";
     }
     out+= "\nИтог: " + QString::number(this->result);
