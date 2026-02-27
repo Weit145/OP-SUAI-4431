@@ -21,7 +21,20 @@
     )
 )
 
-;; (trace f1)
+;; (trace f1)(print (caaddr '( (4110) (GROUP OF) (STUDENT IVANOV (ALEXEY)))))
+(print (car (cdddar (cdadar '((DMITRY (ANDREY (MAXIM ALL ARE STUDENTS))))))))
+
+(print (cons (cadr '(A X C)) (cons (cadr '(F Y)) '(Z))))
+(print (cons (cadadr '((A) (B X) (C D))) (cons (caar '((Y (Z)))) (cadar '((Y (Z)))))))
+(print (cons (cadr '(A X B Y)) (cons (cadddr '(A X B Y)) (cons (cadr '(F Z)) nil))))
+
+
+
+
+;;1
+;; Вход: (1 2 3 4 5), (a b c).
+;; Выход: (1 a 2 b 3 c 4 5).
+
 
 
 ;; (print (f1 '(1 2 3 4 5 ) '(a b c)))
@@ -40,9 +53,9 @@
     )
 )
 
-(trace f2)
+;; (trace f2)
 
-(print (f2 '(1 2 3 4 5 6 7 8 9) 3 4))
+;; (print (f2 '(1 2 3 4 5 6 7 8 9) 3 4))
 
 ;;10
 
@@ -57,7 +70,8 @@
         (T (cons (car ls1) (f (cdr ls1) ls2 (- N 1))))
     )
 )
-;; (trace f)
+(trace f)
 
 
-;; (print (f '(1 2 3 4 5 6) '(a b c) 3))
+(print (f '(1 2 3 4 5 6) '(a b c) 3))
+(print 1)
