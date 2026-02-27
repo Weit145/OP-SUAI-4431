@@ -84,17 +84,20 @@ void MainWindow::repit(){
 
 
     QString ice = QString::number(ice_cream);
-    QString dop = QString::number(result_dop);
+    QString dop;
 
-    QString out = "Мороженное: " + ice + "\nДополнения: " + dop;
+    QString out = "Мороженное: " + ice ;
 
     if (result_chokolate&&result_caremel&&result_honey&&result_peach&&
         result_raspberry&&result_strawberry){
         this->result=result_dop*0.9+ice_cream;
-        out=out +"\nСкидка: 10%";
+        dop = QString::number(result_dop*0.9);
+        out+= "\nДополнения: " + dop +"\nСкидка: 10%" + "\nИтог: " + QString::number(this->result);
     }
-    out+= "\nИтог: " + QString::number(this->result);
-
+    else{
+        dop = QString::number(result_dop);
+        out+="\nДополнения: " + dop + "\nИтог: " + QString::number(this->result);
+    }
     ui->textBrowser_2->setText(out);
 }
 
