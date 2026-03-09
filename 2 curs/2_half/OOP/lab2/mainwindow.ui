@@ -23,6 +23,11 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>шоколад</string>
     </property>
@@ -35,6 +40,11 @@
       <width>91</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>карамель</string>
@@ -49,6 +59,11 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>мёд</string>
     </property>
@@ -61,6 +76,11 @@
       <width>91</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>малина</string>
@@ -150,31 +170,12 @@
      <string>Расчёт</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>615</x>
-      <y>260</y>
-      <width>91</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>build/Desktop-u041eu0442u043bu0430u0434u043au0430/ice.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QTextBrowser" name="textBrowser_2">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>320</x>
       <y>340</y>
-      <width>171</width>
+      <width>311</width>
       <height>101</height>
      </rect>
     </property>
@@ -189,7 +190,6 @@
    <zorder>label_icecream</zorder>
    <zorder>pushButton</zorder>
    <zorder>_photo</zorder>
-   <zorder>label</zorder>
    <zorder>textBrowser_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -92,7 +92,7 @@ void MainWindow::repit(){
         result_raspberry&&result_strawberry){
         this->result=result_dop*0.9+ice_cream;
         dop = QString::number(result_dop*0.9);
-        out+= "\nДополнения: " + dop +"\nСкидка: 10%" + "\nИтог: " + QString::number(this->result);
+        out+=  "\nДополнения: " + QString::number(result_dop) +"\nСкидка 10%: " + QString::number(result_dop*0.1) + "\nИтог: " + QString::number(this->result);
     }
     else{
         dop = QString::number(result_dop);
