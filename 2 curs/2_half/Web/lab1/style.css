@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+h1 {
+    color: #0d47a1;
+    letter-spacing: 1px;
+}
+
+.highlight {
+    background-color: yellow;
+    padding: 3px 6px;
+}
+
+#main-header {
+    border-bottom: 3px solid rgb(25,118,210);
+}
+
+div p em {
+    font-style: normal;
+    color: green;
+    font-weight: bold;
+}
+
+.container {
+    width: 1000px;
+    margin: auto;
+    font-size: 16px;
+}
+
+footer {
+    margin-top: 10mm;
+    padding: 10px;
+    background-color: #e3f2fd;
+    text-align: center;
+}
+
+.some-block {
+    width: 80%;
+    margin-left: 10%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid #0d47a1;
+}
+
+th, td {
+    border: 1px solid #90caf9;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td:hover {
+    background-color: #fff9c4;
+}
+
+ul {
+    list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"><circle cx="7" cy="7" r="5" fill="%230d47a1"/></svg>');
+    margin-left: 25px;
+}
+
+ol {
+    list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"><rect x="2" y="2" width="10" height="10" fill="%23c2185b"/></svg>');
+}
+
+article p:first-of-type::first-letter {
+    font-size: 200%;
+    color: #b71c1c;
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+}
+
+article p:first-of-type::first-line {
+    text-transform: uppercase;
+}
+
+p + p {
+    text-indent: 2em;
+}
+
+.box-demo {
+    width: 300px;
+    margin: 20px auto;
+    border: 5px solid #ff6f00;
+    padding: 15px;
+    background-color: #ffe0b2;
+}
+
+.box-demo p {
+    margin: 0;
+    background-color: #fff3e0;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #bbdefb, #1e88e5);
+    color: white;
+}
+
+img.rounded {
+    border-radius: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+nav a:hover {
+    text-decoration: underline wavy #ff6f00;
+}
+
+a:link {
+    color: #0d47a1;
+}
+
+a:visited {
+    color: #4a148c;
+}
+
+.position-relative {
+    position: relative;
+    display: inline-block;
+}
+
+.badge-absolute {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+img.filtered {
+    filter: grayscale(0.7) sepia(0.3);
+    transition: filter 0.4s;
+}
+
+img.filtered:hover {
+    filter: none;
+}
+
+a[target="_blank"]::after {
+    content: " ↗";
+    font-size: 0.9em;
+    color: #d32f2f;
+}
+
+.transform-demo {
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.transform-demo:hover {
+    transform: scale(1.2) rotate(5deg);
+}
