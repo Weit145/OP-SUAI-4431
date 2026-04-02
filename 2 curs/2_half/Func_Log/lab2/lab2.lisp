@@ -1,8 +1,8 @@
 (defun neighb (v graf)
   (cond ((null graf) nil)
-        ((eq v (caar graf))
-          (cons (cdar graf) (neighb v (cdr graf))))
-        (t (neighb v (cdr graf)))))
+    ((eql v (first (first graf)))
+      (cons (second (first graf)) (neighb v (cdr graf))))
+    (t (neighb v (cdr graf)))))
 
 (defun mb (i lst)
   (cond ((null lst) nil)
@@ -26,8 +26,8 @@
   (labels ((collect (g verts)
     (cond ((null g) verts)
       (t (collect (cdr g)
-        (add-if-new (add-if-new verts (caar g))
-          (cdar g))))))
+        (add-if-new (add-if-new verts (first (first g)))
+          (second (first g)))))))
         (add-if-new (verts v)
         (cond ((mb v verts) verts)
           (t (cons v verts)))))
@@ -53,30 +53,30 @@
         (reduce #'min result :initial-value 999999))))))))
 
 
-(let ((g '((1 . 2) (1 . 3) (2 . 3) (3 . 1) (3 . 5) (5 . 1))))
+(let ((g '((1 2) (1 3) (2 3) (3 1) (3 5) (5 1))))
   (print "Степень связности орграфа:")
   (print (f1 g)))
 
-(let ((g '((1 . 2) (1 . 3) (2 . 3) (3 . 2) (2 . 1) (3 . 1))))
+(let ((g '((1 2) (1 3) (2 3) (3 2) (2 1) (3 1))))
   (print "Степень связности орграфа:")
   (print (f1 g)))
 
-(let ((g '((1 . 2) (2 . 3))))
+(let ((g '((1 2) (2 3))))
   (print "Степень связности орграфа:")
   (print (f1 g)))
 
-(let ((g '((1 . 2) (1 . 3) (2 . 4) (3 . 4))))
+(let ((g '((1 2) (1 3) (2 4) (3 4))))
   (print "Степень связности орграфа:")
   (print (f1 g)))
 
-(let ((g '((1 . 2) (2 . 3) (3 . 1))))
+(let ((g '((1 2) (2 3) (3 1))))
   (print "Степень связности орграфа:")
   (print (f1 g)))
 
-(let ((g '((1 . 2) (1 . 3) (2 . 1) (2 . 3) (3 . 1) (3 . 2))))
+(let ((g '((1 2) (1 3) (2 1) (2 3) (3 1) (3 2))))
   (print "Степень связности орграфа:")
   (print (f1 g)))
 
-(let ((g '((1 . 2) (3 . 4))))
+(let ((g '((1 2) (3 4))))
   (print "Степень связности орграфа:")
   (print (f1 g)))
