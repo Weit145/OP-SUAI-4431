@@ -2,6 +2,7 @@
 #define STATES_H
 
 #include <QObject>
+#include "estate.h"
 
 class States : public QObject
 {
@@ -14,6 +15,8 @@ public:
     bool hasStates();
     Estate *getActualData();
     void add(Estate *value);
+signals:
+    void notifyObservers();
 private:
     QList<Estate *> array;
     Estate *actualData;

@@ -9,17 +9,29 @@ CONFIG += c++17
 SOURCES += \
     apartmentcalc.cpp \
     calculationfacade.cpp \
+    cottagecalc.cpp \
     estate.cpp \
+    luxuriousapartmentcalc.cpp \
     main.cpp \
+    montheighteen.cpp \
+    monthsix.cpp \
     states.cpp \
-    widget.cpp
+    townhousecalc.cpp \
+    widget.cpp \
+    yearone.cpp
 
 HEADERS += \
     apartmentcalc.h \
     calculationfacade.h \
+    cottagecalc.h \
     estate.h \
+    luxuriousapartmentcalc.h \
+    montheighteen.h \
+    monthsix.h \
     states.h \
-    widget.h
+    townhousecalc.h \
+    widget.h \
+    yearone.h
 
 FORMS += \
     widget.ui

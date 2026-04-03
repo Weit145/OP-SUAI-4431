@@ -21,15 +21,16 @@ public:
 
     explicit Estate(QObject *parent = nullptr);
     EstateType getType() const;
-
-signals:
-private:
+    EstateMonths getTime() const;
     int age;
     int area;
     int residents;
     EstateMonths months;
     EstateType type;
     QString owner;
+signals:
+private:
+
 };
 
 #endif // ESTATE_H

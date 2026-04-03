@@ -25,18 +25,22 @@ bool States::hasStates(){
 }
 
 Estate *States::getActualData(){
-    return this->array.back();
+    return actualData;
 }
 
 void States::add(Estate *value){
     this->array.append(value);
+    actualData = value;
+    emit notifyObservers();
 }
 
 void States::undo(){
     if (this->array.empty()){
-        this->actualData=nullptr_t;
+        this->actualData=nullptr;
     }
     else{
-        this->actualData=this->array.pop_back();
+        this->array.pop_back();
+        this->actualData = array.isEmpty() ? nullptr : array.back();
     }
+    emit notifyObservers();
 }

@@ -9,7 +9,7 @@ class ApartmentCalc : public QObject
     Q_OBJECT
 public:
     explicit ApartmentCalc(QObject *parent = nullptr);
-    void getCost(Estate *value);
+    static double getCost(Estate *value);
 signals:
 };
 

@@ -10,3 +10,11 @@ Estate::Estate(QObject *parent)
     type = ECONOM;
     months = months_18;
 }
+
+Estate::EstateType Estate::getType()const{
+    return this->type;
+}
+
+Estate::EstateMonths Estate::getTime()const{
+    return this->months;
+}
