@@ -1,0 +1,3 @@
+/home/weit/Документы/OP-SUAI-4431/2 curs/2_half/AL_kurs/build/CMakeFiles/main.dir
+/home/weit/Документы/OP-SUAI-4431/2 curs/2_half/AL_kurs/build/CMakeFiles/edit_cache.dir
+/home/weit/Документы/OP-SUAI-4431/2 curs/2_half/AL_kurs/build/CMakeFiles/rebuild_cache.dir
