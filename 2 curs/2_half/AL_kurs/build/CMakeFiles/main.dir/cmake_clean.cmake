@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/hash/hash.cpp.o.d"
   "CMakeFiles/main.dir/main.cpp.o"
   "CMakeFiles/main.dir/main.cpp.o.d"
+  "CMakeFiles/main.dir/print/print.cpp.o"
+  "CMakeFiles/main.dir/print/print.cpp.o.d"
   "CMakeFiles/main.dir/transaction/transaction.cpp.o"
   "CMakeFiles/main.dir/transaction/transaction.cpp.o.d"
   "CMakeFiles/main.dir/tree/tree.cpp.o"

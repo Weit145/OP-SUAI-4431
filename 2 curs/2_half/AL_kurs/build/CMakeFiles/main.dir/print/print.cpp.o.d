@@ -1,5 +1,5 @@
-CMakeFiles/main.dir/main.cpp.o: \
- /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/main.cpp \
+CMakeFiles/main.dir/print/print.cpp.o: \
+ /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/print/print.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13/iostream \
  /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -149,14 +149,8 @@ CMakeFiles/main.dir/main.cpp.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc \
- /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/variant/variant.h \
- /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/hash/hash.h \
- /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/hash/../domain/domain.h \
- /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/tree/tree.h \
- /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/transaction/transaction.h \
- /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/print/print.h \
- /usr/include/c++/13/math.h /usr/include/c++/13/cmath /usr/include/math.h \
+ /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/math.h \
+ /usr/include/c++/13/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
@@ -178,4 +172,9 @@ CMakeFiles/main.dir/main.cpp.o: \
  /usr/include/c++/13/tr1/modified_bessel_func.tcc \
  /usr/include/c++/13/tr1/poly_hermite.tcc \
  /usr/include/c++/13/tr1/poly_laguerre.tcc \
- /usr/include/c++/13/tr1/riemann_zeta.tcc
+ /usr/include/c++/13/tr1/riemann_zeta.tcc \
+ /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/print/print.h \
+ /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/print/../hash/hash.h \
+ /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/print/../hash/../domain/domain.h \
+ /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/print/../tree/tree.h \
+ /home/weit/Документы/OP-SUAI-4431/2\ curs/2_half/AL_kurs/print/../transaction/transaction.h
