@@ -27,14 +27,58 @@
 
         a[href^="http"] {
         }
+
+        #lab4-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 12px;
+        }
+
+        .author-info {
+            cursor: help;
+        }
+
+        .clock-output {
+            font-weight: bold;
+            background: #fff9c4;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .color-change-target {
+            font-weight: bold;
+        }
+
+        .dynamic-list {
+            margin: 10px 0;
+        }
+
+        .dynamic-list li {
+            padding: 4px 0;
+        }
+
+        .input-group {
+            margin: 10px 0;
+        }
+
+        .input-group label {
+            margin-right: 15px;
+        }
+
+        button {
+            margin: 5px 8px 5px 0;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
 
-        <header id="main-header" class="gradient-bg" style="position: relative; padding:20px; text-align:center;">
-            <h1>Статистика и аналитика данных</h1>
+        <header id="main-header" class="gradient-bg page-header" style="position: relative; padding:20px; text-align:center;">
+            <h1 class="main-title">Статистика и аналитика данных</h1>
             <h2>Развитие и роль</h2>
 
             <div class="position-relative">
@@ -112,7 +156,8 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <!-- Добавлен класс для обращения через getElementsByClassName -->
+                <tbody class="table-body">
                     <tr>
                         <td>1990-е</td>
                         <td>Классическая статистика</td>
@@ -161,6 +206,52 @@
                 </span>
             </div>
 
+            <section id="lab4-section">
+                <h2>Лабораторная работа №4: JavaScript (вариант 10)</h2>
+
+
+                <p>
+                    <span class="author-info" title="Наведи для информации об авторе">
+                        🛈 Информация об авторе (наведи)
+                    </span>
+                </p>
+
+                <p>
+                    Текущее время: 
+                    <span class="clock-output">--:--</span>
+                    <button class="show-time-btn">Показать время (наведи)</button>
+                </p>
+
+                <p>
+                    <span class="color-change-target main-title">Заголовок h1 выше — целевой элемент</span>
+                </p>
+                <button class="change-color-btn">Изменить цвет заголовка (наведи)</button>
+                <button class="change-size-btn">Изменить размер заголовка (наведи)</button>
+
+                <h3>Управление таблицей</h3>
+                <div class="input-group">
+                    <label>Период: <input type="text" class="input-period" placeholder="2020-е" value="2020-е"></label>
+                    <label>Характеристика: <input type="text" class="input-desc" placeholder="AI" value="Искусственный интеллект"></label>
+                    <label>Технологии: <input type="text" class="input-tech" placeholder="ML, DL" value="ML, DL, GPT"></label>
+                </div>
+                <button class="add-empty-row-btn">Добавить пустую строку (базовое, наведи)</button>
+                <button class="add-row-btn">Добавить строку из полей (расширенное, наведи)</button>
+                <button class="remove-row-btn">Удалить последнюю добавленную строку (наведи)</button>
+
+                <h3>Управление списком</h3>
+                <ul class="dynamic-list">
+                    <li>Изначальный элемент 1</li>
+                    <li>Изначальный элемент 2</li>
+                </ul>
+                <input type="text" class="list-item-input" placeholder="Текст нового элемента" value="Новый пункт">
+                <button class="add-list-item-btn">Добавить в список (наведи)</button>
+                <button class="remove-list-item-btn">Удалить последний добавленный (наведи)</button>
+
+                <p style="margin-top:15px; font-style:italic;">
+                    Прокрути страницу — цвет фона шапки изменится (событие scroll).
+                </p>
+            </section>
+
         </main>
 
         <footer>
@@ -169,7 +260,158 @@
         </footer>
         
     </div>
-<script src="js.js"></script>
-<script src="mat.js"></script>
+
+    <script src="js.js"></script>
+    <script src="mat.js"></script>
+
+    <script>
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+
+                const getHourWord = (h) => {
+                    if (h % 10 === 1 && h % 100 !== 11) return 'час';
+                    if ([2,3,4].includes(h % 10) && ![12,13,14].includes(h % 100)) return 'часа';
+                    return 'часов';
+                };
+                const getMinuteWord = (m) => {
+                    if (m % 10 === 1 && m % 100 !== 11) return 'минута';
+                    if ([2,3,4].includes(m % 10) && ![12,13,14].includes(m % 100)) return 'минуты';
+                    return 'минут';
+                };
+
+                const showAuthorInfo = function() {
+                    alert('Кочнев Дмитрий Олегович, группа 4431');
+                };
+                const authorEl = document.getElementsByClassName('author-info')[0];
+                if (authorEl) {
+                    authorEl.addEventListener('mouseover', showAuthorInfo);
+                }
+
+                const updateClock = function() {
+                    const now = new Date();
+                    const hours = now.getHours();
+                    const minutes = now.getMinutes();
+                    const timeStr = `сейчас ${hours} ${getHourWord(hours)} ${minutes} ${getMinuteWord(minutes)}`;
+                    const clockSpan = document.getElementsByClassName('clock-output')[0];
+                    if (clockSpan) clockSpan.textContent = timeStr;
+                };
+                const showTimeBtn = document.getElementsByClassName('show-time-btn')[0];
+                if (showTimeBtn) {
+                    showTimeBtn.addEventListener('mouseover', updateClock);
+                }
+
+                const changeColor = function(color) {
+                    const target = document.getElementsByClassName('main-title')[0];
+                    if (target) target.style.color = color;
+                };
+                const changeSize = function(size) {
+                    const target = document.getElementsByClassName('main-title')[0];
+                    if (target) target.style.fontSize = size;
+                };
+
+                const colorBtn = document.getElementsByClassName('change-color-btn')[0];
+                const sizeBtn = document.getElementsByClassName('change-size-btn')[0];
+                if (colorBtn) {
+                    colorBtn.addEventListener('mouseover', () => changeColor('#d32f2f')); // красный
+                }
+                if (sizeBtn) {
+                    sizeBtn.addEventListener('mouseover', () => changeSize('3rem'));
+                }
+
+                const tbody = document.getElementsByClassName('table-body')[0];
+
+                const addEmptyRow = function() {
+                    if (!tbody) return;
+                    const newRow = tbody.insertRow();
+                    for (let i = 0; i < 3; i++) {
+                        newRow.insertCell().textContent = '';
+                    }
+                    newRow.classList.add('added-row');
+                };
+
+                const addRowFromInputs = function(period, desc, tech) {
+                    if (!tbody) return;
+                    const newRow = tbody.insertRow();
+                    const cell1 = newRow.insertCell();
+                    const cell2 = newRow.insertCell();
+                    const cell3 = newRow.insertCell();
+                    cell1.textContent = period;
+                    cell2.textContent = desc;
+                    cell3.textContent = tech;
+                    newRow.classList.add('added-row');
+                };
+
+                const removeLastAddedRow = function() {
+                    if (!tbody) return;
+                    const addedRows = tbody.getElementsByClassName('added-row');
+                    if (addedRows.length > 0) {
+                        tbody.removeChild(addedRows[addedRows.length - 1]);
+                    }
+                };
+
+                const emptyRowBtn = document.getElementsByClassName('add-empty-row-btn')[0];
+                const addRowBtn = document.getElementsByClassName('add-row-btn')[0];
+                const removeRowBtn = document.getElementsByClassName('remove-row-btn')[0];
+
+                if (emptyRowBtn) {
+                    emptyRowBtn.addEventListener('mouseover', addEmptyRow);
+                }
+                if (addRowBtn) {
+                    addRowBtn.addEventListener('mouseover', () => {
+                        const periodInput = document.getElementsByClassName('input-period')[0];
+                        const descInput = document.getElementsByClassName('input-desc')[0];
+                        const techInput = document.getElementsByClassName('input-tech')[0];
+                        if (periodInput && descInput && techInput) {
+                            addRowFromInputs(periodInput.value, descInput.value, techInput.value);
+                        }
+                    });
+                }
+                if (removeRowBtn) {
+                    removeRowBtn.addEventListener('mouseover', removeLastAddedRow);
+                }
+
+                const list = document.getElementsByClassName('dynamic-list')[0];
+                const addListItem = function(text) {
+                    if (!list) return;
+                    const li = document.createElement('li');
+                    li.textContent = text;
+                    li.classList.add('added-li');
+                    list.appendChild(li);
+                };
+                const removeLastListItem = function() {
+                    if (!list) return;
+                    const items = list.getElementsByClassName('added-li');
+                    if (items.length > 0) {
+                        list.removeChild(items[items.length - 1]);
+                    }
+                };
+
+                const addListBtn = document.getElementsByClassName('add-list-item-btn')[0];
+                const removeListBtn = document.getElementsByClassName('remove-list-item-btn')[0];
+                const listInput = document.getElementsByClassName('list-item-input')[0];
+
+                if (addListBtn && listInput) {
+                    addListBtn.addEventListener('mouseover', () => {
+                        addListItem(listInput.value || 'Новый элемент');
+                    });
+                }
+                if (removeListBtn) {
+                    removeListBtn.addEventListener('mouseover', removeLastListItem);
+                }
+
+                window.addEventListener('scroll', () => {
+                    const header = document.getElementsByClassName('page-header')[0];
+                    if (header) {
+                        if (window.scrollY > 50) {
+                            header.style.background = '#ffcdd2';
+                        } else {
+                            header.style.background = ''; 
+                        }
+                    }
+                });
+
+            });
+        })();
+    </script>
 </body>
 </html>
