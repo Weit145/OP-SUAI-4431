@@ -1,49 +1,67 @@
-день(пн). день(вт). день(ср). день(чт).
+% Days
+day(mon).
+day(tue).
+day(wed).
+day(thu).
 
-подруга(ольга). подруга(пири). подруга(рози). подруга(шари).
+% Friends
+friend(olga).
+friend(piri).
+friend(rozi).
+friend(shari).
 
-программа(парикмахерская). программа(портниха). программа(библиотека). программа(лодка).
+% Programs
+program(hairdresser).
+program(dressmaker).
+program(library).
+program(boat).
 
-существует_расписание :-
-    день(Д1), день(Д2), день(Д3), день(Д4),
-    все_разные([Д1, Д2, Д3, Д4]),     
-    Расписание = [визит(Д1, П1, Пр1),
-                визит(Д2, П2, Пр2),
-                визит(Д3, П3, Пр3),
-                визит(Д4, П4, Пр4)],
+schedule_exists :-
+    day(D1), day(D2), day(D3), day(D4),
+    all_different([D1, D2, D3, D4]),
+    Schedule = [visit(D1, F1, P1),
+                visit(D2, F2, P2),
+                visit(D3, F3, P3),
+                visit(D4, F4, P4)],
 
+    all_different([F1, F2, F3, F4]),
+    all_different([P1, P2, P3, P4]),
 
-    все_разные([П1, П2, П3, П4]),
-    все_разные([Пр1, Пр2, Пр3, Пр4]),
-    member(визит(чт, шари, _), Расписание),
-    \+ ( member(визит(Д, шари, _), Расписание), Д \= чт ),
+    % Shari visits only on Thursday
+    member(visit(thu, shari, _), Schedule),
+    \+ ( member(visit(D, shari, _), Schedule), D \= thu ),
 
-    member(визит(чт, _, парикмахерская), Расписание),
+    % The hairdresser appointment is only on Thursday
+    member(visit(thu, _, hairdresser), Schedule),
+    \+ ( member(visit(D, _, hairdresser), Schedule), D \= thu ),
 
-    \+ ( member(визит(Д, _, парикмахерская), Расписание), Д \= чт ),
+    % Neither Piri nor Rozi goes to the library
+    forall( (member(visit(_, F, _), Schedule), (F = piri ; F = rozi)),
+            P \= library ),
 
-    forall( (member(визит(_, П, _), Расписание), (П = пири ; П = рози)) ,
-            Пр \= библиотека ),
+    % Neither Piri nor Rozi goes to the hairdresser
+    forall( (member(visit(_, F, P), Schedule), (F = piri ; F = rozi)),
+            P \= hairdresser ),
 
-    forall( (member(визит(_, П, Пр), Расписание), (П = пири ; П = рози)) ,
-            Пр \= парикмахерская ),
-    \+ member(визит(вт, _, лодка), Расписание),
-    \+ member(визит(вт, ольга, _), Расписание),
-    \+ member(визит(вт, пири, _), Расписание),
-    \+ member(визит(вт, рози, _), Расписание),
+    % No boat visit on Tuesday
+    \+ member(visit(tue, _, boat), Schedule),
 
+    % No visits by Olga, Piri, or Rozi on Tuesday
+    \+ member(visit(tue, olga, _), Schedule),
+    \+ member(visit(tue, piri, _), Schedule),
+    \+ member(visit(tue, rozi, _), Schedule),
 
-    write('Найдено расписание:'), nl,
-    maplist(показать, Расписание).
+    write('Schedule found:'), nl,
+    maplist(show_visit, Schedule).
 
-все_разные([]).
-все_разные([H|T]) :- \+ member(H, T), все_разные(T).
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
 
-показать(визит(Д, П, Пр)) :-
-    write('  '), write(Д), write(': '), write(П), write(' — '), write(Пр), nl.
+show_visit(visit(D, F, P)) :-
+    write('  '), write(D), write(': '), write(F), write(' — '), write(P), nl.
 
-проверить :-
-    (   существует_расписание
+check :-
+    (   schedule_exists
     ->  write('Катя сказала правду (расписание найдено).'), nl
     ;   write('Катя лжёт! Расписание невозможно.'), nl
     ).
