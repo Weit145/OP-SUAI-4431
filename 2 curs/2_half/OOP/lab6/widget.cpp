@@ -8,6 +8,7 @@ Widget::Widget(QWidget *parent)
 {
     ui->setupUi(this);
     ui->btnUndo->setEnabled(false);
+
     // регистрация слушателя
     connect(&info, SIGNAL(notifyObservers()), this, SLOT(update()));
     connect(ui->btnCalc, SIGNAL(pressed()), this, SLOT(btnCalcPressed()));

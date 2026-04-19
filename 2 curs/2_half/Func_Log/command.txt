@@ -3,3 +3,7 @@ sbcl --script
 sbcl --script lab1.lisp 
 
 sbcl --script lab2.lisp 
+
+swipl -s lab3.pl
+
+schedule(V1, V2, V3, V4).

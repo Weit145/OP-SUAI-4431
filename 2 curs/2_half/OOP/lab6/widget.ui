@@ -13,29 +13,11 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <widget class="QLabel" name="cost">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>260</y>
-     <width>66</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QWidget" name="formLayoutWidget">
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>40</y>
+     <y>60</y>
      <width>571</width>
      <height>341</height>
     </rect>
@@ -52,9 +34,6 @@
        <string>Имя:</string>
       </property>
      </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="owner"/>
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label_3">
@@ -133,9 +112,6 @@
        <string>Площадь:</string>
       </property>
      </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QLineEdit" name="area"/>
     </item>
     <item row="10" column="0">
      <widget class="QLabel" name="label_6">
@@ -258,9 +234,27 @@
       </property>
      </spacer>
     </item>
+    <item row="8" column="1">
+     <widget class="QLineEdit" name="area"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="owner"/>
+    </item>
+    <item row="12" column="1">
+     <widget class="QLabel" name="cost">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>190</x>
