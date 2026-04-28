@@ -60,7 +60,7 @@ string Variant::getWord(const int N) const{
 void Variant::printVar() const{
     cout << "Предметная область: " << getPredmet() << endl;
     cout << "Метод хеширования: " << getHash() << endl;
-    cout << "Метод слртировки: " << getSort() << endl;
+    cout << "Метод сортировки: " << getSort() << endl;
     cout << "Вид списка: " << getList() << endl;
     cout << "Метод обхода дерева: " << getTree() << endl;
     cout << "Алгоритм поиска слова в тексте: " << getWord() << endl;

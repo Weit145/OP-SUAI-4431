@@ -5,10 +5,33 @@
 
 using namespace std;
 
+static bool is_valid_ticket(const string& ticket) {
+    return ticket.size() == 8 &&
+        isalpha(static_cast<unsigned char>(ticket[0])) &&
+        isdigit(static_cast<unsigned char>(ticket[1])) &&
+        isdigit(static_cast<unsigned char>(ticket[2])) &&
+        isdigit(static_cast<unsigned char>(ticket[3])) &&
+        isdigit(static_cast<unsigned char>(ticket[4])) &&
+        ticket[5] == '-' &&
+        isdigit(static_cast<unsigned char>(ticket[6])) &&
+        isdigit(static_cast<unsigned char>(ticket[7]));
+}
+
+static bool is_valid_book_hash(const string& hash) {
+    return hash.size() == 7 &&
+        isdigit(static_cast<unsigned char>(hash[0])) &&
+        isdigit(static_cast<unsigned char>(hash[1])) &&
+        isdigit(static_cast<unsigned char>(hash[2])) &&
+        hash[3] == '.' &&
+        isdigit(static_cast<unsigned char>(hash[4])) &&
+        isdigit(static_cast<unsigned char>(hash[5])) &&
+        isdigit(static_cast<unsigned char>(hash[6]));
+}
+
 Reader::Reader(string numberTicket, string fio, int year, string adress, string place)
     : numberTicket(numberTicket), fio(fio), year(year), adress(adress), place(place)
 {
-    if (numberTicket.empty()){
+    if (!is_valid_ticket(numberTicket)){
         throw invalid_argument("numberTicket invalid argument");
     }
     if (fio.empty()){
@@ -28,7 +51,7 @@ Reader::Reader(string numberTicket, string fio, int year, string adress, string 
 Book::Book(string hash, string author, string name, string publishing, int year, int allExample, int assetExample)
     : hash(hash), author(author), name(name), publishing(publishing), year(year), allExample(allExample), assetExample(assetExample)
 {
-    if (hash.empty()){
+    if (!is_valid_book_hash(hash)){
         throw invalid_argument("Hash invalid argument");
     }
     if (author.empty()){
@@ -49,15 +72,18 @@ Book::Book(string hash, string author, string name, string publishing, int year,
     if (assetExample<0){
         throw invalid_argument("AssetExample invalid argument");
     }
+    if (assetExample>allExample){
+        throw invalid_argument("AssetExample invalid argument");
+    }
 }
 
 TransactionBook::TransactionBook(string numberTicket, string hash, string dataEnter, string dataOut)
     : numberTicket(numberTicket), hash(hash), dataEnter(dataEnter), dataOut(dataOut)
 {
-    if (numberTicket.empty()) {
+    if (!is_valid_ticket(numberTicket)) {
         throw invalid_argument("numberTicket invalid argument");
     }
-    if (hash.empty() ){
+    if (!is_valid_book_hash(hash)){
         throw invalid_argument("Hash invalid argument");
     }
     if (dataEnter.empty()){

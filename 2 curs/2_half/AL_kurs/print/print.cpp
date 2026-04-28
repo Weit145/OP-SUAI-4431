@@ -1,10 +1,21 @@
 #include <iostream>
+#include <limits>
 #include <string>
-#include <math.h>
 #include "print.h"
 
 using namespace std;
 
+static bool read_int(const string& prompt, int& value) {
+    cout << prompt;
+    if (!(cin >> value)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Некорректное число."<<endl;
+        return false;
+    }
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    return true;
+}
 
 Print::Print(){}
 Print::~Print(){}
@@ -17,9 +28,7 @@ void Print::regUser(){
     getline(cin, ticket);
     cout << "ФИО: "; 
     getline(cin, fio);
-    cout << "Год рождения: "; cin >> year;
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    if (!read_int("Год рождения: ", year)) return;
     cout << "Адрес: "; 
     getline(cin, adress);
     cout << "Место работы/учёбы: "; 
@@ -58,6 +67,10 @@ void Print::showAllUser(){
 }
 
 void Print::deleteAllUser(){
+    if (transactions.has_active_issuances()) {
+        cout << "Есть активные выдачи книг! Сначала примите книги обратно."<<endl;
+        return;
+    }
     readers.clear();
     cout<< "Данные о читателях очищены."<<endl;
 }
@@ -92,18 +105,18 @@ void Print::addBook(){
     getline(cin, name);
     cout << "Издательство: "; 
     getline(cin, pub);
-    cout << "Год: "; 
-    cin >> y;
-    cout << "Всего экземпляров: "; 
-    cin >> all;
-    cout << "В наличии: "; 
-    cin >> asset; 
-    cin.ignore();
+    if (!read_int("Год: ", y)) return;
+    if (!read_int("Всего экземпляров: ", all)) return;
+    if (!read_int("В наличии: ", asset)) return;
+    Book* b = nullptr;
     try {
-        Book* b = new Book(hash, author, name, pub, y, all, asset);
+        b = new Book(hash, author, name, pub, y, all, asset);
         books.add(b);
     } 
-    catch (const exception& e) { cout << e.what() << endl; }
+    catch (const exception& e) {
+        delete b;
+        cout << e.what() << endl;
+    }
 }
 
 void Print::deleteBook(){
@@ -116,7 +129,6 @@ void Print::deleteBook(){
     }
     if (books.find_by_hash(hash)) {
         books.remove_by_hash(hash);
-        cout << "Книга удалена."<<endl;
     } else {
         cout << "Книга не найдена."<<endl;
     }
@@ -127,6 +139,10 @@ void Print::showAllBook(){
 }
 
 void Print::deleteAllBook(){
+    if (transactions.has_active_issuances()) {
+        cout << "Есть активные выдачи книг! Сначала примите книги обратно."<<endl;
+        return;
+    }
     books.clear();
     cout << "Данные о книгах очищены."<<endl;
 }
@@ -155,6 +171,10 @@ void Print::giveBook(){
     getline(cin, hash);
     cout << "Дата выдачи: "; 
     getline(cin, date);
+    if (!readers.find_by_number(ticket)) {
+        cout << "Читатель не найден."<<endl;
+        return;
+    }
     Book* b = books.find_by_hash(hash);
     if (!b) { 
         cout << "Книга не найдена."<<endl; 
@@ -177,6 +197,10 @@ void Print::takeBook(){
     getline(cin, hash);
     cout << "Дата возврата: "; 
     getline(cin, date);
+    if (!readers.find_by_number(ticket)) {
+        cout << "Читатель не найден."<<endl;
+        return;
+    }
     Book* b = books.find_by_hash(hash);
     if (!b) { 
         cout << "Книга не найдена."<<endl; 
@@ -207,8 +231,15 @@ void Print::run(){
         cout << "14. Приём книги от читателя"<<endl;
         cout << "0. Выход"<<endl;
         cout << "Выбор: ";
-        cin >> choice;
-        cin.ignore();
+        if (!(cin >> choice)) {
+            if (cin.eof()) return;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Некорректный выбор."<<endl;
+            choice = -1;
+            continue;
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         switch (choice)
         {
         case 1:

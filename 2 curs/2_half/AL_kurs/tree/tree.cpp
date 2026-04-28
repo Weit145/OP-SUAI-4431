@@ -112,6 +112,12 @@ Tree::List* Tree::insert(List* node, Book* book, List* parent) {
 }
 
 void Tree::add(Book* book) {
+    if (find_by_hash(book->hash) != nullptr) {
+        cout << "Книга с таким шифром уже существует."<<endl;
+        delete book;
+        return;
+    }
+
     root = insert(root, book, nullptr);
     List* cur = root;
     int value = get_value_from_hash(book->hash);
@@ -179,6 +185,7 @@ void Tree::delete_tree(List* node) {
     if (!node) return;
     delete_tree(node->left);
     delete_tree(node->right);
+    delete node->book;
     delete node;
 }
 
@@ -206,7 +213,13 @@ static bool boyer_moore(const std::string& text, const std::string& pattern) {
 
 
 Book* Tree::find_by_hash(const std::string& hash) {
-    int value = get_value_from_hash(hash);
+    int value;
+    try {
+        value = get_value_from_hash(hash);
+    } catch (const std::exception&) {
+        return nullptr;
+    }
+
     List* cur = root;
     while (cur) {
         if (value == cur->value) return cur->book;
@@ -258,10 +271,12 @@ void Tree::search_fragment_inorder(List* node, const std::string& fragment) {
 }
 
 void Tree::remove_by_hash(const std::string& hash) {
-    if (find_by_hash(hash) == nullptr) {
+    Book* removed_book = find_by_hash(hash);
+    if (removed_book == nullptr) {
         cout << "Книга с таким шифром не найдена."<<endl;
         return;
     }
     remove_by_value(get_value_from_hash(hash));
+    delete removed_book;
     cout << "Книга успешно удалена из АВЛ-дерева."<<endl;
 }

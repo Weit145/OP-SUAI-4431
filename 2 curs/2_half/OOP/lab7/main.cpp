@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
 
     // Создаём и показываем главное окно приложения.
     Widget w;
+    w.setWindowTitle("Кочнев Дмитрий 4431");
     w.show();
 
     return a.exec();

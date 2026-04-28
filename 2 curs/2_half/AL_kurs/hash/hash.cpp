@@ -1,7 +1,7 @@
-#include <string>
-#include <iostream>
 #include "../domain/domain.h"
 #include "hash.h"
+#include <iostream>
+#include <string>
 
 Hash::Hash(){
     hash_table = new Segment[SIZE];
@@ -21,12 +21,10 @@ Hash::~Hash() {
     delete[] hash_table;
 }
 
-int Hash::hash_function(const string key) {
+int Hash::hash_function(const std::string& key) {
     int hash = 0;
-    for (int i = 2; i < 9; i++) {
-        if (i==6) continue;
-        int digit = key[i] - '0';
-        hash = (hash * 31 + digit) % SIZE;
+    for (unsigned char ch : key) {
+        hash = (hash * 31 + ch) % SIZE;
     }
     return hash;
 }
@@ -42,6 +40,7 @@ void Hash::add_segment( const Reader* reader) {
     while (!hash_table[hash].isEmpty){
         if (!hash_table[hash].isDeleted and is_this_key(reader->numberTicket, hash_table[hash])) {
             cout << "Key already exists"<<endl;
+            delete reader;
             return;
         }
         if (hash_table[hash].isDeleted) {
@@ -51,6 +50,7 @@ void Hash::add_segment( const Reader* reader) {
         step++;
         if (step >= SIZE) {
             cout << "Hash table is full"<<endl;
+            delete reader;
             return;
         }   
     }
@@ -59,7 +59,7 @@ void Hash::add_segment( const Reader* reader) {
     hash_table[hash].isDeleted = false;
 }
 
-bool Hash::is_this_key(const string key, const Segment segment) {
+bool Hash::is_this_key(const std::string& key, const Segment& segment) {
     if (segment.reader == nullptr) return false;
     return segment.reader->numberTicket == key;
 }
@@ -71,6 +71,8 @@ bool Hash::delete_segment(const Reader* reader) {
     while (!hash_table[hash].isEmpty) {
         if (!hash_table[hash].isDeleted and is_this_key(reader->numberTicket, hash_table[hash])) {
             hash_table[hash].isDeleted = true;
+            delete hash_table[hash].reader;
+            hash_table[hash].reader = nullptr;
             return true;
         }
         hash = step_function(start, step);
@@ -85,6 +87,10 @@ bool Hash::delete_segment(const Reader* reader) {
 }
 
 void Hash::show_segment(int index) {
+    if (index < 0 || index >= SIZE) {
+        cout << "Index out of range."<<endl;
+        return;
+    }
     if (!hash_table[index].isEmpty and !hash_table[index].isDeleted) {
         const Reader* reader = hash_table[index].reader;
         cout << "Number Ticket: " << reader->numberTicket << endl;
@@ -128,6 +134,7 @@ void Hash::print_all() {
 
 void Hash::clear() {
     for (int i = 0; i < SIZE; i++) {
+        delete hash_table[i].reader;
         hash_table[i].reader = nullptr;
         hash_table[i].isEmpty = true;
         hash_table[i].isDeleted = false;

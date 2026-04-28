@@ -15,9 +15,9 @@ private:
 
     Segment* hash_table;
 
-    int hash_function(const string);
+    int hash_function(const std::string&);
     int step_function(const int, int);
-    bool is_this_key(const string, const Segment);
+    bool is_this_key(const std::string&, const Segment&);
 
 public:
     void add_segment( const Reader*);
@@ -31,4 +31,3 @@ public:
     Hash();
     ~Hash();
 };
-

@@ -5,6 +5,22 @@
 
 using namespace std;
 
+TransactionList::~TransactionList() {
+    if (!head) return;
+
+    Node* current = head->next;
+    while (current != head) {
+        Node* next = current->next;
+        delete current->transaction;
+        delete current;
+        current = next;
+    }
+
+    delete head->transaction;
+    delete head;
+    head = nullptr;
+}
+
 void TransactionList::add(TransactionBook* t) {
     Node* newNode = new Node{t, nullptr};
     if (!head) {
@@ -27,6 +43,7 @@ void TransactionList::remove(TransactionBook* t) {
     do {
         if (curr->transaction == t) {
             if (curr->next == curr) { 
+                delete curr->transaction;
                 delete curr;
                 head = nullptr;
                 return;
@@ -39,6 +56,7 @@ void TransactionList::remove(TransactionBook* t) {
             } else {
                 prev->next = curr->next;
             }
+            delete curr->transaction;
             delete curr;
             return;
         }
@@ -174,6 +192,17 @@ void TransactionList::print_for_book(const std::string& hash) {
         temp = temp->next;
     } while (temp != head);
     if (!found) cout << "Книга никому не выдана."<<endl;
+}
+
+bool TransactionList::has_active_issuances() {
+    if (!head) return false;
+    Node* temp = head;
+    do {
+        if (temp->transaction->dataOut.empty())
+            return true;
+        temp = temp->next;
+    } while (temp != head);
+    return false;
 }
 
 bool TransactionList::has_active_issuances(const std::string& ticket) {
