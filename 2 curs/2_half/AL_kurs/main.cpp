@@ -6,10 +6,14 @@
 #include "transaction/transaction.h"
 #include "print/print.h"
 #include <math.h>
+#include <clocale>
 
 using namespace std;
 
 int main() {
+
+    setlocale(LC_ALL, "ru_RU.UTF-8");
+
     Variant::printVar(230);
 
     
