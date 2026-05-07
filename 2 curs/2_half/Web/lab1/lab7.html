@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Лабораторная работа 7 AJAX и JSON">
+    <meta name="keywords" content="ajax, json, xmlhttprequest, анкета">
+    <meta name="author" content="Кочнев Дмитрий Олегович">
+    <title>Лабораторная работа №7</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="gradient-bg" style="padding:20px; text-align:center;">
+            <h1>Статистика и аналитика данных</h1>
+            <h2>Лабораторная работа №7: AJAX и JSON</h2>
+        </header>
+
+        <nav style="background:#bbdefb; padding:10px; text-align:center;">
+            <a href="first.html">Главная</a> |
+            <a href="three.html">Методы и инструменты</a> |
+            <a href="sekond.html">Источники</a> |
+            <a href="lab5.html">Анкета</a> |
+            <a href="lab6.php">PHP и БД</a> |
+            <a href="lab7.html">AJAX</a> |
+            <a href="lab8.html">XML</a>
+        </nav>
+
+        <main class="lab5-main">
+            <section class="survey-intro">
+                <h2>AJAX-анкета</h2>
+                <p>Данные отправляются на сервер через объект XMLHttpRequest и выводятся на этой же странице без перезагрузки.</p>
+            </section>
+
+            <form id="ajax-survey-form" class="survey-form" method="post" action="lab7_ajax.php" novalidate>
+                <input type="hidden" name="site_theme" value="Статистика и аналитика данных">
+                <input type="hidden" name="variant" value="ЛР7 на основе ЛР5, вариант 10">
+
+                <fieldset>
+                    <legend>Личные данные</legend>
+
+                    <div class="form-row">
+                        <label for="ajax-surname">Фамилия</label>
+                        <input id="ajax-surname" type="text" name="surname" autocomplete="family-name">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="ajax-name">Имя</label>
+                        <input id="ajax-name" type="text" name="name" autocomplete="given-name">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="ajax-patronymic">Отчество</label>
+                        <input id="ajax-patronymic" type="text" name="patronymic" autocomplete="additional-name">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Интерес к теме сайта</legend>
+
+                    <div class="form-row">
+                        <label for="ajax-goal">Цель посещения</label>
+                        <select id="ajax-goal" name="goal">
+                            <option value="">Выберите цель</option>
+                            <option value="Учебное исследование">Учебное исследование</option>
+                            <option value="Выбор методов анализа">Выбор методов анализа</option>
+                            <option value="Знакомство с Big Data">Знакомство с Big Data</option>
+                            <option value="Подготовка проекта">Подготовка проекта</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row form-row-stack">
+                        <span class="form-label">Интересующие разделы</span>
+                        <div class="choice-group">
+                            <label><input type="checkbox" name="topics[]" value="Описательная статистика"> Описательная статистика</label>
+                            <label><input type="checkbox" name="topics[]" value="Машинное обучение"> Машинное обучение</label>
+                            <label><input type="checkbox" name="topics[]" value="Визуализация данных"> Визуализация данных</label>
+                            <label><input type="checkbox" name="topics[]" value="Прогнозирование"> Прогнозирование</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row form-row-stack">
+                        <span class="form-label">Уровень знакомства</span>
+                        <div class="choice-group">
+                            <label><input type="radio" name="experience" value="Начальный"> Начальный</label>
+                            <label><input type="radio" name="experience" value="Базовый"> Базовый</label>
+                            <label><input type="radio" name="experience" value="Уверенный"> Уверенный</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button class="primary-button" type="submit">Отправить AJAX</button>
+                    <button class="secondary-button" type="reset">Очистить</button>
+                </div>
+            </form>
+
+            <section class="response-card ajax-response-card">
+                <h2>Ответ сервера</h2>
+                <div id="ajax-status" class="ajax-status">Ожидание отправки формы.</div>
+                <div id="ajax-response"></div>
+            </section>
+        </main>
+
+        <footer>
+            <time datetime="2026">2026</time> Кочнев Д. О.
+        </footer>
+    </div>
+
+    <script src="lab7.js"></script>
+</body>
+</html>

@@ -169,3 +169,281 @@ a[target="_blank"]::after {
 .transform-demo:hover {
     transform: scale(1.2) rotate(5deg);
 }
+
+.lab5-main {
+    padding: 20px;
+    text-align: left;
+}
+
+.survey-intro {
+    margin-bottom: 18px;
+}
+
+.survey-intro p {
+    margin-top: 8px;
+}
+
+.survey-form,
+.response-card {
+    background: #f7fbff;
+    border: 1px solid #90caf9;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.survey-form fieldset {
+    border: 1px solid #bbdefb;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    padding: 16px;
+}
+
+.survey-form legend {
+    color: #0d47a1;
+    font-weight: bold;
+    padding: 0 6px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+.form-row-stack {
+    align-items: start;
+}
+
+.survey-form label,
+.form-label {
+    font-weight: bold;
+}
+
+.survey-form input[type="text"],
+.survey-form select {
+    width: 100%;
+    border: 1px solid #90caf9;
+    border-radius: 6px;
+    font: inherit;
+    padding: 8px 10px;
+}
+
+.survey-form input[type="text"]:focus,
+.survey-form select:focus {
+    border-color: #0d47a1;
+    outline: 2px solid #bbdefb;
+}
+
+.choice-group {
+    display: grid;
+    gap: 8px;
+}
+
+.choice-group label {
+    font-weight: normal;
+}
+
+.form-errors {
+    background: #ffebee;
+    border: 1px solid #ef9a9a;
+    border-radius: 6px;
+    color: #b71c1c;
+    margin-bottom: 14px;
+    padding: 10px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.primary-button,
+.secondary-button,
+.back-link {
+    border: 1px solid #0d47a1;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+    font-weight: bold;
+    padding: 8px 14px;
+    text-decoration: none;
+}
+
+.primary-button {
+    background: #0d47a1;
+    color: white;
+}
+
+.secondary-button,
+.back-link {
+    background: white;
+    color: #0d47a1;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.back-link:hover {
+    background: #ffecb3;
+    color: #0d47a1;
+    text-decoration: none;
+}
+
+.response-list {
+    margin: 14px 0;
+}
+
+.response-list dt {
+    color: #0d47a1;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.response-list dd {
+    border-bottom: 1px solid #e3f2fd;
+    margin: 4px 0 0;
+    padding-bottom: 8px;
+}
+
+.lab6-main {
+    padding: 20px;
+    text-align: left;
+}
+
+.db-section {
+    margin-bottom: 20px;
+}
+
+.db-table-wrap {
+    overflow-x: auto;
+}
+
+.db-table,
+.project-input-table {
+    min-width: 1100px;
+}
+
+.db-table th,
+.project-input-table th {
+    background: #e3f2fd;
+}
+
+.db-table td,
+.project-input-table td {
+    text-align: left;
+}
+
+.db-form,
+.edit-panel form {
+    background: #f7fbff;
+    border: 1px solid #90caf9;
+    border-radius: 8px;
+    padding: 14px;
+}
+
+.project-input-table input,
+.project-input-table select,
+.edit-panel input,
+.edit-panel select {
+    width: 100%;
+    border: 1px solid #90caf9;
+    border-radius: 6px;
+    font: inherit;
+    padding: 7px 8px;
+}
+
+.edit-panel {
+    margin-bottom: 8px;
+}
+
+.edit-panel summary {
+    color: #0d47a1;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.edit-panel form {
+    display: grid;
+    gap: 10px;
+    min-width: 260px;
+}
+
+.edit-panel label {
+    display: grid;
+    gap: 4px;
+    font-weight: bold;
+}
+
+.delete-form {
+    margin-top: 8px;
+}
+
+.db-message {
+    border-radius: 6px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    padding: 10px;
+}
+
+.db-message-ok {
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #1b5e20;
+}
+
+.db-message-error {
+    background: #ffebee;
+    border: 1px solid #ef9a9a;
+    color: #b71c1c;
+}
+
+.ajax-response-card {
+    margin-top: 20px;
+}
+
+.ajax-status {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 6px;
+    color: #0d47a1;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.ajax-status-ok {
+    background: #e8f5e9;
+    border-color: #a5d6a7;
+    color: #1b5e20;
+}
+
+.ajax-status-error {
+    background: #ffebee;
+    border-color: #ef9a9a;
+    color: #b71c1c;
+}
+
+.lab8-main {
+    padding: 20px;
+    text-align: left;
+}
+
+.xml-table {
+    min-width: 980px;
+}
+
+.xml-table th {
+    background: #e3f2fd;
+}
+
+.xml-table td {
+    text-align: left;
+}

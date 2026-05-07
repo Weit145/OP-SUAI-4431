@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analyticsProjects>
+    <project id="1">
+        <direction>Описательная аналитика</direction>
+        <dataSource>Анкеты пользователей</dataSource>
+        <method>Сводные статистики</method>
+        <tool>Excel</tool>
+        <metric>Среднее время просмотра</metric>
+        <result>Выявлены популярные разделы сайта</result>
+    </project>
+    <project id="2">
+        <direction>Прогнозная аналитика</direction>
+        <dataSource>Исторические наборы данных</dataSource>
+        <method>Регрессионная модель</method>
+        <tool>R</tool>
+        <metric>Месячный прирост данных</metric>
+        <result>Построен прогноз нагрузки</result>
+    </project>
+    <project id="3">
+        <direction>Визуальная аналитика</direction>
+        <dataSource>BI-отчеты и дашборды</dataSource>
+        <method>Интерактивная визуализация</method>
+        <tool>Power BI</tool>
+        <metric>Процент пропусков</metric>
+        <result>Собраны показатели качества данных</result>
+    </project>
+    <project id="4">
+        <direction>Машинное обучение</direction>
+        <dataSource>Открытые статистические наборы</dataSource>
+        <method>Классификация</method>
+        <tool>Python</tool>
+        <metric>Точность модели</metric>
+        <result>Определены признаки для прогнозирования</result>
+    </project>
+</analyticsProjects>
