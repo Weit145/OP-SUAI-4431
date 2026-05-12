@@ -81,7 +81,11 @@ void Print::findUserByNumber(){
     getline(cin, ticket);
     const Reader* r = readers.find_by_number(ticket);
     if (r) {
-        cout << "Найден: " << r->fio << " (" << r->numberTicket << ")"<<endl;
+        cout << "Номер билета: " << r->numberTicket << endl;
+        cout << "ФИО: " << r->fio << endl;
+        cout << "Год рождения: " << r->year << endl;
+        cout << "Адрес: " << r->adress << endl;
+        cout << "Место работы/учёбы: " << r->place << endl;
         transactions.print_for_reader(ticket);
     } 
     else cout << "Не найден."<<endl;
@@ -152,8 +156,14 @@ void Print::findBookByHash(){
     getline(cin, hash);
     Book* b = books.find_by_hash(hash);
     if (b) {
-        cout << "Найдена: " << b->author << " - " << b->name << " (" << b->hash << ")"<<endl;
-        transactions.print_for_book(hash);
+        cout << "Шифр: " << b->hash << endl;
+        cout << "Автор(ы): " << b->author << endl;
+        cout << "Название: " << b->name << endl;
+        cout << "Издательство: " << b->publishing << endl;
+        cout << "Год издания: " << b->year << endl;
+        cout << "Всего экземпляров: " << b->allExample << endl;
+        cout << "В наличии: " << b->assetExample << endl;
+        transactions.print_for_book(hash, readers);
     } else cout << "Не найдена."<<endl;
 }
 
@@ -211,6 +221,110 @@ void Print::takeBook(){
     }
 }
 
+void Print::loadTestData(){
+    struct ReaderSeed {
+        const char* ticket;
+        const char* fio;
+        int year;
+        const char* adress;
+        const char* place;
+    };
+
+    struct BookSeed {
+        const char* hash;
+        const char* author;
+        const char* name;
+        const char* publishing;
+        int year;
+        int allExample;
+        int assetExample;
+    };
+
+    struct IssueSeed {
+        const char* ticket;
+        const char* hash;
+        const char* date;
+    };
+
+    const ReaderSeed readerSeeds[] = {
+        {"А0001-26", "Иванов Иван Иванович", 2004, "Санкт-Петербург, Невский пр., 10", "ГУАП"},
+        {"Ч0002-26", "Петрова Анна Сергеевна", 2003, "Санкт-Петербург, ул. Ленина, 8", "СПбГУ"},
+        {"В0003-26", "Сидоров Павел Олегович", 1998, "Санкт-Петербург, Московский пр., 21", "ИТМО"},
+        {"А0004-26", "Кузнецова Мария Андреевна", 2001, "Пушкин, Октябрьский б-р, 5", "Библиотека им. Маяковского"},
+        {"В0005-26", "Смирнов Дмитрий Викторович", 1995, "Колпино, ул. Тверская, 14", "ООО Север"}
+    };
+
+    const BookSeed bookSeeds[] = {
+        {"001.001", "Страуструп Б.", "Язык программирования C++", "Бином", 2019, 5, 5},
+        {"002.015", "Кормен Т., Лейзерсон Ч.", "Алгоритмы: построение и анализ", "Вильямс", 2022, 4, 4},
+        {"003.120", "Кнут Д.", "Искусство программирования", "Вильямс", 2020, 3, 3},
+        {"010.007", "Таненбаум Э.", "Современные операционные системы", "Питер", 2021, 6, 6},
+        {"011.042", "Мартин Р.", "Чистый код", "Питер", 2023, 2, 2}
+    };
+
+    const IssueSeed issueSeeds[] = {
+        {"А0001-26", "001.001", "12.05.2026"},
+        {"Ч0002-26", "002.015", "12.05.2026"},
+        {"В0003-26", "003.120", "13.05.2026"},
+        {"А0004-26", "010.007", "14.05.2026"},
+        {"В0005-26", "011.042", "15.05.2026"}
+    };
+
+    int addedReaders = 0;
+    int addedBooks = 0;
+    int addedIssues = 0;
+
+    for (const ReaderSeed& seed : readerSeeds) {
+        if (readers.find_by_number(seed.ticket)) continue;
+        try {
+            readers.add_segment(new Reader(seed.ticket, seed.fio, seed.year, seed.adress, seed.place));
+            addedReaders++;
+        } catch (const exception& e) {
+            cout << "Читатель " << seed.ticket << ": " << e.what() << endl;
+        }
+    }
+
+    for (const BookSeed& seed : bookSeeds) {
+        if (books.find_by_hash(seed.hash)) continue;
+        Book* book = nullptr;
+        try {
+            book = new Book(seed.hash, seed.author, seed.name, seed.publishing, seed.year, seed.allExample, seed.assetExample);
+            books.add(book);
+            addedBooks++;
+        } catch (const exception& e) {
+            delete book;
+            cout << "Книга " << seed.hash << ": " << e.what() << endl;
+        }
+    }
+
+    for (const IssueSeed& seed : issueSeeds) {
+        if (!readers.find_by_number(seed.ticket)) {
+            cout << "Выдача " << seed.ticket << " / " << seed.hash << ": читатель не найден."<<endl;
+            continue;
+        }
+
+        Book* book = books.find_by_hash(seed.hash);
+        if (!book) {
+            cout << "Выдача " << seed.ticket << " / " << seed.hash << ": книга не найдена."<<endl;
+            continue;
+        }
+
+        if (book->assetExample <= 0) {
+            cout << "Выдача " << seed.ticket << " / " << seed.hash << ": нет свободных экземпляров."<<endl;
+            continue;
+        }
+
+        if (transactions.issue(seed.ticket, seed.hash, seed.date)) {
+            book->assetExample--;
+            addedIssues++;
+        }
+    }
+
+    cout << "Тестовые данные загружены: читателей добавлено " << addedReaders
+        << ", книг добавлено " << addedBooks
+        << ", выдач добавлено " << addedIssues << "."<<endl;
+}
+
 void Print::run(){
     int choice=-1;
     while(choice!=0){
@@ -229,6 +343,7 @@ void Print::run(){
         cout << "12. Поиск книги по фрагменту автора/названия (Бойера-Мура)"<<endl;
         cout << "13. Выдача книги читателю"<<endl;
         cout << "14. Приём книги от читателя"<<endl;
+        cout << "15. Загрузить тестовый набор данных (по 5 записей)"<<endl;
         cout << "0. Выход"<<endl;
         cout << "Выбор: ";
         if (!(cin >> choice)) {
@@ -283,6 +398,9 @@ void Print::run(){
             break;
         case 14:
             takeBook();
+            break;
+        case 15:
+            loadTestData();
             break;
         default:
             break;

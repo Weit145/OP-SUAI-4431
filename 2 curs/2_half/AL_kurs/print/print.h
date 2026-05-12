@@ -23,6 +23,7 @@ private:
     void findBookByNameOrAthor();
     void giveBook();
     void takeBook();
+    void loadTestData();
 
 public:
     void run();

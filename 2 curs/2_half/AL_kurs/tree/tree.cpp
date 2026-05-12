@@ -230,6 +230,10 @@ Book* Tree::find_by_hash(const std::string& hash) {
 }
 
 void Tree::print_all_books() {
+    if (!root) {
+        cout << "Нет книг."<<endl;
+        return;
+    }
     inorder_print(root);
     cout << endl;
 }
@@ -251,12 +255,14 @@ void Tree::clear() {
 }
 
 void Tree::search_by_fragment(const std::string& fragment) {
-    search_fragment_inorder(root, fragment);
+    if (search_fragment_inorder(root, fragment) == 0) {
+        cout << "Книги с таким фрагментом автора или названия не найдены."<<endl;
+    }
 }
 
-void Tree::search_fragment_inorder(List* node, const std::string& fragment) {
-    if (!node) return;
-    search_fragment_inorder(node->left, fragment);
+int Tree::search_fragment_inorder(List* node, const std::string& fragment) {
+    if (!node) return 0;
+    int found = search_fragment_inorder(node->left, fragment);
 
     if (boyer_moore(node->book->author, fragment) or
         boyer_moore(node->book->name, fragment)) {
@@ -264,10 +270,12 @@ void Tree::search_fragment_inorder(List* node, const std::string& fragment) {
             << " | Автор: " << node->book->author 
             << " | Название: " << node->book->name 
             << " | Изд-во: " << node->book->publishing 
+            << " | Год: " << node->book->year
             << " | В наличии: " << node->book->assetExample << endl;
+        found++;
     }
 
-    search_fragment_inorder(node->right, fragment);
+    return found + search_fragment_inorder(node->right, fragment);
 }
 
 void Tree::remove_by_hash(const std::string& hash) {

@@ -21,7 +21,7 @@ Hash::~Hash() {
     delete[] hash_table;
 }
 
-int Hash::hash_function(const std::string& key) {
+int Hash::hash_function(const std::string& key) const {
     int hash = 0;
     for (unsigned char ch : key) {
         hash = (hash * 31 + ch) % SIZE;
@@ -29,7 +29,7 @@ int Hash::hash_function(const std::string& key) {
     return hash;
 }
 
-int Hash::step_function(const int hash, const int step) {
+int Hash::step_function(const int hash, const int step) const {
     return (hash + step * step) % SIZE;
 }
 
@@ -59,7 +59,7 @@ void Hash::add_segment( const Reader* reader) {
     hash_table[hash].isDeleted = false;
 }
 
-bool Hash::is_this_key(const std::string& key, const Segment& segment) {
+bool Hash::is_this_key(const std::string& key, const Segment& segment) const {
     if (segment.reader == nullptr) return false;
     return segment.reader->numberTicket == key;
 }
@@ -103,7 +103,7 @@ void Hash::show_segment(int index) {
     }
 }
 
-const Reader* Hash::find_by_number(const std::string& ticket) {
+const Reader* Hash::find_by_number(const std::string& ticket) const {
     int hash = hash_function(ticket);
     int step = 1;
     int start = hash;

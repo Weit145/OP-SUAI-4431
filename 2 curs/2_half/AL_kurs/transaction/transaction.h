@@ -1,4 +1,5 @@
 #include "../domain/domain.h"
+#include "../hash/hash.h"
 #include <string>
 
 #pragma once
@@ -25,7 +26,7 @@ public:
     void show();
     bool return_book(const string&, const string&, const string&);
     void print_for_reader(const string&);
-    void print_for_book(const string&);
+    void print_for_book(const string&, const Hash&);
     bool has_active_issuances();
     bool has_active_issuances(const string&);
     bool has_active_issuances_for_book(const string&);

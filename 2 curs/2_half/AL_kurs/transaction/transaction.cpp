@@ -126,6 +126,11 @@ void TransactionList::selection_sort() {
 }
 
 bool TransactionList::issue(const string& ticket, const string& hash, const string& dataEnter) {
+    if (dataEnter.empty()) {
+        cout << "Дата выдачи не может быть пустой."<<endl;
+        return false;
+    }
+
     Node* temp = head;
     if (temp) {
         do {
@@ -139,14 +144,28 @@ bool TransactionList::issue(const string& ticket, const string& hash, const stri
         } while (temp != head);
     }
 
-    TransactionBook* t = new TransactionBook(ticket, hash, dataEnter, "");
-    add(t);
+    TransactionBook* t = nullptr;
+    try {
+        t = new TransactionBook(ticket, hash, dataEnter, "");
+        add(t);
+    } catch (const exception& e) {
+        delete t;
+        cout << e.what() << endl;
+        return false;
+    }
     cout << "Книга успешно выдана."<<endl;
     return true;
 }
 
 bool TransactionList::return_book(const std::string& ticket, const std::string& hash, const std::string& dataOut) {
-    if (!head) return false;
+    if (dataOut.empty()) {
+        cout << "Дата возврата не может быть пустой."<<endl;
+        return false;
+    }
+    if (!head) {
+        cout << "Активная выдача не найдена!"<<endl;
+        return false;
+    }
     Node* temp = head;
     do {
         if (temp->transaction->numberTicket == ticket and
@@ -163,30 +182,33 @@ bool TransactionList::return_book(const std::string& ticket, const std::string& 
 }
 
 void TransactionList::print_for_reader(const std::string& ticket) {
-    if (!head) { cout << "У читателя нет выданных книг."<<endl; return; }
+    if (!head) { cout << "У читателя нет активных выдач."<<endl; return; }
     bool found = false;
     Node* temp = head;
     do {
-        if (temp->transaction->numberTicket == ticket) {
+        if (temp->transaction->numberTicket == ticket and
+            temp->transaction->dataOut.empty()) {
             cout << "Шифр: " << temp->transaction->hash 
-                << " | Выдача: " << temp->transaction->dataEnter
-                << " | Возврат: " << (temp->transaction->dataOut.empty() ? "не возвращена" : temp->transaction->dataOut) << endl;
+                << " | Выдача: " << temp->transaction->dataEnter << endl;
             found = true;
         }
         temp = temp->next;
     } while (temp != head);
-    if (!found) cout << "У читателя нет выданных книг."<<endl;
+    if (!found) cout << "У читателя нет активных выдач."<<endl;
 }
 
-void TransactionList::print_for_book(const std::string& hash) {
+void TransactionList::print_for_book(const std::string& hash, const Hash& readers) {
     if (!head) { cout << "Книга никому не выдана."<<endl; return; }
     bool found = false;
     Node* temp = head;
     do {
-        if (temp->transaction->hash == hash) {
+        if (temp->transaction->hash == hash and
+            temp->transaction->dataOut.empty()) {
+            const Reader* reader = readers.find_by_number(temp->transaction->numberTicket);
             cout << "Билет: " << temp->transaction->numberTicket 
+                << " | ФИО: " << (reader ? reader->fio : "читатель не найден")
                 << " | Выдача: " << temp->transaction->dataEnter
-                << " | Возврат: " << (temp->transaction->dataOut.empty() ? "не возвращена" : temp->transaction->dataOut) << endl;
+                << endl;
             found = true;
         }
         temp = temp->next;

@@ -5,16 +5,25 @@
 
 using namespace std;
 
+static bool has_valid_ticket_tail(const string& tail) {
+    return tail.size() == 7 &&
+        isdigit(static_cast<unsigned char>(tail[0])) &&
+        isdigit(static_cast<unsigned char>(tail[1])) &&
+        isdigit(static_cast<unsigned char>(tail[2])) &&
+        isdigit(static_cast<unsigned char>(tail[3])) &&
+        tail[4] == '-' &&
+        isdigit(static_cast<unsigned char>(tail[5])) &&
+        isdigit(static_cast<unsigned char>(tail[6]));
+}
+
 static bool is_valid_ticket(const string& ticket) {
-    return ticket.size() == 8 &&
-        isalpha(static_cast<unsigned char>(ticket[0])) &&
-        isdigit(static_cast<unsigned char>(ticket[1])) &&
-        isdigit(static_cast<unsigned char>(ticket[2])) &&
-        isdigit(static_cast<unsigned char>(ticket[3])) &&
-        isdigit(static_cast<unsigned char>(ticket[4])) &&
-        ticket[5] == '-' &&
-        isdigit(static_cast<unsigned char>(ticket[6])) &&
-        isdigit(static_cast<unsigned char>(ticket[7]));
+    const string access_codes[] = {"А", "Ч", "В", "A", "B", "C"};
+    for (const string& code : access_codes) {
+        if (ticket.rfind(code, 0) == 0) {
+            return has_valid_ticket_tail(ticket.substr(code.size()));
+        }
+    }
+    return false;
 }
 
 static bool is_valid_book_hash(const string& hash) {

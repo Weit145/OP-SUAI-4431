@@ -29,7 +29,7 @@ private:
     void delete_tree(List* node);
 
     void inorder_print(List* node);
-    void search_fragment_inorder(List* node, const std::string& fragment);
+    int search_fragment_inorder(List* node, const std::string& fragment);
 
 public:
     Tree();
