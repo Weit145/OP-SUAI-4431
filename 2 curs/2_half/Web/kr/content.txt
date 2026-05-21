@@ -1,0 +1,18 @@
+[site]
+title=Музыка.ру.
+logo_alt=Логотип сайта Музыка.ру
+nav=Музыка.ру.|Сравнение секвенсоров|Источники
+
+[main]
+heading=Сравнение секвенсоров
+
+[list]
+Сравниваются=Ableton Live|FL Studio|Logic X Pro|GarageBand|PreSonus Studio One 3
+Общая характеристика=Операционные системы|Стоимость
+Личные предпочтения=Удобство|Дизайн
+
+[table]
+caption=Субъективное сравнение секвенсоров
+headers=Критерии|Ableton|PreSonus Studio One 3|GarageBand|FL Studio|Logic X Pro
+row=ОС|Windows, macOS||macOS,Mobile|Windows, Mobile|macOS
+row=Стоимость|79 (599) евро||БЕСПЛАТНО|99+ долларов|14990 рублей
