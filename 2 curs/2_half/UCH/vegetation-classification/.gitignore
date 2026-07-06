@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+data/L2A_*/
+data/raw/*.tif
+data/raw/*.tiff
+data/raw/*.jp2
+data/raw/demo_metadata.json
+data/processed/*.tif
+data/processed/*.tiff
+data/processed/*.jp2
