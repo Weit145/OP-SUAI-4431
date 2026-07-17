@@ -1,4 +1,6 @@
-PYTHON ?= python
+POETRY ?= poetry
+PYTHON := $(POETRY) run python
+APP ?= app.py
 PRODUCT ?=
 RED ?=
 NIR ?=
@@ -8,33 +10,26 @@ PROCESSED ?= data/processed
 ifeq ($(strip $(PRODUCT)),)
 PRODUCT_ARG =
 else
-PRODUCT_ARG = $(PRODUCT)
+PRODUCT_ARG = --product $(PRODUCT)
 endif
 
-.PHONY: help install venv install-venv run run-product run-files demo check clean
+.PHONY: help install run run-product run-files ui demo test check clean
 
 help:
 	@echo "Project commands:"
-	@echo "  make install                         install dependencies"
-	@echo "  make venv                            create .venv"
-	@echo "  make install-venv                    install dependencies into .venv"
+	@echo "  make install                         install Poetry dependencies"
 	@echo "  make run                             run with automatic data search"
 	@echo "  make run PRODUCT=L2A_...             run selected product from data"
 	@echo "  make run-product PRODUCT=L2A_...     same as run, but PRODUCT is required"
 	@echo "  make run-files RED=... NIR=...       run with explicit B04 and B08 files"
-	@echo "  make demo                            create demo B04.tif and B08.tif"
-	@echo "  make check                           check Python syntax"
+	@echo "  make ui                              start the Streamlit interface"
+	@echo "  make demo                            create six multispectral demo bands"
+	@echo "  make test                            run tests"
+	@echo "  make check                           run Ruff checks"
 	@echo "  make clean                           remove generated results"
 
 install:
-	$(PYTHON) -m pip install -r requirements.txt
-
-venv:
-	$(PYTHON) -m venv .venv
-
-install-venv: venv
-	.venv/Scripts/python.exe -m pip install --upgrade pip
-	.venv/Scripts/python.exe -m pip install -r requirements.txt
+	$(POETRY) install
 
 run:
 	$(PYTHON) main.py $(PRODUCT_ARG) --out $(OUT) --processed $(PROCESSED)
@@ -54,11 +49,18 @@ ifndef NIR
 endif
 	$(PYTHON) main.py --red $(RED) --nir $(NIR) --out $(OUT) --processed $(PROCESSED)
 
+ui:
+	$(POETRY) run streamlit run $(APP)
+
 demo:
 	$(PYTHON) download_data.py --demo
 
+test:
+	$(POETRY) run pytest
+
 check:
-	$(PYTHON) -m compileall main.py download_data.py src
+	$(POETRY) run ruff check .
+	$(POETRY) run ruff format --check .
 
 clean:
 	$(PYTHON) -c "from pathlib import Path; [p.unlink() for folder in ('results', 'data/processed') for p in Path(folder).glob('*') if p.is_file() and p.name != '.gitkeep']"

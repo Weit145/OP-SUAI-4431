@@ -1,11 +1,14 @@
 __pycache__/
 *.py[cod]
 .venv/
+.pytest_cache/
+.ruff_cache/
 data/L2A_*/
 data/raw/*.tif
 data/raw/*.tiff
 data/raw/*.jp2
 data/raw/demo_metadata.json
+data/raw/scene_metadata.json
 data/processed/*.tif
 data/processed/*.tiff
 data/processed/*.jp2
