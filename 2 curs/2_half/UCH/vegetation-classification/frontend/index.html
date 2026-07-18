@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Расчёт NDVI и классификация поверхности по снимкам Sentinel-2"
+    />
+    <title>Sentinel Vision — анализ растительности</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Sentinel Vision">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="img">
+            <path d="M20 5C11.7 5 5 11.7 5 20s6.7 15 15 15 15-6.7 15-15S28.3 5 20 5Z" />
+            <path d="M12 26c3.3-8 9.6-12.7 17.8-13.9C27.2 19.9 21.4 24.5 12 26Z" />
+            <path d="M14 29c3.8-6 8.5-10.1 14.2-12.4" />
+          </svg>
+        </span>
+        <span>
+          <strong>Sentinel Vision</strong>
+          <small>Earth intelligence</small>
+        </span>
+      </a>
+      <nav aria-label="Основная навигация">
+        <a href="#analysis">Анализ</a>
+        <a href="#method">Метод</a>
+        <a class="docs-link" href="/docs" target="_blank" rel="noreferrer">API Docs</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="eyebrow"><span></span> Sentinel-2 analytics</div>
+        <h1 id="hero-title">Увидеть состояние земли <em>в каждом пикселе</em></h1>
+        <p>
+          Рассчитайте индекс растительности или выполните полную классификацию воды,
+          почвы, застройки и зелёных зон по спутниковым каналам.
+        </p>
+        <div class="hero-metrics" aria-label="Возможности сервиса">
+          <div><strong>6</strong><span>спектральных индексов</span></div>
+          <div><strong>7</strong><span>классов поверхности</span></div>
+          <div><strong>20 м</strong><span>единая сетка анализа</span></div>
+        </div>
+      </section>
+
+      <section class="workspace" id="analysis" aria-labelledby="analysis-title">
+        <div class="section-heading">
+          <div>
+            <span class="step-label">01 / Загрузка</span>
+            <h2 id="analysis-title">Новый анализ</h2>
+          </div>
+          <p>Выберите сценарий и добавьте исходные данные Sentinel-2.</p>
+        </div>
+
+        <div class="analysis-card">
+          <div class="mode-switch" role="tablist" aria-label="Режим анализа">
+            <button
+              class="mode-button active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              data-mode="ndvi"
+            >
+              <span class="mode-index">A</span>
+              <span><strong>NDVI</strong><small>Два канала · B04 + B08</small></span>
+            </button>
+            <button
+              class="mode-button"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-mode="multispectral"
+            >
+              <span class="mode-index">B</span>
+              <span><strong>Полный спектр</strong><small>Одна сцена · ZIP</small></span>
+            </button>
+          </div>
+
+          <form id="analysis-form" novalidate>
+            <div class="form-panel" data-panel="ndvi">
+              <div class="panel-intro">
+                <h3>Классификация растительности</h3>
+                <p>
+                  Загрузите заранее совмещённые красный и ближний инфракрасный каналы
+                  с одинаковыми размером, CRS и пиксельной сеткой.
+                </p>
+              </div>
+              <div class="upload-grid">
+                <label class="file-drop" data-file-drop>
+                  <input id="red-file" type="file" accept=".jp2,.tif,.tiff" />
+                  <span class="file-code">B04</span>
+                  <span class="file-copy">
+                    <strong>Красный канал</strong>
+                    <small data-file-name>JP2, TIF или TIFF</small>
+                  </span>
+                  <span class="file-action">Выбрать</span>
+                </label>
+                <label class="file-drop" data-file-drop>
+                  <input id="nir-file" type="file" accept=".jp2,.tif,.tiff" />
+                  <span class="file-code">B08</span>
+                  <span class="file-copy">
+                    <strong>Ближний ИК</strong>
+                    <small data-file-name>JP2, TIF или TIFF</small>
+                  </span>
+                  <span class="file-action">Выбрать</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-panel hidden" data-panel="multispectral">
+              <div class="panel-intro">
+                <h3>Классификация поверхности</h3>
+                <p>
+                  ZIP должен содержать ровно по одному файлу B02, B03, B04, B08, B11 и B12.
+                  Все шесть каналов должны быть заранее приведены к одной пиксельной сетке.
+                </p>
+              </div>
+              <label class="file-drop file-drop-wide" data-file-drop>
+                <input id="archive-file" type="file" accept=".zip,application/zip" />
+                <span class="file-code">ZIP</span>
+                <span class="file-copy">
+                  <strong>Архив сцены Sentinel-2</strong>
+                  <small data-file-name>Перетащите архив сюда или выберите файл</small>
+                </span>
+                <span class="file-action">Выбрать</span>
+              </label>
+              <div class="band-list" aria-label="Обязательные каналы">
+                <span>B02</span><span>B03</span><span>B04</span><span>B08</span><span>B11</span><span>B12</span>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <div class="privacy-note">
+                <span aria-hidden="true">↗</span>
+                Данные обрабатываются внутри вашего Docker-окружения
+              </div>
+              <button class="submit-button" type="submit">
+                <span>Запустить анализ</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <div id="status-box" class="status-box hidden" role="status" aria-live="polite">
+            <span class="spinner" aria-hidden="true"></span>
+            <div><strong>Анализируем снимок</strong><small>Совмещаем каналы и считаем индексы…</small></div>
+          </div>
+          <div id="error-box" class="error-box hidden" role="alert"></div>
+        </div>
+      </section>
+
+      <section class="results hidden" id="results" aria-labelledby="results-title">
+        <div class="section-heading results-heading">
+          <div>
+            <span class="step-label">02 / Результат</span>
+            <h2 id="results-title">Картина поверхности</h2>
+          </div>
+        </div>
+
+        <div class="result-summary">
+          <div><span>Режим</span><strong id="result-mode">—</strong></div>
+          <div><span>Валидных пикселей</span><strong id="result-pixels">—</strong></div>
+        </div>
+
+        <div id="preview-grid" class="preview-grid"></div>
+
+        <div class="statistics-card">
+          <div class="card-heading">
+            <div><span class="step-label">Распределение</span><h3>Классы поверхности</h3></div>
+            <p>Доля от всех валидных пикселей сцены</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Класс</th><th>Условие</th><th>Пиксели</th><th>Доля</th></tr>
+              </thead>
+              <tbody id="statistics-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="method" id="method" aria-labelledby="method-title">
+        <div class="method-copy">
+          <span class="step-label">03 / Метод</span>
+          <h2 id="method-title">Прозрачная классификация без «чёрного ящика»</h2>
+          <p>
+            Каждый класс определяется воспроизводимыми спектральными индексами и порогами.
+            Статистика и готовые карты возвращаются сразу после обработки запроса.
+          </p>
+        </div>
+        <div class="formula-grid">
+          <article><span>01</span><strong>NDVI</strong><code>(B08 − B04) / (B08 + B04)</code><small>Растительность</small></article>
+          <article><span>02</span><strong>MNDWI</strong><code>(B03 − B11) / (B03 + B11)</code><small>Вода</small></article>
+          <article><span>03</span><strong>NDBI</strong><code>(B11 − B08) / (B11 + B08)</code><small>Застройка</small></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="brand footer-brand"><span class="brand-mark"></span><strong>Sentinel Vision</strong></div>
+      <p>Локальный анализ спутниковых данных · FastAPI + Docker</p>
+    </footer>
+  </body>
+</html>
