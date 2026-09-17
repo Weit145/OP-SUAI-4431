@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-property-table
+      author: student
+      changes:
+        - createTable:
+            tableName: property
+            columns:
+              - column:
+                  name: property_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: property_pkey
+                    nullable: false
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: property_type
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: area
+                  type: DECIMAL(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rooms
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: monthly_rent
+                  type: DECIMAL(12,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: available
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false

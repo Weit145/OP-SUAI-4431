@@ -1,14 +1,20 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 import rasterio
+from rasterio.enums import Resampling
+from rasterio.vrt import WarpedVRT
 
 from app.domain.errors import VegetationError
 from app.infrastructure.satellite.bands import SentinelBandPaths
+
+
+MAX_ANALYSIS_PIXELS = 4_000_000
 
 
 @dataclass(frozen=True, slots=True)
@@ -35,23 +41,62 @@ class LoadedRasterBands:
         )
 
 
-def _read_band(path: Path) -> tuple[np.ndarray, RasterGrid]:
+def _read_reference_band(path: Path) -> tuple[np.ndarray, RasterGrid]:
     try:
         with rasterio.open(path) as dataset:
-            data = dataset.read(1, out_dtype="float32")
-            data[dataset.read_masks(1) == 0] = np.nan
-            grid = RasterGrid(data.shape, dataset.crs, dataset.transform)
+            scale = max(
+                1.0,
+                math.sqrt(dataset.width * dataset.height / MAX_ANALYSIS_PIXELS),
+            )
+            height = max(1, math.ceil(dataset.height / scale))
+            width = max(1, math.ceil(dataset.width / scale))
+            shape = (height, width)
+            data = dataset.read(
+                1,
+                out_shape=shape,
+                out_dtype="float32",
+                resampling=Resampling.bilinear,
+            )
+            mask = dataset.read_masks(
+                1,
+                out_shape=shape,
+                resampling=Resampling.nearest,
+            )
+            data[mask == 0] = np.nan
+            transform = dataset.transform * dataset.transform.scale(
+                dataset.width / width,
+                dataset.height / height,
+            )
+            grid = RasterGrid(shape, dataset.crs, transform)
             return data, grid
     except Exception as error:
         raise VegetationError(f"Не удалось прочитать {path.name}: {error}") from error
 
 
-def _same_grid(first: RasterGrid, second: RasterGrid) -> bool:
-    return (
-        first.shape == second.shape
-        and first.crs == second.crs
-        and first.transform.almost_equals(second.transform)
-    )
+def _read_on_grid(path: Path, target_grid: RasterGrid) -> np.ndarray:
+    try:
+        with rasterio.open(path) as dataset:
+            if dataset.crs is None or target_grid.crs is None:
+                raise VegetationError(
+                    f"У канала {path.name} отсутствует система координат."
+                )
+            with WarpedVRT(
+                dataset,
+                crs=target_grid.crs,
+                transform=target_grid.transform,
+                width=target_grid.shape[1],
+                height=target_grid.shape[0],
+                resampling=Resampling.bilinear,
+                nodata=np.nan,
+                dtype="float32",
+            ) as warped:
+                data = warped.read(1, out_dtype="float32")
+                data[warped.read_masks(1) == 0] = np.nan
+                return data
+    except VegetationError:
+        raise
+    except Exception as error:
+        raise VegetationError(f"Не удалось прочитать {path.name}: {error}") from error
 
 
 def load_raster_bands(paths: SentinelBandPaths) -> LoadedRasterBands:
@@ -59,15 +104,12 @@ def load_raster_bands(paths: SentinelBandPaths) -> LoadedRasterBands:
     reference_grid: RasterGrid | None = None
 
     for name, path in paths.as_dict().items():
-        array, grid = _read_band(path)
         if reference_grid is None:
-            reference_grid = grid
-        elif not _same_grid(reference_grid, grid):
-            raise VegetationError(
-                "Все каналы должны иметь одинаковые размер, CRS и пиксельную сетку. "
-                f"Канал {path.name} не совпадает с первым каналом."
-            )
-        arrays[name] = array
+            array, reference_grid = _read_reference_band(path)
+            arrays[name] = array
+            continue
+
+        arrays[name] = _read_on_grid(path, reference_grid)
 
     valid_mask = np.ones(next(iter(arrays.values())).shape, dtype=bool)
     for array in arrays.values():

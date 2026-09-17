@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Cloud analytics">
+  <rect width="64" height="64" rx="10" fill="#e1f5fe"/>
+  <path d="M22 44h25a10 10 0 0 0 0-20 15 15 0 0 0-28-3 12 12 0 0 0 3 23z" fill="#ffffff" stroke="#0288d1" stroke-width="2"/>
+  <path d="M24 37l6-7 6 5 7-10" fill="none" stroke="#26a69a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

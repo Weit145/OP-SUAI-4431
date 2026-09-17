@@ -1,14 +1,13 @@
 from __future__ import annotations
 
-import re
 import shutil
 import zipfile
-from pathlib import Path, PurePosixPath
+from pathlib import Path
+from typing import BinaryIO
 
 from app.domain.errors import VegetationError
 from app.infrastructure.satellite.bands import (
     REQUIRED_BAND_CODES,
-    SUPPORTED_RASTERS,
     SentinelBandPaths,
 )
 
@@ -17,41 +16,40 @@ MAX_ARCHIVE_FILES = 20_000
 MAX_BAND_SIZE = 512 * 1024**2
 
 
-def _band_code(filename: str) -> str | None:
-    name = PurePosixPath(filename.replace("\\", "/")).name
-    if Path(name).suffix.lower() not in SUPPORTED_RASTERS:
-        return None
-
-    stem = Path(name).stem.upper()
-    for code in REQUIRED_BAND_CODES:
-        if stem == code or re.search(rf"(?:^|_){code}(?:_|$)", stem):
-            return code
-    return None
-
-
 def _select_bands(members: list[zipfile.ZipInfo]) -> dict[str, zipfile.ZipInfo]:
-    candidates: dict[str, list[zipfile.ZipInfo]] = {
-        code: [] for code in REQUIRED_BAND_CODES
-    }
-    for member in members:
-        code = _band_code(member.filename)
-        if code is not None:
-            candidates[code].append(member)
+    selected: dict[str, zipfile.ZipInfo] = {}
 
-    missing = [code for code, items in candidates.items() if not items]
-    if missing:
-        raise VegetationError("В ZIP не хватает каналов: " + ", ".join(missing) + ".")
+    for code in REQUIRED_BAND_CODES:
+        if code in {"B02", "B03", "B04", "B08"}:
+            suffix = f"_{code}_10M"
+            preferred_dir = "/IMG_DATA/R10M/"
+        else:
+            suffix = f"_{code}_20M"
+            preferred_dir = "/IMG_DATA/R20M/"
 
-    duplicates = [code for code, items in candidates.items() if len(items) > 1]
-    if duplicates:
-        raise VegetationError(
-            "В ZIP должно быть ровно по одному файлу каждого канала. "
-            "Найдены дубликаты: " + ", ".join(duplicates) + "."
-        )
-    return {code: items[0] for code, items in candidates.items()}
+        candidates = []
+
+        for member in members:
+            path = member.filename.replace("\\", "/").upper()
+
+            if (
+                preferred_dir in path
+                and path.endswith(".JP2")
+                and suffix in path
+            ):
+                candidates.append(member)
+
+        if not candidates:
+            raise VegetationError(f"В ZIP не найден канал {code}.")
+        selected[code] = candidates[0]
+
+    return selected
 
 
-def extract_sentinel_bands(source: Path, destination: Path) -> SentinelBandPaths:
+def extract_sentinel_bands(
+    source: Path | BinaryIO,
+    destination: Path,
+) -> SentinelBandPaths:
     destination.mkdir(parents=True, exist_ok=True)
     try:
         with zipfile.ZipFile(source) as archive:

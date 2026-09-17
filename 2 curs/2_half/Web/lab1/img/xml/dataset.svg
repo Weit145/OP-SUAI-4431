@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Dataset">
+  <rect width="64" height="64" rx="10" fill="#fff3e0"/>
+  <rect x="13" y="16" width="38" height="34" rx="4" fill="#ffffff" stroke="#ef6c00" stroke-width="2"/>
+  <path d="M13 26h38M13 36h38M25 16v34M38 16v34" stroke="#ffcc80" stroke-width="2"/>
+  <circle cx="19" cy="21" r="2" fill="#ef6c00"/>
+  <circle cx="32" cy="31" r="2" fill="#ef6c00"/>
+  <circle cx="45" cy="41" r="2" fill="#ef6c00"/>
+</svg>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema id="NewDataSet" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="NewDataSet">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Direction" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="direction_name" type="xs:string"/>
+                            <xs:element name="data_source" type="xs:string"/>
+                            <xs:element name="main_method" type="xs:string"/>
+                            <xs:element name="business_goal" type="xs:string"/>
+                            <xs:element name="difficulty_level" type="xs:string"/>
+                            <xs:element name="Project" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="project_name" type="xs:string"/>
+                                        <xs:element name="metric_name" type="xs:string"/>
+                                        <xs:element name="tool_name" type="xs:string"/>
+                                        <xs:element name="dataset_size" type="xs:string"/>
+                                        <xs:element name="result_summary" type="xs:string"/>
+                                        <xs:element name="responsible" type="xs:string"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="project_id" type="xs:positiveInteger" use="required"/>
+                                    <xs:attribute name="direction_id" type="xs:positiveInteger" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="direction_id" type="xs:positiveInteger" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="source" type="xs:string" use="required"/>
+            <xs:attribute name="author" type="xs:string" use="required"/>
+        </xs:complexType>
+        <xs:unique name="uniqueDirectionId">
+            <xs:selector xpath="Direction"/>
+            <xs:field xpath="@direction_id"/>
+        </xs:unique>
+        <xs:unique name="uniqueProjectId">
+            <xs:selector xpath="Direction/Project"/>
+            <xs:field xpath="@project_id"/>
+        </xs:unique>
+        <xs:key name="directionKey">
+            <xs:selector xpath="Direction"/>
+            <xs:field xpath="@direction_id"/>
+        </xs:key>
+        <xs:keyref name="projectDirectionRef" refer="directionKey">
+            <xs:selector xpath="Direction/Project"/>
+            <xs:field xpath="@direction_id"/>
+        </xs:keyref>
+    </xs:element>
+</xs:schema>

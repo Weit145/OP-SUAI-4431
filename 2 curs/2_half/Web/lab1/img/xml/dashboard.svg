@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="BI dashboard">
+  <rect width="64" height="64" rx="10" fill="#e3f2fd"/>
+  <rect x="11" y="13" width="42" height="34" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+  <rect x="16" y="19" width="13" height="10" rx="2" fill="#42a5f5"/>
+  <rect x="34" y="19" width="13" height="10" rx="2" fill="#26a69a"/>
+  <rect x="16" y="34" width="31" height="6" rx="3" fill="#ffca28"/>
+  <path d="M19 51h26" stroke="#1565c0" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Forecast model">
+  <rect width="64" height="64" rx="10" fill="#ffebee"/>
+  <path d="M14 48h38M16 48V14" stroke="#6d4c41" stroke-width="3" stroke-linecap="round"/>
+  <path d="M19 41c6-9 10-9 15-5s9-1 15-14" fill="none" stroke="#d32f2f" stroke-width="4" stroke-linecap="round"/>
+  <path d="M45 22h6v6" fill="none" stroke="#d32f2f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

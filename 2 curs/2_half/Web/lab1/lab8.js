@@ -1,86 +1,114 @@
-(function() {
-    document.addEventListener('DOMContentLoaded', function() {
-        const button = document.getElementById('loadXmlButton');
-        const statusBox = document.getElementById('xml-status');
-        const tableBody = document.getElementById('xml-projects-body');
+(function () {
+    'use strict';
 
-        if (!button || !statusBox || !tableBody) return;
+    const variants = {
+        table: {
+            xml: 'lab8_analytics.xml',
+            xsl: 'lab8_analytics_table.xsl',
+            title: 'Базовый XML: табличное отображение'
+        },
+        list: {
+            xml: 'lab8_analytics.xml',
+            xsl: 'lab8_analytics_list.xsl',
+            title: 'Базовый XML: построчное отображение'
+        },
+        database: {
+            xml: 'lab8_database.xml',
+            xsl: 'lab8_database.xsl',
+            title: 'XML на основе базы данных лабораторной №6'
+        }
+    };
 
-        function textFrom(project, tagName) {
-            const elements = project.getElementsByTagName(tagName);
-            if (elements.length === 0 || !elements[0].textContent) {
-                return '';
-            }
-            return elements[0].textContent;
+    function loadXMLDoc(filename, callback, errorCallback) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', filename, true);
+        try {
+            xhttp.responseType = 'msxml-document';
+        } catch (err) {
+            // свойство нужно только для совместимости с IE
         }
 
-        function addCell(row, text) {
-            const cell = document.createElement('td');
-            cell.textContent = text;
-            row.appendChild(cell);
-        }
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState !== 4) return;
 
-        function renderProjects(xmlDocument) {
-            const projects = xmlDocument.getElementsByTagName('project');
-            tableBody.innerHTML = '';
-
-            if (projects.length === 0) {
-                const row = document.createElement('tr');
-                addCell(row, 'В XML-файле нет элементов project.');
-                row.firstChild.colSpan = 7;
-                tableBody.appendChild(row);
+            if (xhttp.status !== 200) {
+                errorCallback('Не удалось загрузить файл ' + filename + '. Код ответа: ' + xhttp.status);
                 return;
             }
 
-            for (let i = 0; i < projects.length; i++) {
-                const project = projects[i];
-                const row = document.createElement('tr');
-
-                addCell(row, project.getAttribute('id') || String(i + 1));
-                addCell(row, textFrom(project, 'direction'));
-                addCell(row, textFrom(project, 'dataSource'));
-                addCell(row, textFrom(project, 'method'));
-                addCell(row, textFrom(project, 'tool'));
-                addCell(row, textFrom(project, 'metric'));
-                addCell(row, textFrom(project, 'result'));
-
-                tableBody.appendChild(row);
+            let xmlDocument = xhttp.responseXML;
+            if (!xmlDocument && xhttp.responseText) {
+                xmlDocument = new DOMParser().parseFromString(xhttp.responseText, 'application/xml');
             }
 
-            statusBox.className = 'ajax-status ajax-status-ok';
-            statusBox.textContent = 'XML-файл загружен. Записей: ' + projects.length + '.';
-        }
+            if (!xmlDocument || xmlDocument.getElementsByTagName('parsererror').length > 0) {
+                errorCallback('Файл ' + filename + ' содержит ошибку XML-разметки.');
+                return;
+            }
 
-        function loadXml() {
-            statusBox.className = 'ajax-status';
-            statusBox.textContent = 'Загрузка lab8_data.xml...';
+            callback(xmlDocument);
+        };
 
-            const request = new XMLHttpRequest();
-            request.onreadystatechange = function() {
-                if (request.readyState !== 4) return;
+        xhttp.send(null);
+    }
 
-                if (request.status !== 200) {
+    function displayResult(mode) {
+        const statusBox = document.getElementById('xml-status');
+        const resultBox = document.getElementById('xml-result');
+        const config = variants[mode] || variants.table;
+
+        statusBox.className = 'ajax-status';
+        statusBox.textContent = 'Загрузка: ' + config.xml + ' + ' + config.xsl + '...';
+        resultBox.innerHTML = '';
+
+        loadXMLDoc(config.xml, function (xml) {
+            loadXMLDoc(config.xsl, function (xsl) {
+                try {
+                    if (window.ActiveXObject || xml.transformNode) {
+                        resultBox.innerHTML = xml.transformNode(xsl);
+                    } else if (document.implementation && document.implementation.createDocument) {
+                        const xsltProcessor = new XSLTProcessor();
+                        xsltProcessor.importStylesheet(xsl);
+                        const resultDocument = xsltProcessor.transformToFragment(xml, document);
+                        resultBox.innerHTML = '';
+                        resultBox.appendChild(resultDocument);
+                    }
+
+                    statusBox.className = 'ajax-status ajax-status-ok';
+                    statusBox.textContent = config.title + ' загружен успешно.';
+                } catch (err) {
                     statusBox.className = 'ajax-status ajax-status-error';
-                    statusBox.textContent = 'Ошибка загрузки XML: ' + request.status + '.';
-                    return;
+                    statusBox.textContent = 'Ошибка XSLT-преобразования: ' + err.message;
                 }
+            }, function (message) {
+                statusBox.className = 'ajax-status ajax-status-error';
+                statusBox.textContent = message;
+            });
+        }, function (message) {
+            statusBox.className = 'ajax-status ajax-status-error';
+            statusBox.textContent = message;
+        });
+    }
 
-                const xmlDocument = request.responseXML || new DOMParser().parseFromString(request.responseText, 'application/xml');
-                const parserError = xmlDocument.getElementsByTagName('parsererror');
-                if (parserError.length > 0) {
-                    statusBox.className = 'ajax-status ajax-status-error';
-                    statusBox.textContent = 'XML-файл содержит ошибку разметки.';
-                    return;
-                }
+    function normalizeMode(value) {
+        const mode = (value || '').replace('#', '').trim();
+        return variants[mode] ? mode : 'table';
+    }
 
-                renderProjects(xmlDocument);
-            };
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('[data-mode]');
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const mode = normalizeMode(button.getAttribute('data-mode'));
+                window.location.hash = mode;
+                displayResult(mode);
+            });
+        });
 
-            request.open('GET', 'lab8_data.xml', true);
-            request.send(null);
-        }
+        window.addEventListener('hashchange', function () {
+            displayResult(normalizeMode(window.location.hash));
+        });
 
-        button.addEventListener('click', loadXml);
-        loadXml();
+        displayResult(normalizeMode(window.location.hash));
     });
 })();

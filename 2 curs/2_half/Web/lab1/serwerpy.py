@@ -2,7 +2,7 @@ import os
 import sys
 from http.server import HTTPServer, CGIHTTPRequestHandler
 
-# http://127.0.0.1:8000/lab5.html
+# http://127.0.0.1:8080/lab5.html
 
 
 webdir = '.'

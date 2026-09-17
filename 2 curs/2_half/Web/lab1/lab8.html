@@ -2,18 +2,17 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Лабораторная работа 8 XML">
-    <meta name="keywords" content="xml, javascript, web, аналитика данных">
+    <meta name="description" content="Лабораторная работа 8 XML и XSLT">
+    <meta name="keywords" content="xml, xsl, xslt, xsd, ajax, web, аналитика данных">
     <meta name="author" content="Кочнев Дмитрий Олегович">
     <title>Лабораторная работа №8</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <div class="container">
         <header class="gradient-bg" style="padding:20px; text-align:center;">
             <h1>Статистика и аналитика данных</h1>
-            <h2>Лабораторная работа №8: XML</h2>
+            <h2>Лабораторная работа №8: XML, XSLT и XSD</h2>
         </header>
 
         <nav style="background:#bbdefb; padding:10px; text-align:center;">
@@ -28,34 +27,38 @@
 
         <main class="lab8-main">
             <section class="db-section">
-                <h2>Данные из XML-файла</h2>
-                <p>Таблица ниже формируется JavaScript-кодом из файла <code>lab8_data.xml</code>.</p>
-                <div id="xml-status" class="ajax-status">XML-файл еще не загружен.</div>
-                <div class="form-actions">
-                    <button class="primary-button" type="button" id="loadXmlButton">Загрузить XML</button>
+                <h2>Формирование web-страницы на основе XML-документа</h2>
+                <p>
+                    На странице выполняется AJAX-загрузка XML и XSL-файлов, затем XSLT-преобразование
+                    выводится в блок ниже. Для базового XML предусмотрено два способа отображения: таблицей и построчно.
+                </p>
+                <div id="xml-status" class="ajax-status">Ожидание загрузки XML.</div>
+                <div class="form-actions lab8-buttons">
+                    <button class="primary-button" type="button" data-mode="table">Базовый XML: таблица</button>
+                    <button class="secondary-button" type="button" data-mode="list">Базовый XML: построчно</button>
+                    <button class="secondary-button" type="button" data-mode="database">XML из БД лабораторной №6</button>
                 </div>
             </section>
 
             <section class="db-section">
-                <div class="db-table-wrap">
-                    <table class="xml-table">
-                        <thead>
-                            <tr>
-                                <th>№</th>
-                                <th>Направление</th>
-                                <th>Источник данных</th>
-                                <th>Метод</th>
-                                <th>Инструмент</th>
-                                <th>Метрика</th>
-                                <th>Результат</th>
-                            </tr>
-                        </thead>
-                        <tbody id="xml-projects-body">
-                            <tr>
-                                <td colspan="7">Нажмите кнопку загрузки XML.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <h2>Результаты проверки XML по XSD</h2>
+                <div class="validation-grid">
+                    <article class="validation-card">
+                        <strong>lab8_analytics.xml</strong>
+                        <span>Схема: lab8_analytics.xsd</span>
+                        <mark class="validation-ok">XML соответствует XSD</mark>
+                    </article>
+                    <article class="validation-card">
+                        <strong>lab8_database.xml</strong>
+                        <span>Схема: lab8_database.xsd</span>
+                        <mark class="validation-ok">XML соответствует XSD</mark>
+                    </article>
+                </div>
+            </section>
+
+            <section class="db-section">
+                <div id="xml-result" class="xml-result-box">
+                    Нажмите кнопку для загрузки данных.
                 </div>
             </section>
         </main>
@@ -68,3 +71,25 @@
     <script src="lab8.js"></script>
 </body>
 </html>
+
+
+<!-- Создать XML-файл с данными для таблицы:
+не меньше 4 столбцов;
+не меньше 10 строк;
+один столбец должен выводить графические файлы/картинки;
+данные должны быть связаны с вариантом/темой сайта.
+Вывести XML на сайт двумя способами:
+в виде таблицы;
+построчно, как карточки/список.
+В XSL нужно было использовать:
+xsl:if;
+xsl:apply-templates;
+xsl:sort.
+В XML нужно было использовать атрибуты тегов.
+Все страницы нужно было встроить в ранее разработанный сайт.
+Для расширенного задания:
+сделать XSD-схему для проверки XML;
+сделать XML по данным из базы лабораторной №6;
+сделать XSD для этого XML;
+сделать XSL для отображения этого XML на сайте;
+показать результаты проверки XML. -->

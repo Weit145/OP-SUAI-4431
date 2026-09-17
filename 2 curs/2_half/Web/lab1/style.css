@@ -436,6 +436,15 @@ a[target="_blank"]::after {
     text-align: left;
 }
 
+.xml-result-box {
+    overflow-x: auto;
+}
+
+.xslt-result {
+    display: grid;
+    gap: 14px;
+}
+
 .xml-table {
     min-width: 980px;
 }
@@ -446,4 +455,70 @@ a[target="_blank"]::after {
 
 .xml-table td {
     text-align: left;
+}
+
+.xml-icon {
+    display: block;
+    height: 48px;
+    object-fit: contain;
+    width: 48px;
+}
+
+.xml-card-list {
+    display: grid;
+    gap: 12px;
+}
+
+.xml-card,
+.xml-db-block,
+.validation-card {
+    background: #ffffff;
+    border: 1px solid #cfd8dc;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.xml-card {
+    align-items: flex-start;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 56px 1fr;
+    padding: 14px;
+}
+
+.xml-card h3 {
+    margin-top: 0;
+}
+
+.xml-db-block {
+    margin-bottom: 14px;
+    overflow-x: auto;
+    padding: 14px;
+}
+
+.validation-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.validation-card {
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+}
+
+.validation-ok {
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    border-radius: 6px;
+    color: #1b5e20;
+    font-weight: bold;
+    padding: 6px 8px;
+}
+
+@media (max-width: 640px) {
+    .xml-card {
+        grid-template-columns: 1fr;
+    }
 }

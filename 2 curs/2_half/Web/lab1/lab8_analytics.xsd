@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="analyticsCatalog">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="tool" minOccurs="10" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="image">
+                                <xs:complexType>
+                                    <xs:attribute name="src" type="xs:string" use="required"/>
+                                    <xs:attribute name="alt" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="name" type="xs:string"/>
+                            <xs:element name="purpose" type="xs:string"/>
+                            <xs:element name="dataType" type="xs:string"/>
+                            <xs:element name="format" type="xs:string"/>
+                            <xs:element name="note" type="xs:string"/>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:ID" use="required"/>
+                        <xs:attribute name="category" type="xs:string" use="required"/>
+                        <xs:attribute name="level" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Начальный"/>
+                                    <xs:enumeration value="Базовый"/>
+                                    <xs:enumeration value="Средний"/>
+                                    <xs:enumeration value="Продвинутый"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="rating" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:minInclusive value="1"/>
+                                    <xs:maxInclusive value="10"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="visible" type="xs:boolean" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="variant" type="xs:positiveInteger" use="required"/>
+            <xs:attribute name="author" type="xs:string" use="required"/>
+            <xs:attribute name="updated" type="xs:date" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

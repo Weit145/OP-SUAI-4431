@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<NewDataSet source="lab6_analytics" author="Кочнев Дмитрий Олегович">
+    <Direction direction_id="1">
+        <direction_name>Описательная аналитика</direction_name>
+        <data_source>Анкеты пользователей</data_source>
+        <main_method>Сводные статистики</main_method>
+        <business_goal>Понимание структуры данных</business_goal>
+        <difficulty_level>Начальный</difficulty_level>
+        <Project project_id="1" direction_id="1">
+            <project_name>Анализ посещаемости сайта</project_name>
+            <metric_name>Среднее время просмотра</metric_name>
+            <tool_name>Excel</tool_name>
+            <dataset_size>1200 строк</dataset_size>
+            <result_summary>Выявлены популярные разделы</result_summary>
+            <responsible>Кочнев Д. О.</responsible>
+        </Project>
+        <Project project_id="2" direction_id="1">
+            <project_name>Анкета интересов пользователей</project_name>
+            <metric_name>Доля выбранных тем</metric_name>
+            <tool_name>Python</tool_name>
+            <dataset_size>300 ответов</dataset_size>
+            <result_summary>Определены основные интересы аудитории</result_summary>
+            <responsible>Кочнев Д. О.</responsible>
+        </Project>
+    </Direction>
+    <Direction direction_id="2">
+        <direction_name>Прогнозная аналитика</direction_name>
+        <data_source>Исторические наборы данных</data_source>
+        <main_method>Регрессионные модели</main_method>
+        <business_goal>Прогноз показателей</business_goal>
+        <difficulty_level>Средний</difficulty_level>
+        <Project project_id="3" direction_id="2">
+            <project_name>Прогноз роста данных</project_name>
+            <metric_name>Месячный прирост</metric_name>
+            <tool_name>R</tool_name>
+            <dataset_size>24 месяца</dataset_size>
+            <result_summary>Построен прогноз нагрузки</result_summary>
+            <responsible>Кочнев Д. О.</responsible>
+        </Project>
+    </Direction>
+    <Direction direction_id="3">
+        <direction_name>Визуальная аналитика</direction_name>
+        <data_source>BI-отчеты и дашборды</data_source>
+        <main_method>Интерактивная визуализация</main_method>
+        <business_goal>Быстрое принятие решений</business_goal>
+        <difficulty_level>Базовый</difficulty_level>
+        <Project project_id="4" direction_id="3">
+            <project_name>Дашборд качества данных</project_name>
+            <metric_name>Процент пропусков</metric_name>
+            <tool_name>Power BI</tool_name>
+            <dataset_size>8 таблиц</dataset_size>
+            <result_summary>Собраны ключевые показатели качества</result_summary>
+            <responsible>Кочнев Д. О.</responsible>
+        </Project>
+    </Direction>
+</NewDataSet>

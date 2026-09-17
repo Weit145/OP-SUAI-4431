@@ -52,6 +52,31 @@ class AnalysisService:
             raise VegetationError("Загружен пустой файл.")
         return destination
 
+    def _validate_upload(
+        self,
+        source: BinaryIO,
+        filename: str | None,
+        allowed_extensions: set[str],
+    ) -> None:
+        extension = Path(filename or "").suffix.lower()
+        if extension not in allowed_extensions:
+            expected = ", ".join(sorted(allowed_extensions))
+            raise VegetationError(f"Неподдерживаемый формат файла. Допустимы: {expected}.")
+
+        try:
+            source.seek(0, 2)
+            size = source.tell()
+            source.seek(0)
+        except OSError as error:
+            raise VegetationError(f"Не удалось прочитать загруженный файл: {error}") from error
+
+        if size == 0:
+            raise VegetationError("Загружен пустой файл.")
+        if size > self.max_upload_size:
+            raise VegetationError(
+                f"Файл превышает лимит {self.max_upload_size // 1024 // 1024} МБ."
+            )
+
     def analyze_ndvi(
         self,
         red_source: BinaryIO,
@@ -77,16 +102,23 @@ class AnalysisService:
         archive_source: BinaryIO,
         archive_filename: str | None,
     ) -> AnalysisResult:
-        with tempfile.TemporaryDirectory(prefix="sentinel-input-") as temporary_dir:
-            input_dir = Path(temporary_dir)
-            archive_path = self._save_upload(
-                archive_source,
-                archive_filename,
-                input_dir / "sentinel",
-                {".zip"},
-            )
-            paths = extract_sentinel_bands(archive_path, input_dir / "bands")
-            result = run_pipeline(paths)
+        self._validate_upload(archive_source, archive_filename, {".zip"})
+        try:
+            with tempfile.TemporaryDirectory(prefix="sentinel-input-") as temporary_dir:
+                input_dir = Path(temporary_dir)
+                # UploadFile is already a seekable spooled file. Reading it
+                # directly avoids a second full copy of large SAFE archives.
+                paths = extract_sentinel_bands(archive_source, input_dir / "bands")
+                result = run_pipeline(paths)
+        except VegetationError:
+            raise
+        except OSError as error:
+            if error.errno == 28:
+                raise VegetationError(
+                    "Недостаточно свободного места для обработки ZIP. "
+                    "Освободите место на диске и повторите загрузку."
+                ) from error
+            raise VegetationError(f"Не удалось обработать ZIP: {error}") from error
         logger.info("Multispectral analysis completed")
         return result
 

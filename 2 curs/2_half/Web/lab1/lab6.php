@@ -1,3 +1,7 @@
+<!-- http://localhost/lab1/lab6.php -->
+
+
+
 <?php
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
@@ -329,7 +333,27 @@ function render_project_input_row($directions, $index) {
     echo '</tr>';
 }
 
-function render_project_tbody($projects, $directions) {
+function render_project_table($projects, $directions) {
+    echo '<section class="db-section">';
+    echo '<h2>Сводная таблица аналитических проектов</h2>';
+    echo '<p>Служебные поля базы данных не выводятся: первичные и внешние ключи используются только внутри форм.</p>';
+    echo '<div class="db-table-wrap">';
+    echo '<table class="db-table">';
+    echo '<thead><tr>';
+    echo '<th>Направление</th>';
+    echo '<th>Источник данных</th>';
+    echo '<th>Метод</th>';
+    echo '<th>Цель</th>';
+    echo '<th>Сложность</th>';
+    echo '<th>Проект</th>';
+    echo '<th>Метрика</th>';
+    echo '<th>Инструмент</th>';
+    echo '<th>Объем данных</th>';
+    echo '<th>Результат</th>';
+    echo '<th>Ответственный</th>';
+    echo '<th>Действия</th>';
+    echo '</tr></thead><tbody>';
+
     if (count($projects) === 0) {
         echo '<tr><td colspan="12">В базе пока нет проектных строк.</td></tr>';
     }
@@ -348,7 +372,7 @@ function render_project_tbody($projects, $directions) {
         $editForm .= '<label>Ответственный<input type="text" name="responsible" value="' . h($project['responsible']) . '"></label>';
         $editForm .= '<button class="primary-button" type="submit">Сохранить</button>';
         $editForm .= '</form></details>';
-        $editForm .= '<form method="post" action="lab6.php" class="delete-form" data-confirm="Удалить строку?">';
+        $editForm .= '<form method="post" action="lab6.php" class="delete-form" onsubmit="return confirm(\'Удалить строку?\');">';
         $editForm .= '<input type="hidden" name="action" value="delete_project">';
         $editForm .= '<input type="hidden" name="project_id" value="' . (int)$project['project_id'] . '">';
         $editForm .= '<button class="secondary-button" type="submit">Удалить</button>';
@@ -370,29 +394,7 @@ function render_project_tbody($projects, $directions) {
             $editForm
         );
     }
-}
 
-function render_project_table($projects, $directions) {
-    echo '<section class="db-section">';
-    echo '<h2>Сводная таблица аналитических проектов</h2>';
-    echo '<p>Служебные поля базы данных не выводятся: первичные и внешние ключи используются только внутри форм.</p>';
-    echo '<div class="db-table-wrap">';
-    echo '<table class="db-table">';
-    echo '<thead><tr>';
-    echo '<th>Направление</th>';
-    echo '<th>Источник данных</th>';
-    echo '<th>Метод</th>';
-    echo '<th>Цель</th>';
-    echo '<th>Сложность</th>';
-    echo '<th>Проект</th>';
-    echo '<th>Метрика</th>';
-    echo '<th>Инструмент</th>';
-    echo '<th>Объем данных</th>';
-    echo '<th>Результат</th>';
-    echo '<th>Ответственный</th>';
-    echo '<th>Действия</th>';
-    echo '</tr></thead><tbody id="dbProjectsBody">';
-    render_project_tbody($projects, $directions);
     echo '</tbody></table>';
     echo '</div>';
     echo '</section>';
@@ -442,11 +444,9 @@ echo '<main class="lab6-main">';
 echo '<section class="db-section">';
 echo '<h2>База данных</h2>';
 echo '<p>Используются две таблицы в третьей нормальной форме: направления аналитики и проекты. Одному направлению может соответствовать много проектов.</p>';
-echo '<p>Формы добавления, редактирования и удаления дополнительно работают асинхронно через fetch().</p>';
 echo '</section>';
-echo '<div id="dbMessages">';
+
 render_messages($messages, $errors);
-echo '</div>';
 
 if (count($directions) > 0) {
     render_project_table($projects, $directions);
@@ -492,110 +492,36 @@ echo '</div>';
     (function() {
         const tbody = document.getElementById('projectRows');
         const addButton = document.getElementById('addProjectRow');
-        const messagesBox = document.getElementById('dbMessages');
-        const projectsBody = document.getElementById('dbProjectsBody');
-        const addForm = document.querySelector('.db-form');
+        if (!tbody || !addButton) return;
 
-        function renderMessages(messages, errors) {
-            if (!messagesBox) return;
-            messagesBox.innerHTML = '';
+        let rowIndex = tbody.querySelectorAll('.project-input-row').length;
 
-            (messages || []).forEach(function(message) {
-                const item = document.createElement('p');
-                item.className = 'db-message db-message-ok';
-                item.textContent = message;
-                messagesBox.appendChild(item);
-            });
-
-            (errors || []).forEach(function(error) {
-                const item = document.createElement('p');
-                item.className = 'db-message db-message-error';
-                item.textContent = error;
-                messagesBox.appendChild(item);
-            });
-        }
-
-        function submitWithFetch(form, resetAfterSuccess) {
-            const formData = new FormData(form);
-
-            return fetch('lab6_api.php', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'fetch'
+        function updateNames(row, index) {
+            row.querySelectorAll('[name]').forEach(function(input) {
+                input.name = input.name.replace(/projects\[\d+\]/, 'projects[' + index + ']');
+                if (input.tagName === 'SELECT') {
+                    input.selectedIndex = 0;
+                } else if (input.name.indexOf('[responsible]') === -1) {
+                    input.value = '';
                 }
-            })
-                .then(function(response) {
-                    if (!response.ok) {
-                        throw new Error('HTTP ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then(function(data) {
-                    renderMessages(data.messages, data.errors);
-                    if (data.tbody && projectsBody) {
-                        projectsBody.innerHTML = data.tbody;
-                    }
-                    if (data.ok && resetAfterSuccess) {
-                        form.reset();
-                    }
-                })
-                .catch(function(error) {
-                    renderMessages([], ['Ошибка fetch-запроса: ' + error.message + '.']);
-                });
+            });
         }
 
-        if (tbody && addButton) {
-            let rowIndex = tbody.querySelectorAll('.project-input-row').length;
+        addButton.addEventListener('click', function() {
+            const template = tbody.querySelector('.project-input-row');
+            const row = template.cloneNode(true);
+            updateNames(row, rowIndex);
+            tbody.appendChild(row);
+            rowIndex++;
+        });
 
-            function updateNames(row, index) {
-                row.querySelectorAll('[name]').forEach(function(input) {
-                    input.name = input.name.replace(/projects\[\d+\]/, 'projects[' + index + ']');
-                    if (input.tagName === 'SELECT') {
-                        input.selectedIndex = 0;
-                    } else {
-                        input.value = '';
-                    }
-                });
+        tbody.addEventListener('click', function(event) {
+            if (!event.target.classList.contains('remove-project-row')) return;
+            const rows = tbody.querySelectorAll('.project-input-row');
+            if (rows.length > 1) {
+                event.target.closest('.project-input-row').remove();
             }
-
-            addButton.addEventListener('click', function() {
-                const template = tbody.querySelector('.project-input-row');
-                const row = template.cloneNode(true);
-                updateNames(row, rowIndex);
-                tbody.appendChild(row);
-                rowIndex++;
-            });
-
-            tbody.addEventListener('click', function(event) {
-                if (!event.target.classList.contains('remove-project-row')) return;
-                const rows = tbody.querySelectorAll('.project-input-row');
-                if (rows.length > 1) {
-                    event.target.closest('.project-input-row').remove();
-                }
-            });
-        }
-
-        if (addForm) {
-            addForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                submitWithFetch(addForm, true);
-            });
-        }
-
-        if (projectsBody) {
-            projectsBody.addEventListener('submit', function(event) {
-                const form = event.target;
-                if (!form.matches('.edit-panel form, .delete-form')) return;
-
-                event.preventDefault();
-                if (form.classList.contains('delete-form') && !confirm(form.dataset.confirm || 'Удалить строку?')) {
-                    return;
-                }
-
-                submitWithFetch(form, false);
-            });
-        }
+        });
     })();
 </script>
 <?php
