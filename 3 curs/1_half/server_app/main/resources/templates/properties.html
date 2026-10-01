@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <title>Аренда недвижимости</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <script defer th:src="@{/webjars/angularjs/1.8.3/angular.min.js}"></script>
+    <script defer th:src="@{/js/properties.js}"></script>
+</head>
+<body ng-app="properties" ng-controller="PropertiesController">
+<span id="editor-marker" sec:authorize="isAuthenticated()" hidden></span>
+<header>
+    <h1>Сдача недвижимости в аренду</h1>
+    <div sec:authorize="isAnonymous()"><a th:href="@{/login}">Войти для редактирования</a></div>
+    <div sec:authorize="isAuthenticated()">
+        <span sec:authentication="name"></span>
+        <form class="inline" th:action="@{/logout}" method="post">
+            <button type="submit">Выйти</button>
+        </form>
+    </div>
+</header>
+<main>
+    <p th:if="${param.logout}" class="notice">Вы вышли из системы.</p>
+    <p class="error" ng-if="error">{{error}}</p>
+    <section class="card">
+        <h2>Объекты недвижимости</h2>
+        <table>
+            <thead><tr><th>Адрес</th><th>Тип</th><th>Площадь</th><th>Комнат</th><th>Цена/мес.</th><th>Доступен</th><th sec:authorize="isAuthenticated()">Действия</th></tr></thead>
+            <tbody>
+            <tr ng-repeat="property in properties track by property.id">
+                <td>{{property.address}}</td><td>{{property.type}}</td><td>{{property.area}} м²</td>
+                <td>{{property.rooms}}</td><td>{{property.monthlyRent}} ₽</td>
+                <td>{{property.available ? 'Да' : 'Нет'}}</td>
+                <td sec:authorize="isAuthenticated()">
+                    <button type="button" ng-click="edit(property)">Изменить</button>
+                    <button type="button" ng-click="remove(property)">Удалить</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="card" sec:authorize="isAuthenticated()">
+        <h2>{{form.id ? 'Изменить объект' : 'Добавить объект'}}</h2>
+        <form ng-submit="save()">
+            <label>Адрес <input type="text" ng-model="form.address" maxlength="255" required></label>
+            <label>Тип
+                <select ng-model="form.type" required>
+                    <option value="APARTMENT">Квартира</option>
+                    <option value="HOUSE">Дом</option>
+                    <option value="ROOM">Комната</option>
+                    <option value="COMMERCIAL">Коммерческая недвижимость</option>
+                </select>
+            </label>
+            <label>Площадь, м² <input type="number" ng-model="form.area" min="0.1" step="0.01" required></label>
+            <label>Число комнат <input type="number" ng-model="form.rooms" min="1" step="1" required></label>
+            <label>Аренда в месяц, ₽ <input type="number" ng-model="form.monthlyRent" min="0.01" step="0.01" required></label>
+            <label class="check"><input type="checkbox" ng-model="form.available"> Доступен для аренды</label>
+            <button type="submit">{{form.id ? 'Сохранить' : 'Добавить'}}</button>
+            <button type="button" ng-if="form.id" ng-click="clear()">Отмена</button>
+        </form>
+    </section>
+    <section class="card" sec:authorize="isAuthenticated()">
+        <h2>Журнал изменений</h2>
+        <button type="button" ng-click="loadAudit()">Обновить журнал</button>
+        <ul><li ng-repeat="event in audit">{{event.occurredAt | date:'dd.MM.yyyy HH:mm:ss'}} — {{event.actor}}: {{event.action}} #{{event.propertyId}}</li></ul>
+    </section>
+</main>
+</body>
+</html>

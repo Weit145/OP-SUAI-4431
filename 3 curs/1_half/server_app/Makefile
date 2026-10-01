@@ -19,8 +19,8 @@ clean:
 	$(MVN) clean
 
 help:
-	@echo "make        - run tests and start the application"
-	@echo "make run    - start the application"
+	@echo "make        - run tests and start HTTPS server on port 8443"
+	@echo "make run    - start HTTPS server on port 8443"
 	@echo "make test   - run tests"
 	@echo "make build  - build the executable JAR"
 	@echo "make clean  - remove Maven build files"

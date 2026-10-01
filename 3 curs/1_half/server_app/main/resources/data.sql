@@ -4,3 +4,7 @@ INSERT INTO PROPERTY (ADDRESS, PROPERTY_TYPE, AREA, ROOMS, MONTHLY_RENT, AVAILAB
 VALUES ('Санкт-Петербург, ул. Савушкина, 110', 'HOUSE', 145.0, 5, 140000.00, TRUE);
 INSERT INTO PROPERTY (ADDRESS, PROPERTY_TYPE, AREA, ROOMS, MONTHLY_RENT, AVAILABLE)
 VALUES ('Санкт-Петербург, Московский проспект, 91', 'ROOM', 18.0, 1, 25000.00, FALSE);
+
+-- Как в lab4example преподавателя: guest / hello, пароль хранится как BCrypt-хэш.
+INSERT INTO USERS (LOGIN, PASS_HASH)
+VALUES ('guest', '$2a$10$6mf3CesQx9eRGB4B3sjr8e1eSr5cYO/zt87bwYVdA4O8rmjDMDdHO');

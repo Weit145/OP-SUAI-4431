@@ -1,11 +1,15 @@
 package info.stepanoff.trsis.samples.service;
 
 import info.stepanoff.trsis.samples.db.dao.PropertyRepository;
+import info.stepanoff.trsis.samples.db.dao.AuditEventRepository;
+import info.stepanoff.trsis.samples.db.model.AuditEventPE;
 import info.stepanoff.trsis.samples.db.model.PropertyPE;
 import info.stepanoff.trsis.samples.rest.ResourceNotFoundException;
 import info.stepanoff.trsis.samples.rest.model.PropertyDTO;
 import java.util.List;
+import java.time.Instant;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PropertyServiceImpl implements PropertyService {
 
     private final PropertyRepository propertyRepository;
+    private final AuditEventRepository auditEventRepository;
 
     @Override
     public List<PropertyDTO> findAll() {
@@ -31,7 +36,9 @@ public class PropertyServiceImpl implements PropertyService {
     public PropertyDTO create(PropertyDTO property) {
         PropertyPE entity = new PropertyPE();
         copyFields(property, entity);
-        return toDto(propertyRepository.save(entity));
+        PropertyPE saved = propertyRepository.save(entity);
+        audit("CREATE", saved.getId());
+        return toDto(saved);
     }
 
     @Override
@@ -39,7 +46,9 @@ public class PropertyServiceImpl implements PropertyService {
     public PropertyDTO update(Long id, PropertyDTO property) {
         PropertyPE entity = findEntity(id);
         copyFields(property, entity);
-        return toDto(propertyRepository.save(entity));
+        PropertyPE saved = propertyRepository.save(entity);
+        audit("UPDATE", saved.getId());
+        return toDto(saved);
     }
 
     @Override
@@ -47,6 +56,16 @@ public class PropertyServiceImpl implements PropertyService {
     public void delete(Long id) {
         PropertyPE entity = findEntity(id);
         propertyRepository.delete(entity);
+        audit("DELETE", id);
+    }
+
+    private void audit(String action, Long propertyId) {
+        AuditEventPE event = new AuditEventPE();
+        event.setActor(SecurityContextHolder.getContext().getAuthentication().getName());
+        event.setAction(action);
+        event.setPropertyId(propertyId);
+        event.setOccurredAt(Instant.now());
+        auditEventRepository.save(event);
     }
 
     private PropertyPE findEntity(Long id) {

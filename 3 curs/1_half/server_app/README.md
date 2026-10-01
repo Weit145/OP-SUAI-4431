@@ -1,32 +1,37 @@
-# Лабораторная работа №2
+# Лабораторная работа №4
 
 Вариант 14: «Сдача недвижимости в аренду».
 
-Приложение предоставляет REST/JSON API для CRUD-операций над объектами недвижимости. Данные хранятся во встроенной H2, схема создаётся Liquibase.
+Приложение развивает REST API второй лабораторной: добавлены AngularJS и Thymeleaf, вход через Spring Security, HTTPS, CSRF, Logout и журнал изменений. Решение адаптировано из [официального lab4example](https://github.com/wildpierre/trsissamples/tree/master/lab4example) под аренду недвижимости.
 
 ## Запуск
 
 ```bash
-mvn spring-boot:run
+make
 ```
 
-После запуска:
+`make` запускает тесты и HTTPS-сервер. Для запуска без тестов используйте `make run`. Maven создаёт учебный самоподписанный сертификат в `target/keystore.p12`. Браузер при первом открытии попросит подтвердить его.
 
-- Swagger UI: <http://localhost:8080/swagger-ui.html>
-- OpenAPI JSON: <http://localhost:8080/api-docs>
-- REST API: <http://localhost:8080/api/properties>
+- Страница объектов: <https://localhost:8443/>
+- Вход: <https://localhost:8443/login>
+- Swagger UI: <https://localhost:8443/swagger-ui.html>
+- OpenAPI JSON: <https://localhost:8443/api-docs>
+- REST API: <https://localhost:8443/api/properties>
 
-Исходное OpenAPI v3-описание для отчёта находится в `openapi.yaml`.
+Учебный логин — `guest`, пароль — `hello` (как в примере преподавателя). В базе хранится BCrypt-хэш. H2 находится в памяти: изменения и аудит сбрасываются при остановке сервера. Сертификат и учётные данные предназначены для демонстрации лабораторной.
+
+Исходное OpenAPI v3-описание для отчёта находится в `openapi.yaml`. Дополнительные команды: `make test`, `make build`, `make clean`, `make help`.
 
 ## Методы
 
-| HTTP | URI | Код успеха | Назначение |
+| HTTP | URI | Код успеха | Доступ |
 |---|---|---:|---|
-| GET | `/api/properties` | 200 | получить все объекты |
-| GET | `/api/properties/{id}` | 200 | получить объект |
-| POST | `/api/properties` | 201 | создать объект |
-| PUT | `/api/properties/{id}` | 200 | обновить объект |
-| DELETE | `/api/properties/{id}` | 204 | удалить объект |
+| GET | `/api/properties` | 200 | всем |
+| GET | `/api/properties/{id}` | 200 | всем |
+| POST | `/api/properties` | 201 | после входа + CSRF |
+| PUT | `/api/properties/{id}` | 200 | после входа + CSRF |
+| DELETE | `/api/properties/{id}` | 204 | после входа + CSRF |
+| GET | `/api/audit` | 200 | после входа |
 
 Пример JSON для POST/PUT:
 
@@ -42,3 +47,5 @@ mvn spring-boot:run
 ```
 
 Допустимые типы: `APARTMENT`, `HOUSE`, `ROOM`, `COMMERCIAL`.
+
+На защите можно показать: анонимный просмотр, вход, изменение через AJAX, HTTP 403 без CSRF, журнал `CREATE/UPDATE/DELETE` и кнопку выхода.

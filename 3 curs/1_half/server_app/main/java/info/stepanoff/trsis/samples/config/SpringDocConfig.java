@@ -23,8 +23,8 @@ public class SpringDocConfig {
     public OpenAPI apiInfo() {
         return new OpenAPI().info(new Info()
                 .title("Аренда недвижимости")
-                .description("Лабораторная работа №2, вариант 14")
-                .version("1.0.0"));
+                .description("Лабораторная работа №4, вариант 14")
+                .version("2.0.0"));
     }
 
     @Bean

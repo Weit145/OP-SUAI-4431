@@ -51,6 +51,8 @@ public class PropertyRestController {
     @Operation(summary = "Добавить объект")
     @ApiResponse(responseCode = "201", description = "Объект создан")
     @ApiResponse(responseCode = "400", description = "Некорректные данные", content = @Content(schema = @Schema(implementation = ApiError.class)))
+    @ApiResponse(responseCode = "401", description = "Требуется вход в систему")
+    @ApiResponse(responseCode = "403", description = "Нет прав или неверный CSRF-токен")
     public ResponseEntity<PropertyDTO> create(@Valid @RequestBody PropertyDTO request) {
         PropertyDTO created = propertyService.create(request);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -63,6 +65,8 @@ public class PropertyRestController {
     @ApiResponse(responseCode = "200", description = "Объект обновлён")
     @ApiResponse(responseCode = "400", description = "Некорректные данные", content = @Content(schema = @Schema(implementation = ApiError.class)))
     @ApiResponse(responseCode = "404", description = "Объект не найден", content = @Content(schema = @Schema(implementation = ApiError.class)))
+    @ApiResponse(responseCode = "401", description = "Требуется вход в систему")
+    @ApiResponse(responseCode = "403", description = "Нет прав или неверный CSRF-токен")
     public ResponseEntity<PropertyDTO> update(@PathVariable Long id,
                                                @Valid @RequestBody PropertyDTO request) {
         return ResponseEntity.ok(propertyService.update(id, request));
@@ -72,6 +76,8 @@ public class PropertyRestController {
     @Operation(summary = "Удалить объект")
     @ApiResponse(responseCode = "204", description = "Объект удалён")
     @ApiResponse(responseCode = "404", description = "Объект не найден", content = @Content(schema = @Schema(implementation = ApiError.class)))
+    @ApiResponse(responseCode = "401", description = "Требуется вход в систему")
+    @ApiResponse(responseCode = "403", description = "Нет прав или неверный CSRF-токен")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         propertyService.delete(id);
         return ResponseEntity.noContent().build();

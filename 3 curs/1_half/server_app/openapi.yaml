@@ -1,10 +1,10 @@
 openapi: 3.0.3
 info:
   title: Аренда недвижимости
-  description: Лабораторная работа №2, вариант 14
-  version: 1.0.0
+  description: Лабораторная работа №4, вариант 14. Изменения требуют входа и CSRF-токена.
+  version: 2.0.0
 servers:
-  - url: http://localhost:8080
+  - url: https://localhost:8443
 paths:
   /api/properties:
     get:
@@ -20,6 +20,9 @@ paths:
                   $ref: '#/components/schemas/Property'
     post:
       summary: Добавить объект
+      security:
+        - sessionCookie: []
+      description: Передайте CSRF-токен из страницы в заголовке X-CSRF-TOKEN.
       requestBody:
         required: true
         content:
@@ -40,6 +43,10 @@ paths:
                 $ref: '#/components/schemas/Property'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
   /api/properties/{id}:
     parameters:
       - name: id
@@ -61,6 +68,9 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       summary: Полностью обновить объект
+      security:
+        - sessionCookie: []
+      description: Передайте CSRF-токен из страницы в заголовке X-CSRF-TOKEN.
       requestBody:
         required: true
         content:
@@ -78,15 +88,66 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
     delete:
       summary: Удалить объект
+      security:
+        - sessionCookie: []
+      description: Передайте CSRF-токен из страницы в заголовке X-CSRF-TOKEN.
       responses:
         '204':
           description: Объект удалён
         '404':
           $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /api/audit:
+    get:
+      summary: Журнал создания, изменения и удаления объектов
+      security:
+        - sessionCookie: []
+      responses:
+        '200':
+          description: Записи журнала
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditEvent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
 components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
   schemas:
+    AuditEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        actor:
+          type: string
+        action:
+          type: string
+          enum: [CREATE, UPDATE, DELETE]
+        propertyId:
+          type: integer
+          format: int64
+        occurredAt:
+          type: string
+          format: date-time
     PropertyRequest:
       type: object
       required: [address, type, area, rooms, monthlyRent, available]
@@ -141,6 +202,18 @@ components:
           additionalProperties:
             type: string
   responses:
+    Unauthorized:
+      description: Требуется вход в систему
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Forbidden:
+      description: Недостаточно прав или неверный CSRF-токен
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
     BadRequest:
       description: Некорректные данные
       content:
