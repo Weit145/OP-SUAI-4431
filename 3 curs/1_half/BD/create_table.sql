@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS income_items (
     id_income_item UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(256) NOT NULL,
     id_income_category UUID NOT NULL,
-    CONSTRAINT fk_income_categories FOREIGN KEY (id_income_category) REFERENCES income_categories(id_income_category)
+    CONSTRAINT fk_income_categories FOREIGN KEY (id_income_category) REFERENCES income_categories(id_income_category) ON DELETE CASCADE ON UPDATE RESTRICT
 );
 
 
@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS incomes (
     description_income VARCHAR(256), -- TEXT
     id_user UUID NOT NULL,
     id_income_item UUID NOT NULL,
-    CONSTRAINT fk_users FOREIGN KEY (id_user) REFERENCES users(id_user),
-    CONSTRAINT fk_income_items FOREIGN KEY (id_income_item) REFERENCES income_items(id_income_item)
+    CONSTRAINT fk_users FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT fk_income_items FOREIGN KEY (id_income_item) REFERENCES income_items(id_income_item) ON DELETE CASCADE ON UPDATE RESTRICT
 );
 
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS expense_items (
     id_expense_item UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(256) NOT NULL,
     id_expense_category UUID NOT NULL,
-    CONSTRAINT fk_expense_categories FOREIGN KEY (id_expense_category) REFERENCES expense_categories(id_expense_category)
+    CONSTRAINT fk_expense_categories FOREIGN KEY (id_expense_category) REFERENCES expense_categories(id_expense_category) ON DELETE CASCADE ON UPDATE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS expenses (
@@ -52,6 +52,6 @@ CREATE TABLE IF NOT EXISTS expenses (
     description_expense VARCHAR(256), -- TEXT
     id_user UUID NOT NULL,
     id_expense_item UUID NOT NULL,
-    CONSTRAINT fk_users FOREIGN KEY (id_user) REFERENCES users(id_user),
-    CONSTRAINT fk_expense_items FOREIGN KEY (id_expense_item) REFERENCES expense_items(id_expense_item)
+    CONSTRAINT fk_users FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT fk_expense_items FOREIGN KEY (id_expense_item) REFERENCES expense_items(id_expense_item) ON DELETE CASCADE ON UPDATE RESTRICT
 );
