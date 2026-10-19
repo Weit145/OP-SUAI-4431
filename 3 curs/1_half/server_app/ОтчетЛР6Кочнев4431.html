@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Отчет о лабораторной работе №6 — Д. О. Кочнев</title>
+<style>
+@page { size: A4; margin: 2cm 1.5cm 2cm 2.5cm; }
+body { font-family: "Times New Roman", serif; font-size: 14pt; line-height: 1.35; color: #000; }
+p { margin: 0 0 0.25cm; text-align: justify; }
+h1, h2 { font-size: 14pt; font-weight: bold; margin: 0.45cm 0 0.15cm; }
+h1 { text-align: center; }
+ol { margin-top: 0.1cm; margin-bottom: 0.3cm; }
+li { margin-bottom: 0.1cm; }
+pre { font-family: "Liberation Mono", monospace; font-size: 9pt; line-height: 1.15; white-space: pre-wrap; margin: 0.15cm 0 0.3cm; padding: 0.12cm; border: 1px solid #aaa; }
+.cover { text-align: center; page-break-after: always; }
+.cover p { text-align: center; }
+.cover-title { font-weight: bold; margin-top: 2.1cm; }
+.cover-topic { font-weight: bold; margin-top: 0.55cm; }
+.spacer { height: 1.2cm; }
+.sign-caption { font-size: 10pt; }
+.city { margin-top: 4.1cm; }
+.caption { text-align: center; font-size: 12pt; }
+.assignment { page-break-before: always; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <p>ГУАП<br>КАФЕДРА № 43</p>
+  <div class="spacer"></div>
+  <p>ОТЧЕТ ЗАЩИЩЕН С ОЦЕНКОЙ __________________</p>
+  <p>ПРЕПОДАВАТЕЛЬ</p>
+  <p>Доцент, канд. техн. наук&nbsp;&nbsp;&nbsp;________________&nbsp;&nbsp;&nbsp;П. А. Степанов</p>
+  <p class="sign-caption">должность, уч. степень, звание&nbsp;&nbsp;&nbsp;подпись, дата&nbsp;&nbsp;&nbsp;инициалы, фамилия</p>
+  <p class="cover-title">ОТЧЕТ О ЛАБОРАТОРНОЙ РАБОТЕ №6</p>
+  <p class="cover-topic">РАЗРАБОТКА ПРИЛОЖЕНИЯ С ИСПОЛЬЗОВАНИЕМ HIBERNATE</p>
+  <p>по курсу: Технология разработки серверных информационных систем</p>
+  <div class="spacer"></div>
+  <p>РАБОТУ ВЫПОЛНИЛ</p>
+  <p>СТУДЕНТ гр. № 4431&nbsp;&nbsp;&nbsp;________________&nbsp;&nbsp;&nbsp;Д. О. Кочнев</p>
+  <p class="sign-caption">подпись, дата&nbsp;&nbsp;&nbsp;инициалы, фамилия</p>
+  <p class="city">Санкт-Петербург 2026</p>
+</div>
+
+<h2 class="assignment">Задание:</h2>
+<ol>
+  <li>Использовать в качестве основы лабораторную работу №4.</li>
+  <li>Добавить базу данных, модель данных, JPA-репозитории и сервисы. В схеме должно быть не менее двух таблиц и одного внешнего ключа.</li>
+  <li>Реализовать операции чтения и записи с помощью JPA (Spring Data JPA).</li>
+</ol>
+
+<h2>Описание разрабатываемого продукта:</h2>
+<p>Вариант 14 — «Сдача недвижимости в аренду». Основа работы — веб-приложение лабораторной №4 на Spring Boot с HTTPS, входом через Spring Security, интерфейсом на Thymeleaf и AngularJS, REST API и журналом аудита. В лабораторной №6 данные объектов, пользователей и событий хранятся в базе H2. Структура базы создаётся миграциями Liquibase; доступ к данным выполняется через Spring Data JPA и Hibernate.</p>
+<p>Каждая запись о недвижимости связана внешним ключом с пользователем, который её добавил. Пользователь определяется сервером по текущей сессии. При чтении объекта клиент получает логин автора записи в поле <code>ownerLogin</code>. При обновлении объекта связь с автором сохраняется. Интерфейс показывает автора рядом с данными недвижимости.</p>
+
+<h2>Модель данных:</h2>
+<p><b>USERS</b> — учётные записи для входа. Поля: USER_ID (первичный ключ), LOGIN (уникальный логин), PASS_HASH (BCrypt-хэш пароля).</p>
+<p><b>PROPERTY</b> — объекты аренды. Поля: PROPERTY_ID (первичный ключ), ADDRESS, PROPERTY_TYPE, AREA, ROOMS, MONTHLY_RENT, AVAILABLE, OWNER_USER_ID (внешний ключ).</p>
+<p><b>AUDIT_EVENT</b> — история создания, изменения и удаления. Поля: AUDIT_ID (первичный ключ), ACTOR, ACTION, PROPERTY_ID, OCCURRED_AT.</p>
+<p class="caption">Связь: PROPERTY.OWNER_USER_ID → USERS.USER_ID (многие объекты — один пользователь).</p>
+<p>В журнале аудита <code>PROPERTY_ID</code> хранится как значение без внешнего ключа: история удаления должна сохраняться после удаления объекта.</p>
+
+<h2>Код программы:</h2>
+<p>1. Подключение JPA, H2 и Liquibase (<code>pom.xml</code>):</p>
+<pre>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+    &lt;artifactId&gt;h2&lt;/artifactId&gt;
+    &lt;version&gt;2.3.230&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.liquibase&lt;/groupId&gt;
+    &lt;artifactId&gt;liquibase-core&lt;/artifactId&gt;
+    &lt;version&gt;4.29.1&lt;/version&gt;
+&lt;/dependency&gt;</pre>
+
+<p>2. Настройка базы данных (<code>application.properties</code>):</p>
+<pre>spring.datasource.url=jdbc:h2:mem:testdb;MODE=PostgreSQL
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.open-in-view=false
+spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.yaml</pre>
+<p>База H2 работает в памяти. После остановки приложения данные сбрасываются; начальные записи заново загружаются из <code>data.sql</code>.</p>
+
+<p>3. Внешний ключ в миграции Liquibase (<code>db.changelog-master.yaml</code>):</p>
+<pre>- changeSet:
+    id: link-property-to-owner
+    author: student
+    changes:
+      - addColumn:
+          tableName: property
+          columns:
+            - column:
+                name: owner_user_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+      - addForeignKeyConstraint:
+          baseTableName: property
+          baseColumnNames: owner_user_id
+          constraintName: fk_property_owner
+          referencedTableName: users
+          referencedColumnNames: user_id</pre>
+
+<p>4. Отображение связи между JPA-сущностями (<code>PropertyPE.java</code>):</p>
+<pre>@Entity
+@Table(name = "PROPERTY")
+public class PropertyPE {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PROPERTY_ID")
+    private Long id;
+    // Поля адреса, типа, площади, комнат, цены и доступности
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "OWNER_USER_ID", nullable = false)
+    private UserPE owner;
+}</pre>
+<p>Связь <code>@ManyToOne</code> соответствует внешнему ключу в таблице. Доступ к логину пользователя выполняется в сервисе в рамках транзакции, поэтому связь с отложенной загрузкой доступна при формировании DTO.</p>
+
+<p>5. Репозитории Spring Data JPA:</p>
+<pre>public interface PropertyRepository extends JpaRepository&lt;PropertyPE, Long&gt; {
+}
+
+public interface UserRepository extends JpaRepository&lt;UserPE, Long&gt; {
+    Optional&lt;UserPE&gt; findByLogin(String login);
+}</pre>
+<p>Методы <code>findAll</code>, <code>findById</code>, <code>save</code> и <code>delete</code> предоставляются <code>JpaRepository</code>. Запрос <code>findByLogin</code> формируется Spring Data JPA по имени метода.</p>
+
+<p>6. Создание объекта и назначение автора записи (<code>PropertyServiceImpl.java</code>):</p>
+<pre>@Override
+@Transactional
+public PropertyDTO create(PropertyDTO property) {
+    PropertyPE entity = new PropertyPE();
+    copyFields(property, entity);
+    String login = SecurityContextHolder.getContext()
+            .getAuthentication().getName();
+    entity.setOwner(userRepository.findByLogin(login)
+            .orElseThrow(() -&gt; new ResourceNotFoundException(
+                    "Пользователь " + login + " не найден")));
+    PropertyPE saved = propertyRepository.save(entity);
+    audit("CREATE", saved.getId());
+    return toDto(saved);
+}</pre>
+<p>Значение <code>ownerLogin</code> из запроса не используется для назначения автора. Сервис берёт учетную запись из текущей аутентификации и записывает объект и событие аудита в одной транзакции.</p>
+
+<p>7. Чтение, обновление и удаление через JPA (<code>PropertyServiceImpl.java</code>):</p>
+<pre>public List&lt;PropertyDTO&gt; findAll() {
+    return propertyRepository.findAll().stream().map(this::toDto).toList();
+}
+
+public PropertyDTO findById(Long id) {
+    return toDto(findEntity(id));
+}
+
+@Transactional
+public PropertyDTO update(Long id, PropertyDTO property) {
+    PropertyPE entity = findEntity(id);
+    copyFields(property, entity);
+    PropertyPE saved = propertyRepository.save(entity);
+    audit("UPDATE", saved.getId());
+    return toDto(saved);
+}
+
+@Transactional
+public void delete(Long id) {
+    PropertyPE entity = findEntity(id);
+    propertyRepository.delete(entity);
+    audit("DELETE", id);
+}</pre>
+<p>REST-контроллер предоставляет GET, POST, PUT и DELETE по адресам <code>/api/properties</code> и <code>/api/properties/{id}</code>. Для передачи данных используется DTO, поэтому наружу не возвращаются JPA-сущности и хэш пароля пользователя.</p>
+
+<h2>Проверка работы:</h2>
+<ol>
+  <li>Команда <code>mvn test</code> завершилась успешно: 6 тестов, 0 ошибок, 0 пропусков.</li>
+  <li>Тест REST API проверяет чтение трех начальных объектов, создание, изменение и удаление объекта, а также значение <code>ownerLogin = guest</code> в ответах.</li>
+  <li>Отдельный тест пытается записать объект с <code>OWNER_USER_ID = -1</code>. СУБД отклоняет запись с <code>DataIntegrityViolationException</code>, что подтверждает действие внешнего ключа.</li>
+  <li>Для демонстрации интерфейса приложение запускается командой <code>make run</code>; учебная учетная запись: <code>guest / hello</code>, адрес страницы: <code>https://localhost:8443/</code>.</li>
+</ol>
+
+<h2>Вывод:</h2>
+<p>В ходе лабораторной работы №6 приложение для сдачи недвижимости в аренду дополнено моделью данных с тремя таблицами и внешним ключом между объектом и пользователем. Создание схемы выполняет Liquibase, а чтение и запись реализованы через Spring Data JPA и Hibernate. При добавлении объекта сохраняется пользователь текущей сессии; его логин доступен в API и интерфейсе. Проверены операции CRUD и соблюдение ограничения внешнего ключа. Требования задания выполнены.</p>
+</body>
+</html>

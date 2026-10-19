@@ -1,6 +1,7 @@
 package info.stepanoff.trsis.samples;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -12,11 +13,14 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 
+import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.security.test.context.support.WithMockUser;
 
@@ -26,6 +30,9 @@ class PropertyRestControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     private static final String JSON = """
             {
@@ -43,22 +50,25 @@ class PropertyRestControllerTest {
     void supportsAllCrudOperations() throws Exception {
         mockMvc.perform(get("/api/properties"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(3)));
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].ownerLogin").value("guest"));
 
-        mockMvc.perform(post("/api/properties").with(csrf()).contentType(MediaType.APPLICATION_JSON).content(JSON))
+        var created = mockMvc.perform(post("/api/properties").with(csrf()).contentType(MediaType.APPLICATION_JSON).content(JSON))
                 .andExpect(status().isCreated())
                 .andExpect(header().exists("Location"))
-                .andExpect(jsonPath("$.id").value(4));
+                .andExpect(jsonPath("$.ownerLogin").value("guest"))
+                .andReturn();
+        Number id = JsonPath.read(created.getResponse().getContentAsString(), "$.id");
 
-        mockMvc.perform(put("/api/properties/4").with(csrf()).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put("/api/properties/{id}", id).with(csrf()).contentType(MediaType.APPLICATION_JSON)
                         .content(JSON.replace("50000", "60000")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.monthlyRent").value(60000));
 
-        mockMvc.perform(delete("/api/properties/4").with(csrf()))
+        mockMvc.perform(delete("/api/properties/{id}", id).with(csrf()))
                 .andExpect(status().isNoContent());
 
-        mockMvc.perform(get("/api/properties/4"))
+        mockMvc.perform(get("/api/properties/{id}", id))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.status").value(404));
 
@@ -106,5 +116,13 @@ class PropertyRestControllerTest {
         mockMvc.perform(post("/logout").with(csrf()).session((org.springframework.mock.web.MockHttpSession) login.getRequest().getSession()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(unauthenticated());
+    }
+
+    @Test
+    void databaseRejectsPropertyWithUnknownOwner() {
+        assertThrows(DataIntegrityViolationException.class, () -> jdbcTemplate.update("""
+                INSERT INTO PROPERTY (ADDRESS, PROPERTY_TYPE, AREA, ROOMS, MONTHLY_RENT, AVAILABLE, OWNER_USER_ID)
+                VALUES ('Некорректный объект', 'ROOM', 20, 1, 1000, TRUE, -1)
+                """));
     }
 }

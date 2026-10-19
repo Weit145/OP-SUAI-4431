@@ -44,4 +44,7 @@ public class PropertyDTO {
     @NotNull
     @Schema(description = "Доступен ли объект для аренды", example = "true")
     private Boolean available;
+
+    @Schema(description = "Логин пользователя, добавившего объект", accessMode = Schema.AccessMode.READ_ONLY)
+    private String ownerLogin;
 }

@@ -2,6 +2,7 @@ package info.stepanoff.trsis.samples.service;
 
 import info.stepanoff.trsis.samples.db.dao.PropertyRepository;
 import info.stepanoff.trsis.samples.db.dao.AuditEventRepository;
+import info.stepanoff.trsis.samples.db.dao.UserRepository;
 import info.stepanoff.trsis.samples.db.model.AuditEventPE;
 import info.stepanoff.trsis.samples.db.model.PropertyPE;
 import info.stepanoff.trsis.samples.rest.ResourceNotFoundException;
@@ -20,6 +21,7 @@ public class PropertyServiceImpl implements PropertyService {
 
     private final PropertyRepository propertyRepository;
     private final AuditEventRepository auditEventRepository;
+    private final UserRepository userRepository;
 
     @Override
     public List<PropertyDTO> findAll() {
@@ -36,6 +38,9 @@ public class PropertyServiceImpl implements PropertyService {
     public PropertyDTO create(PropertyDTO property) {
         PropertyPE entity = new PropertyPE();
         copyFields(property, entity);
+        String login = SecurityContextHolder.getContext().getAuthentication().getName();
+        entity.setOwner(userRepository.findByLogin(login)
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь " + login + " не найден")));
         PropertyPE saved = propertyRepository.save(entity);
         audit("CREATE", saved.getId());
         return toDto(saved);
@@ -91,6 +96,7 @@ public class PropertyServiceImpl implements PropertyService {
         dto.setRooms(entity.getRooms());
         dto.setMonthlyRent(entity.getMonthlyRent());
         dto.setAvailable(entity.getAvailable());
+        dto.setOwnerLogin(entity.getOwner().getLogin());
         return dto;
     }
 }
