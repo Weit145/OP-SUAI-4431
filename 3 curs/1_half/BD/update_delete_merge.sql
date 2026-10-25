@@ -22,7 +22,7 @@ INSERT INTO expense_categories_new (name) VALUES
 
 
 MERGE INTO expense_categories
-USING expense_categories_new ON expense_categories.id = expense_categories_new.id
+USING expense_categories_new ON expense_categories.id_expense_category = expense_categories_new.id_expense_category
 WHEN MATCHED THEN
     UPDATE SET name = expense_categories_new.name
 WHEN NOT MATCHED THEN
