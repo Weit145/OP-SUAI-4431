@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: info.stepanoff.trsis.samples.PropertyRestControllerTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.533 s -- in info.stepanoff.trsis.samples.PropertyRestControllerTest

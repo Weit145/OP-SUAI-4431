@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: info.stepanoff.trsis.samples.ReplicationIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 39.22 s -- in info.stepanoff.trsis.samples.ReplicationIntegrationTest

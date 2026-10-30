@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-10-29T17:42:48.410740+00:00",
+  "first": "https://localhost:8443",
+  "second": "https://localhost:9443",
+  "createdOnFirst": {
+    "id": 8492724229524254,
+    "address": "Проверка репликации ЛР7, 2026-10-29T20:42:44",
+    "type": "APARTMENT",
+    "area": 45.5,
+    "rooms": 2,
+    "monthlyRent": 50000,
+    "available": true,
+    "ownerLogin": "guest"
+  },
+  "readOnSecond": {
+    "id": 8492724229524254,
+    "address": "Проверка репликации ЛР7, 2026-10-29T20:42:44",
+    "type": "APARTMENT",
+    "area": 45.5,
+    "rooms": 2,
+    "monthlyRent": 50000.0,
+    "available": true,
+    "ownerLogin": "guest"
+  },
+  "updatedOnSecondReadOnFirst": {
+    "id": 8492724229524254,
+    "address": "Проверка репликации ЛР7, 2026-10-29T20:42:44",
+    "type": "APARTMENT",
+    "area": 45.5,
+    "rooms": 2,
+    "monthlyRent": 65000.0,
+    "available": true,
+    "ownerLogin": "guest"
+  },
+  "deletedStatusOnSecond": 404,
+  "auditFirst": [
+    {
+      "id": 3,
+      "actor": "guest",
+      "action": "DELETE",
+      "propertyId": 8492724229524254,
+      "occurredAt": "2026-10-29T17:42:47.952948Z"
+    },
+    {
+      "id": 2,
+      "actor": "guest",
+      "action": "UPDATE",
+      "propertyId": 8492724229524254,
+      "occurredAt": "2026-10-29T17:42:47.271475Z"
+    },
+    {
+      "id": 1,
+      "actor": "guest",
+      "action": "CREATE",
+      "propertyId": 8492724229524254,
+      "occurredAt": "2026-10-29T17:42:44.832071Z"
+    }
+  ],
+  "auditSecond": [
+    {
+      "id": 3,
+      "actor": "guest",
+      "action": "DELETE",
+      "propertyId": 8492724229524254,
+      "occurredAt": "2026-10-29T17:42:47.952948Z"
+    },
+    {
+      "id": 2,
+      "actor": "guest",
+      "action": "UPDATE",
+      "propertyId": 8492724229524254,
+      "occurredAt": "2026-10-29T17:42:47.271475Z"
+    },
+    {
+      "id": 1,
+      "actor": "guest",
+      "action": "CREATE",
+      "propertyId": 8492724229524254,
+      "occurredAt": "2026-10-29T17:42:44.832071Z"
+    }
+  ],
+  "result": "PASS"
+}

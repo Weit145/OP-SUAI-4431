@@ -6,7 +6,7 @@ app.config(function ($httpProvider) {
     $httpProvider.defaults.headers.common[header] = token;
 });
 
-app.controller('PropertiesController', function ($scope, $http) {
+app.controller('PropertiesController', function ($scope, $http, $interval) {
     $scope.properties = [];
     $scope.audit = [];
     $scope.form = {type: 'APARTMENT', available: true};
@@ -64,4 +64,9 @@ app.controller('PropertiesController', function ($scope, $http) {
 
     $scope.load();
     if (document.getElementById('editor-marker')) $scope.loadAudit();
+    const refresh = $interval(function () {
+        $scope.load();
+        if (document.getElementById('editor-marker')) $scope.loadAudit();
+    }, 2000);
+    $scope.$on('$destroy', function () { $interval.cancel(refresh); });
 });

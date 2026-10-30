@@ -118,3 +118,40 @@ databaseChangeLog:
             constraintName: fk_property_owner
             referencedTableName: users
             referencedColumnNames: user_id
+  - changeSet:
+      id: replication-outbox-and-deduplication
+      author: student
+      changes:
+        - createTable:
+            tableName: replication_outbox
+            columns:
+              - column:
+                  name: event_id
+                  type: VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: property_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: payload
+                  type: VARCHAR(10000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: replication_applied
+            columns:
+              - column:
+                  name: event_id
+                  type: VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false

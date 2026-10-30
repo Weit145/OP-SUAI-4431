@@ -5,7 +5,6 @@ WHERE incomes.id_user = users.id_user
   AND users.nickname = 'Иван'
   AND income_items.name = 'Оклад'
   AND incomes.date_income = DATE '2026-05-06';
-
 DELETE FROM expenses
 WHERE date_expense < DATE '2026-01-01';
 
@@ -26,4 +25,4 @@ USING expense_categories_new ON expense_categories.id_expense_category = expense
 WHEN MATCHED THEN
     UPDATE SET name = expense_categories_new.name
 WHEN NOT MATCHED THEN
-    INSERT (name) VALUES (expense_categories_new.name);
+    INSERT (name,id_expense_category) VALUES (expense_categories_new.name, expense_categories_new.id_expense_category);

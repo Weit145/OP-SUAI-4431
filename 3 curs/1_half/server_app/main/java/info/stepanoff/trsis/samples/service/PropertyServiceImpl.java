@@ -9,6 +9,8 @@ import info.stepanoff.trsis.samples.rest.ResourceNotFoundException;
 import info.stepanoff.trsis.samples.rest.model.PropertyDTO;
 import java.util.List;
 import java.time.Instant;
+import java.util.UUID;
+import info.stepanoff.trsis.samples.replication.ReplicationEvents;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ public class PropertyServiceImpl implements PropertyService {
     private final PropertyRepository propertyRepository;
     private final AuditEventRepository auditEventRepository;
     private final UserRepository userRepository;
+    private final ReplicationEvents replicationEvents;
 
     @Override
     public List<PropertyDTO> findAll() {
@@ -37,12 +40,14 @@ public class PropertyServiceImpl implements PropertyService {
     @Transactional
     public PropertyDTO create(PropertyDTO property) {
         PropertyPE entity = new PropertyPE();
+        // Positive integers representable exactly by AngularJS/JavaScript numbers.
+        entity.setId(UUID.randomUUID().getMostSignificantBits() & 0x001fffffffffffffL);
         copyFields(property, entity);
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         entity.setOwner(userRepository.findByLogin(login)
                 .orElseThrow(() -> new ResourceNotFoundException("Пользователь " + login + " не найден")));
         PropertyPE saved = propertyRepository.save(entity);
-        audit("CREATE", saved.getId());
+        recordChange("CREATE", saved);
         return toDto(saved);
     }
 
@@ -52,7 +57,7 @@ public class PropertyServiceImpl implements PropertyService {
         PropertyPE entity = findEntity(id);
         copyFields(property, entity);
         PropertyPE saved = propertyRepository.save(entity);
-        audit("UPDATE", saved.getId());
+        recordChange("UPDATE", saved);
         return toDto(saved);
     }
 
@@ -61,7 +66,14 @@ public class PropertyServiceImpl implements PropertyService {
     public void delete(Long id) {
         PropertyPE entity = findEntity(id);
         propertyRepository.delete(entity);
-        audit("DELETE", id);
+        recordChange("DELETE", entity);
+    }
+
+    private void recordChange(String action, PropertyPE entity) {
+        String actor = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (!replicationEvents.record(action, toDto(entity), actor)) {
+            audit(action, entity.getId());
+        }
     }
 
     private void audit(String action, Long propertyId) {

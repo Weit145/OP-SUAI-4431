@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Отчет о лабораторной работе №7 — Д. О. Кочнев</title>
+<style>
+@page { size: A4; margin: 2cm 1.5cm 2cm 2.5cm; }
+body { font-family: "Times New Roman", serif; font-size: 14pt; line-height: 1.35; color: #000; }
+p { margin: 0 0 0.25cm; text-align: justify; }
+h1, h2 { font-size: 14pt; font-weight: bold; margin: 0.45cm 0 0.15cm; }
+h1 { text-align: center; }
+ol { margin-top: 0.1cm; margin-bottom: 0.3cm; }
+li { margin-bottom: 0.1cm; }
+pre { font-family: "Liberation Mono", monospace; font-size: 9pt; line-height: 1.15; white-space: pre-wrap; margin: 0.15cm 0 0.3cm; padding: 0.12cm; border: 1px solid #aaa; }
+.cover { text-align: center; page-break-after: always; }
+.cover p { text-align: center; }
+.cover-title { font-weight: bold; margin-top: 2.1cm; }
+.cover-topic { font-weight: bold; margin-top: 0.55cm; }
+.spacer { height: 1.2cm; }
+.sign-caption { font-size: 10pt; }
+.city { margin-top: 4.1cm; }
+.caption { text-align: center; font-size: 12pt; }
+.assignment { page-break-before: always; }
+.cover-header { line-height: 1.25; }
+.approval { margin-top: 1.1cm; }
+.approval-title { margin-bottom: 0.35cm; }
+.role { margin-top: 0.3cm; }
+.signature-line { margin-top: 0.25cm; white-space: nowrap; }
+.signature-hint { margin-top: 0.05cm; font-size: 9pt; white-space: nowrap; }
+.main-title { margin-top: 2.0cm; font-weight: bold; }
+.work-title { margin-top: 0.55cm; font-weight: bold; line-height: 1.25; }
+.course { margin-top: 0.35cm; }
+.student { margin-top: 1.25cm; }
+.city { margin-top: 4.3cm; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <p class="cover-header">ГУАП<br>КАФЕДРА № 43</p>
+
+  <div class="approval">
+    <p class="approval-title">ОТЧЕТ ЗАЩИЩЕН С ОЦЕНКОЙ __________________</p>
+    <p class="role">ПРЕПОДАВАТЕЛЬ</p>
+    <p class="signature-line">Доцент, канд. техн. наук&nbsp;&nbsp;&nbsp;&nbsp;________________&nbsp;&nbsp;&nbsp;&nbsp;П. А. Степанов</p>
+    <p class="signature-hint">должность, уч. степень, звание&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;подпись, дата&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;инициалы, фамилия</p>
+  </div>
+
+  <p class="main-title">ОТЧЕТ О ЛАБОРАТОРНОЙ РАБОТЕ №7</p>
+  <p class="work-title">РАЗРАБОТКА ПРИЛОЖЕНИЯ<br>С АСИНХРОННОЙ ОЧЕРЕДЬЮ СООБЩЕНИЙ</p>
+  <p class="course">по курсу: Технология разработки серверных информационных систем</p>
+
+  <div class="student">
+    <p class="role">РАБОТУ ВЫПОЛНИЛ</p>
+    <p class="signature-line">СТУДЕНТ гр. № 4431&nbsp;&nbsp;&nbsp;&nbsp;________________&nbsp;&nbsp;&nbsp;&nbsp;Д. О. Кочнев</p>
+    <p class="signature-hint">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;подпись, дата&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;инициалы, фамилия</p>
+  </div>
+
+  <p class="city">Санкт-Петербург 2026</p>
+</div>
+
+
+
+<h2 class="assignment">Задание:</h2>
+<p>Цель работы — реализация простой системы распределённой репликации по модели «писатели — читатели».</p>
+<ol><li>Развернуть Apache Kafka.</li><li>Обеспечить запуск нескольких экземпляров приложения со встроенной базой данных на разных портах.</li><li>Реализовать Producer, отправляющий события каждой операции записи, и Consumer, применяющий изменения к локальной базе.</li><li>Продемонстрировать доступность записанных данных в другом экземпляре.</li></ol>
+<h2>Описание разрабатываемого продукта:</h2>
+<p>Вариант 14 — «Сдача недвижимости в аренду». Работа выполнена на основе server_app из лабораторных №4 и №6. В приложении используются Spring Boot, Spring Security, HTTPS, Thymeleaf, AngularJS, Spring Data JPA, H2 и Liquibase. Добавлены Spring Kafka, Producer и Consumer, реплицирующие объекты недвижимости и журнал аудита.</p>
+<p>Выбран основной вариант задания с двумя встроенными базами H2. Пример преподавателя lab78example использует альтернативный вариант с PostgreSQL, Kafka Connect и Debezium; в данной работе изменения публикует само приложение.</p>
+<h2>Архитектура и порядок работы:</h2>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">Экземпляр&nbsp;1&nbsp;(HTTPS&nbsp;8443,&nbsp;H2&nbsp;№1)</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↕&nbsp;Producer&nbsp;/&nbsp;Consumer</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kafka:&nbsp;property-changes,&nbsp;1&nbsp;партиция</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↕&nbsp;Producer&nbsp;/&nbsp;Consumer</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">Экземпляр&nbsp;2&nbsp;(HTTPS&nbsp;9443,&nbsp;H2&nbsp;№2)</p>
+<p></p>
+<p>Каждый экземпляр имеет собственную базу H2 и отдельную группу потребителей Kafka. Поэтому каждое событие получает каждый экземпляр, а не только один участник общей группы. Одна партиция задаёт одинаковый порядок применения событий на всех репликах.</p>
+<p>После создания, изменения или удаления объекта сервис записывает событие в REPLICATION_OUTBOX в той же транзакции, что и локальные данные. Планировщик отправляет зафиксированное событие в Kafka и удаляет его из outbox только после подтверждения брокера. Consumer применяет изменение, записывает аудит и UUID события в REPLICATION_APPLIED в одной транзакции.</p>
+<p>Повторно доставленное событие пропускается по UUID. Consumer не вызывает методы, формирующие новые события, что предотвращает зацикливание. Собственные события также применяются в порядке Kafka: при конкурирующих изменениях итоговое состояние определяется последним событием в журнале.</p>
+<p>Событие содержит UUID, имя источника, действие CREATE/UPDATE/DELETE, логин пользователя, время и полный снимок объекта. Связь PROPERTY → USERS сохраняется: пользователь определяется по логину. Учебная учётная запись guest создаётся в каждой базе из data.sql.</p>
+<h2>Код программы (основные фрагменты):</h2>
+<p>1. Контракт события (PropertyChange.java):</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">public&nbsp;record&nbsp;PropertyChange(String&nbsp;eventId,&nbsp;String&nbsp;source,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;action,&nbsp;String&nbsp;actor,&nbsp;Instant&nbsp;occurredAt,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PropertyDTO&nbsp;property)&nbsp;{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">}</p>
+<p></p>
+<p>2. Настройка Kafka и профиля репликации:</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">app.replication.enabled=true</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">server.servlet.session.cookie.name=SESSION_${app.instance-id}</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">spring.kafka.bootstrap-servers=${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">spring.kafka.consumer.auto-offset-reset=earliest</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">spring.kafka.consumer.enable-auto-commit=false</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">spring.kafka.listener.ack-mode=record</p>
+<p></p>
+<p>При каждом запуске группа формируется как properties-&lt;instance-id&gt;-&lt;UUID&gt;. Это необходимо, поскольку H2 в памяти создаётся заново и должна перечитать журнал с начала. Разные имена cookie позволяют войти в два экземпляра из одного браузера.</p>
+<p>3. Регистрация исходящего события в транзакции (ReplicationEvents.java):</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;@Transactional(propagation&nbsp;=&nbsp;Propagation.MANDATORY)</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;boolean&nbsp;record(String&nbsp;action,&nbsp;PropertyDTO&nbsp;property,&nbsp;String&nbsp;actor)&nbsp;{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!enabled)&nbsp;return&nbsp;false;</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PropertyChange&nbsp;change&nbsp;=&nbsp;new&nbsp;PropertyChange(UUID.randomUUID().toString(),&nbsp;instance,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;action,&nbsp;actor,&nbsp;Instant.now(),&nbsp;property);</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutboxEvent&nbsp;event&nbsp;=&nbsp;new&nbsp;OutboxEvent();</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.setId(change.eventId());</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.setPropertyId(property.getId());</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.setCreatedAt(change.occurredAt());</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.setPayload(mapper.writeValueAsString(change));</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(JsonProcessingException&nbsp;exception)&nbsp;{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;IllegalStateException(&quot;Cannot&nbsp;serialize&nbsp;replication&nbsp;event&quot;,&nbsp;exception);</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outbox.save(event);</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;true;</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p></p>
+<p>4. Отправка через KafkaTemplate (OutboxPublisher.java):</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;@Scheduled(fixedDelayString&nbsp;=&nbsp;&quot;${app.replication.publish-delay-ms:250}&quot;)</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;publish()&nbsp;{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(OutboxEvent&nbsp;event&nbsp;:&nbsp;outbox.findTop100ByOrderByCreatedAtAscIdAsc())&nbsp;{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kafka.send(topic,&nbsp;event.getPropertyId().toString(),&nbsp;event.getPayload())</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.get(10,&nbsp;TimeUnit.SECONDS);</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outbox.deleteById(event.getId());</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(Exception&nbsp;exception)&nbsp;{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(exception&nbsp;instanceof&nbsp;InterruptedException)&nbsp;Thread.currentThread().interrupt();</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.warn(&quot;Kafka&nbsp;delivery&nbsp;pending&nbsp;for&nbsp;event&nbsp;{}:&nbsp;{}&quot;,&nbsp;event.getId(),&nbsp;exception.toString());</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;&nbsp;//&nbsp;Retain&nbsp;the&nbsp;event&nbsp;for&nbsp;retry;&nbsp;do&nbsp;not&nbsp;overtake&nbsp;it&nbsp;with&nbsp;newer&nbsp;events.</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p></p>
+<p>5. Основные шаги Consumer (PropertyChangeConsumer.java):</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">@Transactional</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">@KafkaListener(topics&nbsp;=&nbsp;&quot;${app.replication.topic}&quot;,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;groupId&nbsp;=&nbsp;&quot;#{@replicationGroup}&quot;)</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">public&nbsp;void&nbsp;receive(String&nbsp;json)&nbsp;throws&nbsp;JsonProcessingException&nbsp;{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;PropertyChange&nbsp;event&nbsp;=&nbsp;mapper.readValue(json,&nbsp;PropertyChange.class);</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(applied.existsById(event.eventId()))&nbsp;return;</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;DELETE:&nbsp;удалить&nbsp;объект,&nbsp;если&nbsp;он&nbsp;существует.</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;CREATE/UPDATE:&nbsp;найти&nbsp;или&nbsp;создать&nbsp;объект&nbsp;по&nbsp;ID,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;перенести&nbsp;поля&nbsp;DTO,&nbsp;найти&nbsp;пользователя&nbsp;и&nbsp;вызвать&nbsp;save().</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Записать&nbsp;аудит&nbsp;с&nbsp;исходными&nbsp;actor,&nbsp;action,&nbsp;occurredAt.</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;applied.save(new&nbsp;AppliedEvent(event.eventId()));</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">}</p>
+<p></p>
+<p>Фрагменты с комментариями сокращены; полный код расположен в пакете replication. Применение данных и отметка обработки фиксируются вместе, а смещение Kafka подтверждается после успешной обработки записи. При ошибке обработка повторяется.</p>
+<p>6. Идентификаторы объектов (PropertyServiceImpl.java):</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">entity.setId(UUID.randomUUID().getMostSignificantBits()</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;0x001fffffffffffffL);</p>
+<p></p>
+<p>Независимые счётчики двух баз могли бы создать один и тот же ID. Новые ID генерируются случайно в пределах точных целых чисел JavaScript, до 2^53−1. Вероятность случайного совпадения мала, но не равна нулю. Начальные записи имеют одинаковые ID в обеих базах.</p>
+<h2>Запуск и демонстрация:</h2>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">make&nbsp;kafka</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">make&nbsp;build</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">#&nbsp;Первый&nbsp;терминал:</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">make&nbsp;run1</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">#&nbsp;Второй&nbsp;терминал:</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">make&nbsp;run2</p>
+<p></p>
+<p>Адреса: https://localhost:8443/ и https://localhost:9443/. Учебный логин: guest, пароль: hello. Данные страницы обновляются каждые две секунды. Брокер запускается в Docker в режиме KRaft, без ZooKeeper; его данные сохраняются в отдельном томе.</p>
+<h2>Результаты проверки:</h2>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">Tests&nbsp;run:&nbsp;6,&nbsp;Failures:&nbsp;0,&nbsp;Errors:&nbsp;0,&nbsp;Skipped:&nbsp;0,&nbsp;Time&nbsp;elapsed:&nbsp;4.533&nbsp;s&nbsp;--&nbsp;in&nbsp;info.stepanoff.trsis.samples.PropertyRestControllerTest</p>
+<p></p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">Tests&nbsp;run:&nbsp;1,&nbsp;Failures:&nbsp;0,&nbsp;Errors:&nbsp;0,&nbsp;Skipped:&nbsp;0,&nbsp;Time&nbsp;elapsed:&nbsp;39.22&nbsp;s&nbsp;--&nbsp;in&nbsp;info.stepanoff.trsis.samples.ReplicationIntegrationTest</p>
+<p></p>
+<p>Существующие шесть тестов проверяют REST CRUD, валидацию, авторизацию, CSRF, вход/выход и внешний ключ. Интеграционный тест с Kafka проверяет обмен между двумя независимыми H2 в обе стороны, удаление, повторную доставку одного события и восстановление второй реплики после перезапуска.</p>
+<p>Дополнительно выполнена проверка двух отдельных процессов через HTTPS API с настоящим входом и CSRF-токеном. Дата проверки: 2026-10-29T17:42:48.410740+00:00.</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">{</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&quot;result&quot;:&nbsp;&quot;PASS&quot;,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&quot;first&quot;:&nbsp;&quot;https://localhost:8443&quot;,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&quot;second&quot;:&nbsp;&quot;https://localhost:9443&quot;,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&quot;propertyId&quot;:&nbsp;8492724229524254,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&quot;rentCreatedOnFirstReadOnSecond&quot;:&nbsp;50000.0,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&quot;rentUpdatedOnSecondReadOnFirst&quot;:&nbsp;65000.0,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&quot;deletedStatusOnSecond&quot;:&nbsp;404,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&quot;auditActionsFirst&quot;:&nbsp;[</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&quot;DELETE&quot;,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&quot;UPDATE&quot;,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&quot;CREATE&quot;</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;],</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&quot;auditActionsSecond&quot;:&nbsp;[</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&quot;DELETE&quot;,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&quot;UPDATE&quot;,</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&quot;CREATE&quot;</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">&nbsp;&nbsp;]</p>
+<p style="font-family:Courier New;font-size:9pt;line-height:100%;margin:0;text-align:left">}</p>
+<p></p>
+<p>Объект, созданный на порту 8443, прочитан на порту 9443. Изменение цены до 65000 на втором экземпляре получено первым. После удаления через первый экземпляр второй вернул HTTP 404. В обоих журналах появились CREATE, UPDATE и DELETE. Полный протокол сохранён в verification/https-replication.json; проверку можно повторить скриптом tools/verify_replication.py.</p>
+<h2>Ограничения реализации:</h2>
+<p>Репликация асинхронна: успешный REST-ответ подтверждает локальную запись, но не завершение синхронизации всех экземпляров. В режиме репликации журнал аудита пополняется после обработки события. События в outbox повторяются при временной недоступности Kafka, пока работает процесс.</p>
+<p>H2, outbox и отметки обработки находятся в памяти: аварийная остановка до доставки события может привести к его потере. Восстановление выполненных изменений зависит от сохранности и срока хранения журнала Kafka. Конфигурация использует один брокер и предназначена для учебной демонстрации; для промышленного применения нужны постоянная база, политика снимков состояния и отказоустойчивость брокера.</p>
+<h2>Вывод:</h2>
+<p>В лабораторной работе №7 реализована распределённая репликация данных недвижимости через Apache Kafka. Два экземпляра приложения работают на разных HTTPS-портах с независимыми H2 и обмениваются событиями создания, изменения и удаления. Добавлены защита от повторного применения событий, предотвращение зацикливания и восстановление из журнала. Работа подтверждена автоматическими тестами и проверкой через HTTPS API. Требования основного варианта задания выполнены.</p>
+</body></html>
