@@ -1,0 +1,36 @@
+[
+  {
+    "family": "IDEF0",
+    "xml": "SmartCoworking_IDEF0.xml",
+    "pages": [
+      "02_IDEF0_A0"
+    ]
+  },
+  {
+    "family": "DFD",
+    "xml": "SmartCoworking_DFD.xml",
+    "pages": [
+      "03_DFD_context",
+      "04_DFD_P1",
+      "05_DFD_P2",
+      "06_DFD_P3",
+      "06b_DFD_P4",
+      "06c_DFD_P5",
+      "06d_DFD_P6"
+    ]
+  },
+  {
+    "family": "IDEF3",
+    "xml": "SmartCoworking_IDEF3.xml",
+    "pages": [
+      "12_IDEF3_S1",
+      "13_IDEF3_S2",
+      "14_IDEF3_S3",
+      "15_IDEF3_S4",
+      "16_IDEF3_S5",
+      "17_IDEF3_S6",
+      "18_IDEF3_S7",
+      "19_IDEF3_S8"
+    ]
+  }
+]

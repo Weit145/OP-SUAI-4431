@@ -5,7 +5,8 @@ from html import escape
 from model import *
 import math, textwrap, json
 OUT=Path(__file__).resolve().parent; ASSETS=OUT/'диаграммы';ASSETS.mkdir(exist_ok=True)
-FONT='/usr/share/fonts/truetype/croscore/Tinos-Regular.ttf'; BOLD=FONT.replace('Regular','Bold')
+FONT='C:/Windows/Fonts/times.ttf' if Path('C:/Windows/Fonts/times.ttf').exists() else '/usr/share/fonts/truetype/croscore/Tinos-Regular.ttf'
+BOLD='C:/Windows/Fonts/timesbd.ttf' if FONT.startswith('C:') else FONT.replace('Regular','Bold')
 book=X.Element('mxfile',host='app.diagrams.net',agent='ЛР3 Смарт-коворкинг'); MANIFEST=[]
 class Diagram:
  def __init__(self,key,title,legend=''):
@@ -13,12 +14,7 @@ class Diagram:
   self.im=Image.new('RGB',(2400,1500),'white');self.d=ImageDraw.Draw(self.im)
   self.svg=['<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500"><rect width="2400" height="1500" fill="white"/>']
   page=X.SubElement(book,'diagram',name=key,id=key);model=X.SubElement(page,'mxGraphModel',page='1',pageWidth='2400',pageHeight='1500',grid='1');self.root=X.SubElement(model,'root');X.SubElement(self.root,'mxCell',id='0');X.SubElement(self.root,'mxCell',id='1',parent='0')
-  self.label(1200,50,title,38,True)
-  if legend:self.label(1200,1380,legend,26,width=2180)
-  self.line([(30,100),(2370,100),(2370,1350),(30,1350),(30,100)],arrow=False)
-  self.label(120,1325,key.split('_')[0],24)
-  self.label(1190,1325,'Смарт-коворкинг • TO-BE • Кочнев Д. О., гр. 4431',24)
-  self.label(2210,1325,'ЛР3 / 12.11.2026',24)
+  # Captions and explanations belong to the report, outside the diagram.
  def label(self,x,y,s,size=30,bold=False,align='center',width=None,editable=True):
   font=ImageFont.truetype(BOLD if bold else FONT,size)
   lines=[]
@@ -70,12 +66,32 @@ class Diagram:
   for x,y in flat[1:-1]:X.SubElement(ar,'mxPoint',x=str(x),y=str(y))
   return cell
  def node(self,id,x,y,w,h,s,kind='box',fill='white',size=30):
+  uob_number=None
+  if 'IDEF3' in self.key and id.startswith('U') and '\n' in s:
+   uob_number,s=s.split('\n',1)
   self.nodes[id]=(x,y,w,h);self.kinds[id]=kind
   radius=20 if kind in ['process','dependent'] else 0
   if kind=='store':
+   code,name=s.split(' ',1) if ' ' in s else (s,'')
+   divider=76
+   style='shape=partialRectangle;top=1;bottom=1;left=1;right=0;whiteSpace=wrap;html=0;fillColor=white;strokeColor=black;'
+   c=X.SubElement(self.root,'mxCell',id=id,parent='1',vertex='1',value='',style=style,dataStoreCode=code,dataStoreName=name)
+   X.SubElement(c,'mxGeometry',x=str(x),y=str(y),width=str(w),height=str(h),attrib={'as':'geometry'})
    self.d.line([(x,y),(x+w,y)],fill='black',width=3);self.d.line([(x,y+h),(x+w,y+h)],fill='black',width=3)
    self.d.line([(x,y),(x,y+h)],fill='black',width=3)
    self.svg.append(f'<path d="M{x},{y}h{w} M{x},{y+h}h{w} M{x},{y}v{h}" fill="none" stroke="black" stroke-width="3"/>')
+   self.line([(x+divider,y),(x+divider,y+h)],arrow=False)
+   self.label(x+divider/2,y+h/2,code,size)
+   font=ImageFont.truetype(FONT,size)
+   lines=[];line=''
+   for word in name.split():
+    candidate=(line+' '+word).strip()
+    if line and font.getlength(candidate)>w-divider-32:lines.append(line);line=word
+    else:line=candidate
+   if line:lines.append(line)
+   yy=y+h/2-(len(lines)-1)*(size+5)/2
+   self.label(x+divider+(w-divider)/2,yy,'\n'.join(lines),size)
+   return
   else:
    self.d.rounded_rectangle((x,y,x+w,y+h),radius=radius,fill=fill,outline='#222',width=3)
    self.svg.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{radius}" fill="{fill}" stroke="#222" stroke-width="3"/>')
@@ -93,6 +109,9 @@ class Diagram:
   style='shape=partialRectangle;top=1;bottom=1;left=1;right=0;' if kind=='store' else 'rounded=1;' if radius else 'rounded=0;'
   c=X.SubElement(self.root,'mxCell',id=id,parent='1',vertex='1',value=s,style=style+f'whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize={size};fillColor={fill};strokeColor=#222222;')
   X.SubElement(c,'mxGeometry',x=str(x),y=str(y),width=str(w),height=str(h),attrib={'as':'geometry'})
+  if uob_number:
+   self.line([(x,y+h-42),(x+w,y+h-42)],arrow=False)
+   self.label(x+w-85,y+h-20,uob_number,23)
  def point(self,id,side):
   x,y,w,h=self.nodes[id];return {'L':(x,y+h/2),'R':(x+w,y+h/2),'T':(x+w/2,y),'B':(x+w/2,y+h)}[side]
  def edge(self,a,b,label='',sa='R',sb='L',via=None,**kwargs):

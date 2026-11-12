@@ -1,0 +1,1237 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ProcessModeler xmlns="http://www.ca.com/ProcessModeler" FileVersion="7.2" FilteredOutput="false">
+  <PMModel id="{F04AA5BB-99A3-4B4B-AA88-AABEEDE44799}+00000000" Name="Смарт-коворкинг">
+    <PMModelProps>
+      <Name>Смарт-коворкинг</Name>
+      <PMProject />
+      <PMTimeFrame>0</PMTimeFrame>
+      <PMAuthor>Д. О. Кочнев</PMAuthor>
+      <PMAuthorsInitials />
+      <PMDataUsageRules>1</PMDataUsageRules>
+      <PMPurpose>Структурное проектирование ИС по требованиям ЛР2</PMPurpose>
+      <PMViewpoint />
+      <PMDescriptionString />
+      <PMScope />
+      <PMSource />
+      <PMStatusString>WORKING</PMStatusString>
+      <PMCreatedDate member_name="y">2026</PMCreatedDate>
+      <PMCreatedDate member_name="m">11</PMCreatedDate>
+      <PMCreatedDate member_name="d">12</PMCreatedDate>
+      <PMUserLastRevisionDate member_name="y">0</PMUserLastRevisionDate>
+      <PMUserLastRevisionDate member_name="m">0</PMUserLastRevisionDate>
+      <PMUserLastRevisionDate member_name="d">0</PMUserLastRevisionDate>
+      <PMPrefix>A</PMPrefix>
+      <PMShowActivityPrefixFlag>0</PMShowActivityPrefixFlag>
+      <PMNoAutoRenumberFlag>0</PMNoAutoRenumberFlag>
+      <PMActivityNumberConventionFlag>0</PMActivityNumberConventionFlag>
+      <PMNextDatastoreNumber>1</PMNextDatastoreNumber>
+      <PMNextExternalNumber>1</PMNextExternalNumber>
+      <PMNextBoxNumber>1</PMNextBoxNumber>
+      <PMShowDiagramPrefixFlag>1</PMShowDiagramPrefixFlag>
+      <PMDiagramNumberConventionFlag>0</PMDiagramNumberConventionFlag>
+      <PMShowDatastorePrefixFlag>0</PMShowDatastorePrefixFlag>
+      <PMShowExternalPrefixFlag>0</PMShowExternalPrefixFlag>
+      <PMShowActivityNumberingFlag>1</PMShowActivityNumberingFlag>
+      <PMShowDatastoreNumberingFlag>2</PMShowDatastoreNumberingFlag>
+      <PMShowExternalNumberingFlag>4</PMShowExternalNumberingFlag>
+      <PMShowArrowNameFlag>1</PMShowArrowNameFlag>
+      <PMShowICOMCodeFlag>0</PMShowICOMCodeFlag>
+      <PMDisplayColorsFlag>0</PMDisplayColorsFlag>
+      <PMShowActivityCostFlag>0</PMShowActivityCostFlag>
+      <PMShowTunnelFlag>1</PMShowTunnelFlag>
+      <PMDisplayShadowsFlag>0</PMDisplayShadowsFlag>
+      <PMDisplayLeafCornersFlag>0</PMDisplayLeafCornersFlag>
+      <PMDisplaySquigglesFlag>1</PMDisplaySquigglesFlag>
+      <PMDisplayBoxHighlightingFlag>0</PMDisplayBoxHighlightingFlag>
+      <PMLongDateFlag>0</PMLongDateFlag>
+      <PMActBoxCornerDisplayType>0</PMActBoxCornerDisplayType>
+      <PMOffpageRefIdFlag>0</PMOffpageRefIdFlag>
+      <PMAllowBoxMovementFlag>1</PMAllowBoxMovementFlag>
+      <PMAllowBoxResizeFlag>1</PMAllowBoxResizeFlag>
+      <PMFitActivityTextInBoxFlag>1</PMFitActivityTextInBoxFlag>
+      <PMAutospaceArrowsFlag>0</PMAutospaceArrowsFlag>
+      <PMSortArrowsFlag>0</PMSortArrowsFlag>
+      <PMShowArrowBreakFlag>0</PMShowArrowBreakFlag>
+      <PMCostUnit>$ U.S.</PMCostUnit>
+      <PMCurrencySymbol>?</PMCurrencySymbol>
+      <PMCurrencyPlacement>4</PMCurrencyPlacement>
+      <PMCostDecimalPlaces>2</PMCostDecimalPlaces>
+      <PMTimeUnit>Days</PMTimeUnit>
+      <PMFrequencyDecimalPlaces>2</PMFrequencyDecimalPlaces>
+      <PMDurationDecimalPlaces>2</PMDurationDecimalPlaces>
+      <PMShowIDEF0KitFlag>0</PMShowIDEF0KitFlag>
+      <PMShowIDEF0TitleFlag>0</PMShowIDEF0TitleFlag>
+      <PMDimension member_name="x">1109</PMDimension>
+      <PMDimension member_name="y">767</PMDimension>
+      <PMOriginOffset member_name="x">0</PMOriginOffset>
+      <PMOriginOffset member_name="y">88</PMOriginOffset>
+      <PMActiveAreaDimension member_name="x">1109</PMActiveAreaDimension>
+      <PMActiveAreaDimension member_name="y">615</PMActiveAreaDimension>
+      <PMHdrFtrType0>2</PMHdrFtrType0>
+      <PMHdrFtrType1>0</PMHdrFtrType1>
+      <PMHdrFtrType2>1</PMHdrFtrType2>
+      <PMHdrFtrType3>3</PMHdrFtrType3>
+      <PMHdrFtrType4>0</PMHdrFtrType4>
+      <PMHdrFtrType5>8</PMHdrFtrType5>
+      <PMShapeIdList index="0">0</PMShapeIdList>
+      <PMShapeIdList index="1">0</PMShapeIdList>
+      <PMShapeIdList index="2">0</PMShapeIdList>
+      <PMShapeIdList index="3">0</PMShapeIdList>
+      <PMShapeIdList index="4">0</PMShapeIdList>
+      <PMShapeIdList index="5">0</PMShapeIdList>
+      <PMShapeIdList index="6">0</PMShapeIdList>
+      <PMShapeIdList index="7">0</PMShapeIdList>
+      <PMShapeIdList index="8">0</PMShapeIdList>
+      <PMShapeIdList index="9">0</PMShapeIdList>
+      <PMShapeIdList index="10">0</PMShapeIdList>
+      <PMShapeIdList index="11">0</PMShapeIdList>
+      <PMBitmapRefList index="0">0</PMBitmapRefList>
+      <PMBitmapRefList index="1">0</PMBitmapRefList>
+      <PMBitmapRefList index="2">0</PMBitmapRefList>
+      <PMBitmapRefList index="3">0</PMBitmapRefList>
+      <PMBitmapRefList index="4">0</PMBitmapRefList>
+      <PMBitmapRefList index="5">0</PMBitmapRefList>
+      <PMBitmapRefList index="6">0</PMBitmapRefList>
+      <PMBitmapRefList index="7">0</PMBitmapRefList>
+      <PMBitmapRefList index="8">0</PMBitmapRefList>
+      <PMBitmapRefList index="9">0</PMBitmapRefList>
+      <PMBitmapRefList index="10">0</PMBitmapRefList>
+      <PMBitmapRefList index="11">0</PMBitmapRefList>
+      <PMDrawStyle>12</PMDrawStyle>
+      <PMOrgDrawStyle>12</PMOrgDrawStyle>
+      <PMRootActivityNumber>0</PMRootActivityNumber>
+      <PMNextJunctionNumber>1</PMNextJunctionNumber>
+      <PMSystemLastRevisionDate member_name="y">2026</PMSystemLastRevisionDate>
+      <PMSystemLastRevisionDate member_name="m">11</PMSystemLastRevisionDate>
+      <PMSystemLastRevisionDate member_name="d">12</PMSystemLastRevisionDate>
+      <PMFilename>C:\Users\Weit\Documents\in_c\-\reports\ЛР3_Смарт-коворкинг\исходники\ProcessModeler\SmartCoworking_IDEF0.bp1</PMFilename>
+      <PMNote />
+      <PMBpxPath />
+      <PMMethodologyCode>0</PMMethodologyCode>
+      <PMNoArrowNameMergeFlag>0</PMNoArrowNameMergeFlag>
+      <PMNoDatastoreNameMergeFlag>0</PMNoDatastoreNameMergeFlag>
+      <PMNoExternalNameMergeFlag>0</PMNoExternalNameMergeFlag>
+      <PMMergeSubModelFlag>0</PMMergeSubModelFlag>
+      <PMMergeMasterModelFlag>0</PMMergeMasterModelFlag>
+      <PMMergeControlFlag>0</PMMergeControlFlag>
+      <PMReportMode>170</PMReportMode>
+      <PMTxtHgtToBmpHgt>2</PMTxtHgtToBmpHgt>
+      <PMBitmapJustification>1</PMBitmapJustification>
+      <PMERSourceType>0</PMERSourceType>
+      <PMCreationDataRev>77</PMCreationDataRev>
+      <PMCreationBuild>1918</PMCreationBuild>
+      <PMContextDiagramActivityFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMContextDiagramActivityFontRef>
+      <PMContextDiagramArrowFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMContextDiagramArrowFontRef>
+      <PMDecompDiagramActivityFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMDecompDiagramActivityFontRef>
+      <PMDecompDiagramArrowFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMDecompDiagramArrowFontRef>
+      <PMBorderSystemFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMBorderSystemFontRef>
+      <PMBorderUserFontRef>{E79CE455-1631-48D5-ABA6-9249667DACFE}+00000000</PMBorderUserFontRef>
+      <PMDiagramTitleFontRef>{E79CE455-1631-48D5-ABA6-9249667DACFE}+00000000</PMDiagramTitleFontRef>
+      <PMDiagramFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMDiagramFontRef>
+      <PMNodeTreeFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMNodeTreeFontRef>
+      <PMTextBlockFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextBlockFontRef>
+      <PMReportFontRef>{594B140F-24ED-4DE3-B766-068C8A1FED0F}+00000000</PMReportFontRef>
+      <PMBorderSystemDefaultFontRef>{FB88A172-2FA2-405D-88AE-5C32C8A5377D}+00000000</PMBorderSystemDefaultFontRef>
+      <PMSwimLaneTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMSwimLaneTextFontRef>
+      <PMBoxBackgroundColorReference />
+      <PMTextColorReference />
+      <PMArrowTextColorReference />
+      <PMArrowNameColorReference />
+      <PMDiagramTitleColorReference />
+      <PMTextBlockColorReference />
+      <PMSwimLaneBKColorRef />
+      <PMSwimLaneTextColorRef />
+      <PMSwimLaneLineColorRef />
+    </PMModelProps>
+    <PMPalette_Groups>
+      <PMPalette id="{3892AA29-30AF-4BB0-B305-749B66E9E538}+00000000" Name="">
+        <PMPaletteProps>
+          <PMVersion>768</PMVersion>
+        </PMPaletteProps>
+        <PMColor_Groups>
+          <PMColor id="{1C3BA8EA-73AA-4EF9-85DF-4124408D7825}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>0</PMSequenceNumber>
+              <PMRedIntensity>255</PMRedIntensity>
+              <PMGreenIntensity>0</PMGreenIntensity>
+              <PMBlueIntensity>0</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{5FD74203-021A-4AE6-8A72-FBBBCE68BBF8}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>1</PMSequenceNumber>
+              <PMRedIntensity>0</PMRedIntensity>
+              <PMGreenIntensity>255</PMGreenIntensity>
+              <PMBlueIntensity>0</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{C3D21AB2-8F21-484F-9E33-8F5B01AF8594}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>2</PMSequenceNumber>
+              <PMRedIntensity>0</PMRedIntensity>
+              <PMGreenIntensity>0</PMGreenIntensity>
+              <PMBlueIntensity>255</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{3D5562E3-5503-44E8-A321-4835629C2DF5}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>3</PMSequenceNumber>
+              <PMRedIntensity>0</PMRedIntensity>
+              <PMGreenIntensity>255</PMGreenIntensity>
+              <PMBlueIntensity>255</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{8E2FEE09-9D76-49E0-893C-BEDE1FD97439}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>4</PMSequenceNumber>
+              <PMRedIntensity>255</PMRedIntensity>
+              <PMGreenIntensity>0</PMGreenIntensity>
+              <PMBlueIntensity>255</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{695865CA-F096-47C1-AD38-18E6EE41388B}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>5</PMSequenceNumber>
+              <PMRedIntensity>255</PMRedIntensity>
+              <PMGreenIntensity>255</PMGreenIntensity>
+              <PMBlueIntensity>0</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{F3EF3906-120C-44A0-B605-AC57073F941F}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>6</PMSequenceNumber>
+              <PMRedIntensity>255</PMRedIntensity>
+              <PMGreenIntensity>255</PMGreenIntensity>
+              <PMBlueIntensity>255</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{4CED9630-4B1F-4FB3-8272-1E0B4E16FABE}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>7</PMSequenceNumber>
+              <PMRedIntensity>0</PMRedIntensity>
+              <PMGreenIntensity>0</PMGreenIntensity>
+              <PMBlueIntensity>0</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{7547511B-1DC7-4080-BAB7-FE760CF2F5BA}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>8</PMSequenceNumber>
+              <PMRedIntensity>255</PMRedIntensity>
+              <PMGreenIntensity>160</PMGreenIntensity>
+              <PMBlueIntensity>160</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{93D33CDF-81BE-4D43-B42C-C9A031B02CA7}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>9</PMSequenceNumber>
+              <PMRedIntensity>37</PMRedIntensity>
+              <PMGreenIntensity>192</PMGreenIntensity>
+              <PMBlueIntensity>37</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{52856002-0445-4CF2-AF50-A673889A0E83}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>10</PMSequenceNumber>
+              <PMRedIntensity>160</PMRedIntensity>
+              <PMGreenIntensity>160</PMGreenIntensity>
+              <PMBlueIntensity>255</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{8349CBF4-BF93-4C01-B41F-10359B7C1843}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>11</PMSequenceNumber>
+              <PMRedIntensity>33</PMRedIntensity>
+              <PMGreenIntensity>171</PMGreenIntensity>
+              <PMBlueIntensity>171</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{D37110BB-9F29-429C-9E0A-1D4A785BA243}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>12</PMSequenceNumber>
+              <PMRedIntensity>255</PMRedIntensity>
+              <PMGreenIntensity>160</PMGreenIntensity>
+              <PMBlueIntensity>255</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{7F491404-B39C-4DAE-ADFF-58B04A216EAF}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>13</PMSequenceNumber>
+              <PMRedIntensity>240</PMRedIntensity>
+              <PMGreenIntensity>240</PMGreenIntensity>
+              <PMBlueIntensity>180</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{D427D73F-1782-4429-B153-07C25707A66E}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>14</PMSequenceNumber>
+              <PMRedIntensity>128</PMRedIntensity>
+              <PMGreenIntensity>128</PMGreenIntensity>
+              <PMBlueIntensity>128</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+          <PMColor id="{41EDBF48-59D6-469D-B284-9092AC67256A}+00000000" Name="">
+            <PMColorProps>
+              <PMSequenceNumber>15</PMSequenceNumber>
+              <PMRedIntensity>192</PMRedIntensity>
+              <PMGreenIntensity>192</PMGreenIntensity>
+              <PMBlueIntensity>192</PMBlueIntensity>
+            </PMColorProps>
+          </PMColor>
+        </PMColor_Groups>
+      </PMPalette>
+    </PMPalette_Groups>
+    <PMFont_Groups>
+      <PMFont id="{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000" Name="">
+        <PMFontProps>
+          <PMLogfont member_name="lfHeight">-13</PMLogfont>
+          <PMLogfont member_name="lfWidth">0</PMLogfont>
+          <PMLogfont member_name="lfEscapement">0</PMLogfont>
+          <PMLogfont member_name="lfOrientation">0</PMLogfont>
+          <PMLogfont member_name="lfWeight">400</PMLogfont>
+          <PMLogfont member_name="lfItalic">0</PMLogfont>
+          <PMLogfont member_name="lfUnderline">0</PMLogfont>
+          <PMLogfont member_name="lfStrikeOut">0</PMLogfont>
+          <PMLogfont member_name="lfCharSet">204</PMLogfont>
+          <PMLogfont member_name="lfOutPrecision">3</PMLogfont>
+          <PMLogfont member_name="lfClipPrecision">2</PMLogfont>
+          <PMLogfont member_name="lfQuality">1</PMLogfont>
+          <PMLogfont member_name="lfPitchAndFamily">34</PMLogfont>
+          <PMLogfont member_name="lfFaceName">Arial</PMLogfont>
+          <PMFontSize>100</PMFontSize>
+        </PMFontProps>
+      </PMFont>
+      <PMFont id="{E79CE455-1631-48D5-ABA6-9249667DACFE}+00000000" Name="">
+        <PMFontProps>
+          <PMLogfont member_name="lfHeight">-24</PMLogfont>
+          <PMLogfont member_name="lfWidth">0</PMLogfont>
+          <PMLogfont member_name="lfEscapement">0</PMLogfont>
+          <PMLogfont member_name="lfOrientation">0</PMLogfont>
+          <PMLogfont member_name="lfWeight">400</PMLogfont>
+          <PMLogfont member_name="lfItalic">0</PMLogfont>
+          <PMLogfont member_name="lfUnderline">0</PMLogfont>
+          <PMLogfont member_name="lfStrikeOut">0</PMLogfont>
+          <PMLogfont member_name="lfCharSet">204</PMLogfont>
+          <PMLogfont member_name="lfOutPrecision">3</PMLogfont>
+          <PMLogfont member_name="lfClipPrecision">2</PMLogfont>
+          <PMLogfont member_name="lfQuality">1</PMLogfont>
+          <PMLogfont member_name="lfPitchAndFamily">34</PMLogfont>
+          <PMLogfont member_name="lfFaceName">Arial</PMLogfont>
+          <PMFontSize>180</PMFontSize>
+        </PMFontProps>
+      </PMFont>
+      <PMFont id="{594B140F-24ED-4DE3-B766-068C8A1FED0F}+00000000" Name="">
+        <PMFontProps>
+          <PMLogfont member_name="lfHeight">-11</PMLogfont>
+          <PMLogfont member_name="lfWidth">0</PMLogfont>
+          <PMLogfont member_name="lfEscapement">0</PMLogfont>
+          <PMLogfont member_name="lfOrientation">0</PMLogfont>
+          <PMLogfont member_name="lfWeight">400</PMLogfont>
+          <PMLogfont member_name="lfItalic">0</PMLogfont>
+          <PMLogfont member_name="lfUnderline">0</PMLogfont>
+          <PMLogfont member_name="lfStrikeOut">0</PMLogfont>
+          <PMLogfont member_name="lfCharSet">204</PMLogfont>
+          <PMLogfont member_name="lfOutPrecision">3</PMLogfont>
+          <PMLogfont member_name="lfClipPrecision">2</PMLogfont>
+          <PMLogfont member_name="lfQuality">1</PMLogfont>
+          <PMLogfont member_name="lfPitchAndFamily">49</PMLogfont>
+          <PMLogfont member_name="lfFaceName">Arial</PMLogfont>
+          <PMFontSize>80</PMFontSize>
+        </PMFontProps>
+      </PMFont>
+      <PMFont id="{FB88A172-2FA2-405D-88AE-5C32C8A5377D}+00000000" Name="">
+        <PMFontProps>
+          <PMLogfont member_name="lfHeight">-13</PMLogfont>
+          <PMLogfont member_name="lfWidth">0</PMLogfont>
+          <PMLogfont member_name="lfEscapement">900</PMLogfont>
+          <PMLogfont member_name="lfOrientation">900</PMLogfont>
+          <PMLogfont member_name="lfWeight">400</PMLogfont>
+          <PMLogfont member_name="lfItalic">0</PMLogfont>
+          <PMLogfont member_name="lfUnderline">0</PMLogfont>
+          <PMLogfont member_name="lfStrikeOut">0</PMLogfont>
+          <PMLogfont member_name="lfCharSet">204</PMLogfont>
+          <PMLogfont member_name="lfOutPrecision">3</PMLogfont>
+          <PMLogfont member_name="lfClipPrecision">2</PMLogfont>
+          <PMLogfont member_name="lfQuality">1</PMLogfont>
+          <PMLogfont member_name="lfPitchAndFamily">34</PMLogfont>
+          <PMLogfont member_name="lfFaceName">Arial</PMLogfont>
+          <PMFontSize>100</PMFontSize>
+        </PMFontProps>
+      </PMFont>
+    </PMFont_Groups>
+    <PMBitmap_Groups>
+      <PMBitmap id="{34868F8E-9A9A-495E-B372-11E901D1E326}+00000000" Name="">
+        <PMBitmapProps>
+          <NameCopy>Default Bitmap</NameCopy>
+          <PMBitmapData>424df603000000000000360000002800000014000000100000000100180000000000c003000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc0c0c0c0c0c0ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc0c0c0c0c0c0c0c0c0ff0000c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0ffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0ffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ffffffffffffffffffffffffffffffffffffffffffff0000c0c0c0c0c0c0ffffffffffffffffffffffffffffffffffffffffffff0000808080ff0000ffffffffffffffffffffffffffffffffffffffffffff0000c0c0c0c0c0c0ff0000808080ffffffffffffffffffff0000ff0000ff0000ff0000ff0000ffffffffffffffffffffffffffffffffffffffffffff0000ff0000ff0000ff0000ff0000ffffffffffffffffffffffffffffffff0000ffffffff0000ffffffffffffffffffffffffffffffffffffffffffff0000c0c0c0c0c0c0ff0000ffffffffffffffffffffffffffffffffffffffffffffffffff0000ffffffffffffffffffffffffffffffffffffffffffff0000c0c0c0c0c0c0ffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000808080ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ff0000ff0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ffffffffffffffffffffffffffffffffffffffffffffffffffffff</PMBitmapData>
+        </PMBitmapProps>
+      </PMBitmap>
+    </PMBitmap_Groups>
+    <PMActivity_Groups>
+      <PMActivity id="{6222AC46-48DF-44CB-86FD-88F55B92001B}+00000000" Name="Обеспечить бронирование&#10;и обслуживание клиентов&#10;смарт-коворкинга">
+        <PMActivityProps>
+          <Name>Обеспечить бронирование
+и обслуживание клиентов
+смарт-коворкинга</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor />
+          <PMNote />
+          <PMSource />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMTitleColorReference />
+          <PMTextColorReference />
+          <PMBackgroundColorReference />
+          <PMBoxType>1</PMBoxType>
+          <PMFrequency>1</PMFrequency>
+          <PMDuration>0</PMDuration>
+          <PMOverrideCostsFlag>0</PMOverrideCostsFlag>
+          <PMParentActivityRef>0</PMParentActivityRef>
+        </PMActivityProps>
+      </PMActivity>
+    </PMActivity_Groups>
+    <PMDiagram_Groups>
+      <PMDiagram id="{AA7D15E3-9D86-4A89-BF2F-CCC4314EBE68}+00000000" Name="Обеспечить бронирование&#10;и обслуживание клиентов&#10;смарт-коворкинга">
+        <PMDiagramProps>
+          <Name>Обеспечить бронирование
+и обслуживание клиентов
+смарт-коворкинга</Name>
+          <PMDecompositionOfRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMDecompositionOfRef>
+          <PMUsedAtString />
+          <PMShowIDEF0KitFlag>0</PMShowIDEF0KitFlag>
+          <PMShowIDEF0TitleFlag>0</PMShowIDEF0TitleFlag>
+          <PMCreatedDate member_name="y">2026</PMCreatedDate>
+          <PMCreatedDate member_name="m">11</PMCreatedDate>
+          <PMCreatedDate member_name="d">12</PMCreatedDate>
+          <PMUserLastRevisionDate member_name="y">0</PMUserLastRevisionDate>
+          <PMUserLastRevisionDate member_name="m">0</PMUserLastRevisionDate>
+          <PMUserLastRevisionDate member_name="d">0</PMUserLastRevisionDate>
+          <PMSystemLastRevisionDate member_name="y">2026</PMSystemLastRevisionDate>
+          <PMSystemLastRevisionDate member_name="m">11</PMSystemLastRevisionDate>
+          <PMSystemLastRevisionDate member_name="d">12</PMSystemLastRevisionDate>
+          <PMTitleFontRef>{E79CE455-1631-48D5-ABA6-9249667DACFE}+00000000</PMTitleFontRef>
+          <PMPageNumberString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMDiagramNumber>0</PMDiagramNumber>
+          <PMCNumber />
+          <PMDecompositionNumber>1</PMDecompositionNumber>
+          <PMTextString />
+          <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+          <PMDimension member_name="x">1109</PMDimension>
+          <PMDimension member_name="y">767</PMDimension>
+          <PMOriginOffset member_name="x">0</PMOriginOffset>
+          <PMOriginOffset member_name="y">88</PMOriginOffset>
+          <PMActiveAreaDimension member_name="x">1109</PMActiveAreaDimension>
+          <PMActiveAreaDimension member_name="y">615</PMActiveAreaDimension>
+          <PMArcRadius>6</PMArcRadius>
+          <PMTextBlockFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextBlockFontRef>
+          <PMBorderSystemDefaultFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMBorderSystemDefaultFontRef>
+          <PMBorderUserFontRef>{E79CE455-1631-48D5-ABA6-9249667DACFE}+00000000</PMBorderUserFontRef>
+          <PMRepresentedActivityRef>{6222AC46-48DF-44CB-86FD-88F55B92001B}+00000000</PMRepresentedActivityRef>
+          <PMParentDiagramRef>{AA7D15E3-9D86-4A89-BF2F-CCC4314EBE68}+00000000</PMParentDiagramRef>
+          <PMDefaultActivityFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMDefaultActivityFontRef>
+          <PMDefaultArrowFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMDefaultArrowFontRef>
+          <PMCurrentDiagram>16</PMCurrentDiagram>
+          <PMMethodologyCode>0</PMMethodologyCode>
+          <PMDrawStyle>12</PMDrawStyle>
+          <PMHdrFtrType0>2</PMHdrFtrType0>
+          <PMHdrFtrType1>0</PMHdrFtrType1>
+          <PMHdrFtrType2>1</PMHdrFtrType2>
+          <PMHdrFtrType3>3</PMHdrFtrType3>
+          <PMHdrFtrType4>0</PMHdrFtrType4>
+          <PMHdrFtrType5>8</PMHdrFtrType5>
+          <PMTxtHgtToBmpHgt>2</PMTxtHgtToBmpHgt>
+          <PMBitmapJustification>1</PMBitmapJustification>
+          <PMSwimLaneRoleType>0</PMSwimLaneRoleType>
+          <PMSwimLaneUDPRef />
+          <PMSwimLaneRoleRef />
+          <PMVersion>0</PMVersion>
+          <PMDisplayOffset member_name="x">0</PMDisplayOffset>
+          <PMDisplayOffset member_name="y">-96</PMDisplayOffset>
+          <PMZoomScale>90</PMZoomScale>
+          <PMFEOFlag>0</PMFEOFlag>
+          <PMScenerio />
+          <PMTopRef>{80AF3E06-E8B4-4F93-9943-E65DC929305B}+00000000</PMTopRef>
+          <PMBottomRef>{88A72ABD-60FF-4981-9CB2-BB60EF8478EB}+00000000</PMBottomRef>
+          <PMLeftRef>{7E362F79-BE9D-4F37-BD98-EBD95C9BA432}+00000000</PMLeftRef>
+          <PMRightRef>{5E52F57B-242F-4442-8649-1FB2474EFCF3}+00000000</PMRightRef>
+        </PMDiagramProps>
+        <PMBorder_Groups>
+          <PMBorder id="{7E362F79-BE9D-4F37-BD98-EBD95C9BA432}+00000000" Name="" />
+          <PMBorder id="{80AF3E06-E8B4-4F93-9943-E65DC929305B}+00000000" Name="" />
+          <PMBorder id="{5E52F57B-242F-4442-8649-1FB2474EFCF3}+00000000" Name="" />
+          <PMBorder id="{88A72ABD-60FF-4981-9CB2-BB60EF8478EB}+00000000" Name="" />
+        </PMBorder_Groups>
+        <PMBox_Groups>
+          <PMBox id="{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000" Name="">
+            <PMBoxProps>
+              <PMBoxCoordinates member_name="left">400</PMBoxCoordinates>
+              <PMBoxCoordinates member_name="top">210</PMBoxCoordinates>
+              <PMBoxCoordinates member_name="right">720</PMBoxCoordinates>
+              <PMBoxCoordinates member_name="bottom">390</PMBoxCoordinates>
+              <PMActivityRef>{6222AC46-48DF-44CB-86FD-88F55B92001B}+00000000</PMActivityRef>
+              <PMUowIdNumber />
+              <PMPersistentBoxNumber>0</PMPersistentBoxNumber>
+              <PMDrawStyle>0</PMDrawStyle>
+              <PMObjectFontReference>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMObjectFontReference>
+              <PMTextColorReference />
+              <PMTitleColorReference />
+              <PMBackgroundColorReference />
+              <PMBitmapRef>{34868F8E-9A9A-495E-B372-11E901D1E326}+00000000</PMBitmapRef>
+              <PMBitmapJustification>0</PMBitmapJustification>
+              <PMShapeId>0</PMShapeId>
+            </PMBoxProps>
+          </PMBox>
+        </PMBox_Groups>
+        <PMArrowLabel_Groups>
+          <PMArrowLabel id="{200FC11B-E8C9-49AD-B8FE-5A8E54D11AAA}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">20</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">209</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">380</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">240</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">0</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">245</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">0</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">245</PMLabelConnectPoint>
+              <PMArrowRef>{519EC047-0645-49CD-AC87-4B329D749973}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{E0D33F86-F1FF-44B1-B7C4-526D014704CA}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{7E362F79-BE9D-4F37-BD98-EBD95C9BA432}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(0,245)</PMVertices>
+                  <PMVertices index="1">(400,245)</PMVertices>
+                  <PMVertices index="2">(0,1)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{178EE206-BD9F-4CF1-B8E4-447470CFB766}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">20</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">264</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">380</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">295</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">0</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">300</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">0</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">300</PMLabelConnectPoint>
+              <PMArrowRef>{190E50A2-92D5-4B50-A9D1-5CBF94D5616C}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{7DA68A33-8D99-4FB2-94E3-2C0714C759CA}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{7E362F79-BE9D-4F37-BD98-EBD95C9BA432}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(0,300)</PMVertices>
+                  <PMVertices index="1">(400,300)</PMVertices>
+                  <PMVertices index="2">(0,1)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{44048BC2-EE25-4B50-B5D4-8D160745ACA2}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">20</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">319</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">380</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">350</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">0</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">355</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">0</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">355</PMLabelConnectPoint>
+              <PMArrowRef>{B55C7B63-AA97-41B2-9EEB-67FBB3D5B429}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{C5D53917-D233-42A3-B89E-C5AF10DB1FC2}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{7E362F79-BE9D-4F37-BD98-EBD95C9BA432}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(0,355)</PMVertices>
+                  <PMVertices index="1">(400,355)</PMVertices>
+                  <PMVertices index="2">(0,1)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{76C81E6E-28C0-435B-B7C4-8B93C5DB1356}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">745</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">195</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">1090</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">226</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">720</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">230</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">720</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">230</PMLabelConnectPoint>
+              <PMArrowRef>{CA19734B-DF90-4845-AF8C-6AF93E20594F}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{B354B9DF-40FC-41E3-BE8A-E7D3CE3B61B0}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{5E52F57B-242F-4442-8649-1FB2474EFCF3}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(720,230)</PMVertices>
+                  <PMVertices index="1">(1109,230)</PMVertices>
+                  <PMVertices index="2">(0,1)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{57A4CB1E-DE39-49DC-9C36-85F87C8703E6}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">745</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">240</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">1090</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">271</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">720</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">275</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">720</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">275</PMLabelConnectPoint>
+              <PMArrowRef>{8367DA01-10D8-4E12-A663-0414B93E169B}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{B386013A-0C4E-4E0C-927C-9701E71E119D}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{5E52F57B-242F-4442-8649-1FB2474EFCF3}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(720,275)</PMVertices>
+                  <PMVertices index="1">(1109,275)</PMVertices>
+                  <PMVertices index="2">(0,1)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{3B68849A-428B-45E8-9303-D443102FB0BD}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">745</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">285</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">1090</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">316</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">720</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">320</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">720</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">320</PMLabelConnectPoint>
+              <PMArrowRef>{F27CEE86-9BC3-40FA-A9BD-E7B9171691CF}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{9B67C85B-5D3A-42AD-AD82-7D392370D3F4}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{5E52F57B-242F-4442-8649-1FB2474EFCF3}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(720,320)</PMVertices>
+                  <PMVertices index="1">(1109,320)</PMVertices>
+                  <PMVertices index="2">(0,1)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{4C430DB1-F80D-483A-BB71-C656FBFE78A4}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">745</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">330</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">1090</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">361</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">720</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">365</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">720</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">365</PMLabelConnectPoint>
+              <PMArrowRef>{98111DF7-5ECB-46DC-A66A-C4E92EE95CB7}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{333F09A4-0FA6-411E-9A4B-9F188627CBC4}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{5E52F57B-242F-4442-8649-1FB2474EFCF3}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(720,365)</PMVertices>
+                  <PMVertices index="1">(1109,365)</PMVertices>
+                  <PMVertices index="2">(0,1)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{8099AA03-1FBF-4D58-8C23-B7EF1D288585}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">360</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">30</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">520</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">85</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">430</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">0</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">430</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">0</PMLabelConnectPoint>
+              <PMArrowRef>{0290CF4E-EB90-485D-8A15-6FF042011F65}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{5300E3E0-39AE-4FA1-B9FA-3A1D8A548644}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{80AF3E06-E8B4-4F93-9943-E65DC929305B}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(430,0)</PMVertices>
+                  <PMVertices index="1">(430,210)</PMVertices>
+                  <PMVertices index="2">(0,2)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{91F544DB-1310-4C1D-A4E4-FD54FE52F56E}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">445</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">95</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">605</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">150</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">515</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">0</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">515</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">0</PMLabelConnectPoint>
+              <PMArrowRef>{32757FD7-1DF2-448F-9C98-516D0A933E5A}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{ED848D97-A787-4A51-859A-CD419C6598EB}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{80AF3E06-E8B4-4F93-9943-E65DC929305B}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(515,0)</PMVertices>
+                  <PMVertices index="1">(515,210)</PMVertices>
+                  <PMVertices index="2">(0,2)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{F5BC0E03-0BD5-40B2-871E-4EF309B20D59}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">530</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">30</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">690</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">85</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">600</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">0</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">600</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">0</PMLabelConnectPoint>
+              <PMArrowRef>{3E07454C-8C6F-4903-B059-ACDB82E646F3}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{A664C648-45DB-4D44-94C6-052E1EDF6A04}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{80AF3E06-E8B4-4F93-9943-E65DC929305B}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(600,0)</PMVertices>
+                  <PMVertices index="1">(600,210)</PMVertices>
+                  <PMVertices index="2">(0,2)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{46EAB752-5E58-460A-BF17-1D7268681294}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">615</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">95</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">775</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">150</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">685</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">0</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">685</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">0</PMLabelConnectPoint>
+              <PMArrowRef>{3925B8E0-2F98-416C-BC39-98026CCFAD54}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{3FF2D3BA-9711-4B53-95A3-40D4E2823EDF}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{80AF3E06-E8B4-4F93-9943-E65DC929305B}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(685,0)</PMVertices>
+                  <PMVertices index="1">(685,210)</PMVertices>
+                  <PMVertices index="2">(0,2)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{CC94D943-282C-4934-BDA1-B18049683709}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">345</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">440</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">545</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">495</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">440</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">615</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">440</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">615</PMLabelConnectPoint>
+              <PMArrowRef>{A797F42E-D405-448D-B9E1-70CAF5D1DFCE}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{DE245C0B-41F8-4118-B7FA-260A06D00EAE}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{88A72ABD-60FF-4981-9CB2-BB60EF8478EB}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(440,615)</PMVertices>
+                  <PMVertices index="1">(440,390)</PMVertices>
+                  <PMVertices index="2">(0,2)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{7CEAD7D1-07E5-4874-9605-1290ABD68D20}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">455</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">515</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">655</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">570</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">550</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">615</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">550</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">615</PMLabelConnectPoint>
+              <PMArrowRef>{86C440E2-4F73-4245-AAB7-6F5B913EFE24}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{2FFF75EA-DCE2-4560-BD93-941C66EAD20F}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{88A72ABD-60FF-4981-9CB2-BB60EF8478EB}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(550,615)</PMVertices>
+                  <PMVertices index="1">(550,390)</PMVertices>
+                  <PMVertices index="2">(0,2)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+          <PMArrowLabel id="{192F5CEC-CB9D-40FE-89C7-0CC75FEF949D}+00000000" Name="">
+            <PMArrowLabelProps>
+              <PMTextBoundingBox member_name="left">565</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="top">440</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="right">765</PMTextBoundingBox>
+              <PMTextBoundingBox member_name="bottom">495</PMTextBoundingBox>
+              <PMTextFontRef>{7E12F216-D818-4C5C-9993-30D7394B80FB}+00000000</PMTextFontRef>
+              <PMSegmentConnectPoint member_name="x">660</PMSegmentConnectPoint>
+              <PMSegmentConnectPoint member_name="y">615</PMSegmentConnectPoint>
+              <PMLabelConnectPoint member_name="x">660</PMLabelConnectPoint>
+              <PMLabelConnectPoint member_name="y">615</PMLabelConnectPoint>
+              <PMArrowRef>{39F7ED05-61B4-46E9-95A1-B058BF3FE23F}+00000000</PMArrowRef>
+              <PMDrawSquiggleFlag>0</PMDrawSquiggleFlag>
+              <PMArrowColorReference />
+              <PMArrowNameColorReference />
+              <PMIsASwimLaneFlag />
+              <PMSwimLaneBKColorRef />
+              <PMSwimLaneRoleRef />
+              <PMSwimLaneStyle />
+            </PMArrowLabelProps>
+            <PMArrowSegment_Groups>
+              <PMArrowSegment id="{F1C07517-A078-4758-934A-EF456F1BA9CA}+00000000" Name="">
+                <PMArrowSegmentProps>
+                  <PMLabeledSegment>0</PMLabeledSegment>
+                  <PMSourceTunnelStyleFlag>0</PMSourceTunnelStyleFlag>
+                  <PMSinkTunnelStyleFlag>0</PMSinkTunnelStyleFlag>
+                  <PMSourceConnectionRef>{88A72ABD-60FF-4981-9CB2-BB60EF8478EB}+00000000</PMSourceConnectionRef>
+                  <PMSinkConnectionRef>{E90FF3E9-E1EA-4B8F-B30F-A8B7B886BF77}+00000000</PMSinkConnectionRef>
+                  <PMArrowDrawingStyleFlag>0</PMArrowDrawingStyleFlag>
+                  <PMLineWidth>1</PMLineWidth>
+                  <PMVertices index="0">(660,615)</PMVertices>
+                  <PMVertices index="1">(660,390)</PMVertices>
+                  <PMVertices index="2">(0,2)</PMVertices>
+                </PMArrowSegmentProps>
+              </PMArrowSegment>
+            </PMArrowSegment_Groups>
+          </PMArrowLabel>
+        </PMArrowLabel_Groups>
+      </PMDiagram>
+    </PMDiagram_Groups>
+    <PMArrow_Groups>
+      <PMArrow id="{519EC047-0645-49CD-AC87-4B329D749973}+00000000" Name="I1 Обращения клиента">
+        <PMArrowProps>
+          <Name>I1 Обращения клиента</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{190E50A2-92D5-4B50-A9D1-5CBF94D5616C}+00000000" Name="I2 Обращения администратора">
+        <PMArrowProps>
+          <Name>I2 Обращения администратора</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{B55C7B63-AA97-41B2-9EEB-67FBB3D5B429}+00000000" Name="I3 Ответы платёжного сервиса">
+        <PMArrowProps>
+          <Name>I3 Ответы платёжного сервиса</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{CA19734B-DF90-4845-AF8C-6AF93E20594F}+00000000" Name="O1 Ответы клиенту">
+        <PMArrowProps>
+          <Name>O1 Ответы клиенту</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{8367DA01-10D8-4E12-A663-0414B93E169B}+00000000" Name="O2 Ответы администратору">
+        <PMArrowProps>
+          <Name>O2 Ответы администратору</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{F27CEE86-9BC3-40FA-A9BD-E7B9171691CF}+00000000" Name="O3 Запросы платёжному сервису">
+        <PMArrowProps>
+          <Name>O3 Запросы платёжному сервису</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{98111DF7-5ECB-46DC-A66A-C4E92EE95CB7}+00000000" Name="O4 Согласованные записи и аудит">
+        <PMArrowProps>
+          <Name>O4 Согласованные записи и аудит</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{0290CF4E-EB90-485D-8A15-6FF042011F65}+00000000" Name="C1 Правила бронирования">
+        <PMArrowProps>
+          <Name>C1 Правила бронирования</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{32757FD7-1DF2-448F-9C98-516D0A933E5A}+00000000" Name="C2 Настройки и версии тарифов">
+        <PMArrowProps>
+          <Name>C2 Настройки и версии тарифов</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{3E07454C-8C6F-4903-B059-ACDB82E646F3}+00000000" Name="C3 Политика безопасности и качества">
+        <PMArrowProps>
+          <Name>C3 Политика безопасности и качества</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{3925B8E0-2F98-416C-BC39-98026CCFAD54}+00000000" Name="C4 Серверное время">
+        <PMArrowProps>
+          <Name>C4 Серверное время</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{A797F42E-D405-448D-B9E1-70CAF5D1DFCE}+00000000" Name="M1 Клиент и администратор">
+        <PMArrowProps>
+          <Name>M1 Клиент и администратор</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{86C440E2-4F73-4245-AAB7-6F5B913EFE24}+00000000" Name="M2 Веб-интерфейсы и сервер">
+        <PMArrowProps>
+          <Name>M2 Веб-интерфейсы и сервер</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+      <PMArrow id="{39F7ED05-61B4-46E9-95A1-B058BF3FE23F}+00000000" Name="M3 Хранилище и средства ввода">
+        <PMArrowProps>
+          <Name>M3 Хранилище и средства ввода</Name>
+          <PMDefinitionString />
+          <PMStatusString>WORKING</PMStatusString>
+          <PMAuthor>Д. О. Кочнев</PMAuthor>
+          <PMNote />
+          <PMDescriptionString />
+          <PMFacts />
+          <PMConstraintsString />
+          <PMObjectsString />
+          <PMNameColorReference />
+          <PMTextColorReference />
+          <PMMergeChangeFlag>0</PMMergeChangeFlag>
+        </PMArrowProps>
+      </PMArrow>
+    </PMArrow_Groups>
+  </PMModel>
+</ProcessModeler>

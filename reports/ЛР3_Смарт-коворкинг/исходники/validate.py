@@ -2,9 +2,10 @@
 from pathlib import Path
 from zipfile import ZipFile
 import xml.etree.ElementTree as X
-import re,json,subprocess
+import re,json,subprocess,shutil,sys,os
 from model import ENTITIES,RELATIONS,STORES,SCENARIOS
 B=Path(__file__).resolve().parent;P=B.parent/'ЛР3_Смарт-коворкинг_Кочнев_4431.docx';N={'w':'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
+P=Path(os.environ.get('LR3_REPORT_PATH',str(P)))
 entity_names={row[0] for row in ENTITIES};covered=[name for store in STORES for name in store[2]]
 assert len(covered)==len(set(covered))==21 and set(covered)==entity_names
 for parent,child,fk,kind,card,pc in RELATIONS:
@@ -26,7 +27,12 @@ for row in root.findall('.//w:tr',N):
 assert len(rows)==len(set(rows))==94 and set(rows)=={f'ФТ-{n:02}' for n in range(1,95)}
 manifest=json.loads((B/'manifest.json').read_text());count=len(manifest)
 assert len(root.findall('.//w:drawing',N))==count
-ps=subprocess.run(['pdftotext','-layout',str(P.with_suffix('.pdf')),'-'],capture_output=True,text=True,check=True).stdout
+if shutil.which('pdftotext'):
+ ps=subprocess.run(['pdftotext','-layout',str(P.with_suffix('.pdf')),'-'],capture_output=True,text=True,check=True).stdout
+else:
+ sys.path.insert(0,str(B.parent/'инструменты'/'python'))
+ from pypdf import PdfReader
+ ps=''.join((page.extract_text() or '')+'\f' for page in PdfReader(P.with_suffix('.pdf')).pages)
 pages=ps.split('\f')[:-1]
 assert pages and not any(len(p.strip())<12 for p in pages)
 figures=re.findall(r'Рисунок\s+(\d+)\s+—',ps)

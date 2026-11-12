@@ -1,5 +1,5 @@
 {
-  "pages": 75,
+  "pages": 76,
   "functional_requirements": 94,
   "diagrams": 22,
   "stores": 8,
@@ -7,5 +7,9 @@
   "relationships": 26,
   "scenarios": 8,
   "dfd_directed_edges": 67,
-  "checks": "passed"
+  "checks": "passed",
+  "dfd_store_symbols": 35,
+  "dfd_pages_with_stores": 6,
+  "dfd_pdf_images_match_sources": 7,
+  "native_full_transfer_complete": false
 }

@@ -19,43 +19,8 @@ def context():
  for i,(c,t) in enumerate([('M1','Клиент и администратор'),('M2','Веб-интерфейсы и сервер'),('M3','Хранилище, сканер QR')]):
   x=960+i*240;d.line([(x,1060),(x,840)]);d.label(x,1110+i%2*85,c+'\n'+t,29,width=300)
  d.finish()
- d=Diagram('02_IDEF0_A0','IDEF0 — декомпозиция A0','F1: доступ; F2: предложение; F3/F4: финансовый обмен; F5/F6: QR и допуск; F7: контроль; F8: события. ICOM — см. словарь.')
- pos={'A1':(150,360),'A2':(900,360),'A3':(1650,360),'A4':(1650,920),'A5':(900,920),'A6':(150,920)}
- for a,title,*_ in FUNCTIONS:
-  x,y=pos[a];d.node(a,x,y,560,190,title+'\n'+a,size=32)
-  codes='C1,C3'+(',C2' if a in ['A1','A2','A3','A6'] else '')+(',C4' if a!='A2' else '')
-  d.line([(x+80,y-95),(x+80,y)],codes)
-  d.line([(x+80,y+290),(x+80,y+190)],'M1–M3')
-  inp='I1, I2' if a in ['A1','A2','A4'] else 'I1' if a=='A3' else 'I2'
-  d.line([(x-110,y+35),(x,y+35)],inp)
-  out='O2,O4' if a=='A6' else 'O1,O4' if a=='A3' else 'O1,O2,O3,O4' if a=='A4' else 'O1,O2,O4'
-  d.line([(x+560,y+160),(x+665,y+160)],out)
- # Access context: the top activity feeds a common branch trunk in the middle.
- d.line([(710,435),(765,435),(765,700),(2320,700)],arrow=False)
- d.line([(420,700),(765,700)],arrow=False)
- d.label(1150,680,'F1 — Проверенный контекст доступа',26)
- for a,xx in [('A2',1110),('A3',1860)]:
-  x,y=pos[a];lane=x-85;d.line([(lane,700),(lane,220),(xx,220),(xx,y)])
- for a,xx in [('A6',420),('A5',1170),('A4',1920)]:d.line([(xx,700),(xx,920)])
- # Control from A6, independently of data context.
- d.line([(710,995),(795,995),(795,625),(2340,625)],arrow=False)
- d.line([(65,625),(795,625)],arrow=False)
- d.label(1590,605,'F7 — Контрольное воздействие',26)
- for a,xx,lane in [('A1',580,65),('A2',1330,825),('A3',2080,1580)]:
-  d.line([(lane,625),(lane,175),(xx,175),(xx,360)])
- for xx in [1370,2120]:d.line([(xx,625),(xx,920)])
- # Explicit source-to-target business exchanges, each with its own lane.
- d.line([(1460,435),(1650,435)],'F2')
- d.line([(2210,450),(2290,450),(2290,835),(1720,835),(1720,920)],'F3')
- d.line([(2210,1010),(2310,1010),(2310,575),(1590,575),(1590,485),(1650,485)],'F4')
- d.line([(2210,480),(2270,480),(2270,790),(980,790),(980,920)],'F5')
- d.line([(1460,990),(1530,990),(1530,510),(1650,510)],'F6')
- # Audit/control records join below the blocks; every producer is represented.
- for a,xx in [('A1',740),('A2',1500),('A3',2350),('A4',2350),('A5',1500)]:
-  x,y=pos[a];d.line([(x+560,y+110),(xx,y+110),(xx,1250)],arrow=False)
- d.line([(2350,1250),(95,1250),(95,1030),(150,1030)],'F8 — События аудита и контроля')
- d.line([(1540,990),(1650,990)],'I3')
- d.finish()
+ from idef0_layout import draw_decomposition
+ draw_decomposition(Diagram, FUNCTIONS)
 
 # All DFD edges are explicit directed data flows. Repeated P/D symbols denote
 # the same objects on coordinated sheets, not extra processes/stores.
@@ -99,7 +64,7 @@ def dfd():
    for n,(ref,code,content) in enumerate(items):
     yy=190+gap*(n+.5);x=60 if side=='L' else 1890
     rid=side+str(n);kind='store' if ref.startswith('D') else 'process' if ref.startswith('P') else 'box'
-    d.node(rid,x,yy-38,420,76,ref+' '+names[ref],kind,'#f2f2f2' if ref.startswith('P') else 'white',size=28)
+    d.node(rid,x,yy-38,420,76,ref+' '+names[ref],kind,'white',size=28)
     pts=[(480,yy),(990,yy)] if side=='L' else [(1420,yy),(1890,yy)]
     cell=d.line(pts)
     cell.set('source',rid if side=='L' else p);cell.set('target',p if side=='L' else rid)

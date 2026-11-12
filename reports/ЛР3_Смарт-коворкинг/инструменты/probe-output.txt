@@ -1,0 +1,131 @@
+﻿PU: Smart Coworking
+True
+
+
+   TypeName: System.__ComObject#{490b97f7-fcb8-11d2-90a1-0010a4f2ad9e}
+
+Name              MemberType Definition                                                              
+----              ---------- ----------                                                              
+CollectProperties Method     ISCModelPropertyCollection CollectProperties (Variant, Variant, Variant)
+IsInstanceOf      Method     bool IsInstanceOf (Variant)                                             
+IsValid           Method     bool IsValid ()                                                         
+ClassId           Property   SC_CLSID ClassId () {get}                                               
+ClassName         Property   string ClassName () {get}                                               
+Context           Property   ISCModelObject Context () {get}                                         
+Flags             Property   SC_ModelObjectFlags Flags () {get}                                      
+Name              Property   string Name () {get}                                                    
+ObjectId          Property   SC_OBJID ObjectId () {get}                                              
+Properties        Property   ISCModelPropertyCollection Properties () {get}                          
+OBJECT PMPalette {2907E8D4-B411-4373-AEAB-E734E2F3222F}+00000000
+OBJECT PMColor {102CD4C1-3C1C-4958-9AB4-2EEC66C432FE}+00000000
+OBJECT PMColor {EF755247-0DB9-4BBB-B6A1-1CB13B3B8DDA}+00000000
+OBJECT PMColor {CDC1C704-C178-416D-BBAB-B0E217BB7572}+00000000
+OBJECT PMColor {EDA743EE-8E01-4400-B1E2-2052453ECA28}+00000000
+OBJECT PMColor {B35DD6BF-9E7D-41B1-81DF-B05F309E9E49}+00000000
+OBJECT PMColor {AD8C4990-E0B6-418D-BA99-BF6A5F0A95C6}+00000000
+OBJECT PMColor {692FF648-75B8-4890-BCCB-8C90606A958D}+00000000
+OBJECT PMColor {770BBDE8-3740-4181-8FF7-6C94382DAB22}+00000000
+OBJECT PMColor {BA8F4F16-8664-4764-80F1-5300DD9D1BDD}+00000000
+OBJECT PMColor {93FE55AD-9B2F-4CDA-A2AE-43D796086A40}+00000000
+OBJECT PMColor {8BC64C5C-F22A-4801-BBC9-DF1788761B26}+00000000
+OBJECT PMColor {ED2A9750-E284-4D57-8DDF-04C95429769B}+00000000
+OBJECT PMColor {F4D53501-A9F5-415E-B703-58A371056834}+00000000
+OBJECT PMColor {1EA19ED9-F4FB-4453-A386-7460AF5FFCB1}+00000000
+OBJECT PMColor {3AF764D1-0954-4A84-88B6-7505AC083D57}+00000000
+OBJECT PMColor {959103FE-D19F-44FC-859F-3907F46D64F0}+00000000
+OBJECT PMFont {5B019C17-4038-47A5-BA9F-58FF5C5AD95A}+00000000
+OBJECT PMFont {08257779-B5EC-4F83-81F6-DFD66A93AB45}+00000000
+OBJECT PMFont {D502FD63-F368-4046-8A6A-A0C98D8215E5}+00000000
+OBJECT PMFont {B99181DC-08B8-4FE2-B919-3A6999B2B06B}+00000000
+OBJECT PMBitmap {CC99188A-3934-4DD3-BFE3-980997636EF7}+00000000
+OBJECT PMActivity {2EF655D9-FF60-424F-9CE7-72A88F00A969}+00000000
+  Name = 
+  PMDefinitionString = 
+  PMStatusString = WORKING
+  PMAuthor = 
+  PMNote = 
+  PMSource = 
+  PMDescriptionString = 
+  PMFacts = 
+  PMConstraintsString = 
+  PMObjectsString = 
+  PMTitleColorReference = 0
+  PMTextColorReference = 0
+  PMBackgroundColorReference = 0
+  PMRRGAssocRefList = 
+  PMBoxType = 1
+  PMFrequency = 1
+  PMDuration = 0
+  PMOverrideCostsFlag = 0
+  PMParentActivityRef = 0
+OBJECT PMDiagram {73DFB543-5FF8-4F3B-AB91-163CD020E330}+00000000
+  Name = 0
+  PMDecompositionOfRef = {0ECA45CD-03D2-4BC3-8BBA-D8024B1B5B4C}+00000000
+  PMUsedAtString = 
+  PMShowIDEF0KitFlag = 1
+  PMShowIDEF0TitleFlag = 1
+  PMCreatedDate = 
+  PMUserLastRevisionDate = 
+  PMSystemLastRevisionDate = 
+  PMTitleFontRef = {08257779-B5EC-4F83-81F6-DFD66A93AB45}+00000000
+  PMPageNumberString = 
+  PMStatusString = WORKING
+  PMDiagramNumber = 0
+  PMCNumber = 
+  PMDecompositionNumber = 1
+  PMTextString = 
+  PMTextFontRef = {5B019C17-4038-47A5-BA9F-58FF5C5AD95A}+00000000
+  PMDimension = 1109,767
+  PMOriginOffset = 0,88
+  PMActiveAreaDimension = 1109,615
+  PMArcRadius = 6
+  PMTextBlockFontRef = {5B019C17-4038-47A5-BA9F-58FF5C5AD95A}+00000000
+  PMBorderSystemDefaultFontRef = {5B019C17-4038-47A5-BA9F-58FF5C5AD95A}+00000000
+  PMBorderUserFontRef = {08257779-B5EC-4F83-81F6-DFD66A93AB45}+00000000
+  PMRepresentedActivityRef = {2EF655D9-FF60-424F-9CE7-72A88F00A969}+00000000
+  PMParentDiagramRef = {73DFB543-5FF8-4F3B-AB91-163CD020E330}+00000000
+  PMDefaultActivityFontRef = {5B019C17-4038-47A5-BA9F-58FF5C5AD95A}+00000000
+  PMDefaultArrowFontRef = {5B019C17-4038-47A5-BA9F-58FF5C5AD95A}+00000000
+  PMCurrentDiagram = 0
+  PMMethodologyCode = 0
+  PMDrawStyle = 12
+  PMHdrFtrType0 = 2
+  PMHdrFtrType1 = 0
+  PMHdrFtrType2 = 1
+  PMHdrFtrType3 = 3
+  PMHdrFtrType4 = 0
+  PMHdrFtrType5 = 8
+  PMTxtHgtToBmpHgt = 2
+  PMBitmapJustification = 1
+  PMSwimLaneRoleType = 0
+  PMSwimLaneUDPRef = 0
+  PMSwimLaneRoleRef = 0
+  PMVersion = 0
+  PMDisplayOffset = 0,0
+  PMZoomScale = 125
+  PMFEOFlag = 0
+  PMScenerio = 
+  PMTopRef = {CA626813-6193-47E5-99C6-5B979FC270BB}+00000000
+  PMBottomRef = {1C0191D4-5E7A-4D39-9D1A-2B95D8752C6B}+00000000
+  PMLeftRef = {991FB4BC-E01A-4256-8557-571A0FA4FC15}+00000000
+  PMRightRef = {461313D9-C5E7-404B-A633-B24867B1FC42}+00000000
+OBJECT PMBorder {991FB4BC-E01A-4256-8557-571A0FA4FC15}+00000000
+OBJECT PMBorder {CA626813-6193-47E5-99C6-5B979FC270BB}+00000000
+OBJECT PMBorder {461313D9-C5E7-404B-A633-B24867B1FC42}+00000000
+OBJECT PMBorder {1C0191D4-5E7A-4D39-9D1A-2B95D8752C6B}+00000000
+OBJECT PMBox {0ECA45CD-03D2-4BC3-8BBA-D8024B1B5B4C}+00000000
+  PMBoxCoordinates = 360,190,720,380
+  PMActivityRef = {2EF655D9-FF60-424F-9CE7-72A88F00A969}+00000000
+  PMUowIdNumber = 0
+  PMPersistentBoxNumber = 0
+  PMDrawStyle = 0
+  PMObjectFontReference = {5B019C17-4038-47A5-BA9F-58FF5C5AD95A}+00000000
+  PMTextColorReference = 0
+  PMTitleColorReference = 0
+  PMBackgroundColorReference = 0
+  PMBitmapRef = {CC99188A-3934-4DD3-BFE3-980997636EF7}+00000000
+  PMBitmapJustification = 0
+  PMShapeId = 0
+True
+
+

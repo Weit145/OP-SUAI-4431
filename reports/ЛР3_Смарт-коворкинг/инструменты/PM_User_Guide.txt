@@ -1,0 +1,2024 @@
+ 
+User Guide 
+r7.2 
+AllFusion® Process Modeler 
+ 
+ 
+ 
+This documentation and any related computer software help programs (hereinafter referred to as the 
+“Documentation”) is for the end user’s informational purposes only and is subject to change or withdrawal by CA at 
+any time. 
+This Documentation may not be copied, transferred, reproduced, disclosed, modified or duplicated, in whole or in 
+part, without the prior written consent of CA. This Documentation is confidential and proprietary information of CA 
+and protected by the copyright laws of the United States and international treaties.  
+Notwithstanding the foregoing, licensed users may print a reasonable number of copies of the Documentation for 
+their own internal use, and may make one copy of the related software as reasonably required for back-up and 
+disaster recovery purposes, provided that all CA copyright notices and legends are affixed to each reproduced copy. 
+Only authorized employees, consultants, or agents of the user who are bound by the provisions of the license for 
+the product are permitted to have access to such copies. 
+The right to print copies of the Documentation and to make a copy of the related software is limited to the period 
+during which the applicable license for the product remains in full force and effect. Should the license terminate for 
+any reason, it shall be the user’s responsibility to certify in writing to CA that all copies and partial copies of the 
+Documentation have been returned to CA or destroyed.  
+EXCEPT AS OTHERWISE STATED IN THE APPLICABLE LICENSE AGREEMENT, TO THE EXTENT PERMITTED BY 
+APPLICABLE LAW, CA PROVIDES THIS DOCUMENTATION “AS IS” WITHOUT WARRANTY OF ANY KIND, INCLUDING 
+WITHOUT LIMITATION, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE 
+OR NONINFRINGEMENT. IN NO EVENT WILL CA BE LIABLE TO THE END USER OR ANY THIRD PARTY FOR ANY 
+LOSS OR DAMAGE, DIRECT OR INDIRECT, FROM THE USE OF THIS DOCUMENTATION, INCLUDING WITHOUT 
+LIMITATION, LOST PROFITS, BUSINESS INTERRUPTION, GOODWILL, OR LOST DATA, EVEN IF CA IS EXPRESSLY 
+ADVISED OF SUCH LOSS OR DAMAGE. 
+The use of any product referenced in the Documentation is governed by the end user’s applicable license 
+agreement. 
+The manufacturer of this Documentation is CA.  
+Provided with “Restricted Rights.” Use, duplication or disclosure by the United States Government is subject to the 
+restrictions set forth in FAR Sections 12.212, 52.227-14, and 52.227-19(c)(1) - (2) and DFARS Section 252.227-
+7014(b)(3), as applicable, or their successors.  
+All trademarks, trade names, service marks, and logos referenced herein belong to their respective companies. 
+Copyright © 2006 CA. All rights reserved. 
+ 
+ 
+CA Product References 
+This document references the following CA products: 
+ AllFusion® Process Modeler (AllFusion PM)  
+ AllFusion® ERwin® Data Modeler (AllFusion ERwin DM) 
+ 
+Contact Technical Support 
+For online technical assistance and a complete list of locations, primary service 
+hours, and telephone numbers, contact Technical Support at 
+http://ca.com/support. 
+ 
+
+ 
+Contents  v 
+ 
+Contents 
+ 
+Chapter 1: Introduction to AllFusion Process Modeler 7 
+Overview of Process Modeling .................................................................. 7 
+Supported Process Modeling Methods ........................................................... 8 
+Supported Features ............................................................................ 9 
+Supported Arrow Styles ....................................................................... 11 
+The Workplace ............................................................................... 12 
+Model Explorer Overview .................................................................. 13 
+Chapter 2: Installation 15 
+Before You Install............................................................................. 15 
+Install AllFusion PM ........................................................................... 15 
+Chapter 3: Basic Concepts and Features 17 
+Structured Analysis and Design ................................................................ 18 
+Business Process Modeling Method (IDEF0)..................................................... 18 
+Graphical Notations Used in Business Process Modeling...................................... 19 
+Example: Business Process Model .......................................................... 21 
+Data Flow Diagramming (DFD) ................................................................ 22 
+Objects Used in Data Flow Diagramming ................................................... 22 
+Example: Data Flow Diagram .............................................................. 24 
+Process Flow Modeling Method (IDEF3)......................................................... 24 
+Graphical Notations and Terms Used in Process Flow Modeling ............................... 25 
+Example: Process Flow Model .............................................................. 28 
+Create a Model ............................................................................... 29 
+Activity-Based Cost and Performance Metrics (ABC)............................................. 30 
+Overview of Customizing Models............................................................... 31 
+Create a User-Defined Property Using the UDP Dictionary Editor ............................. 31 
+Create a User-Defined Property Using the UDP Dictionary ................................... 32 
+Assign a UDP Value to an Activity .......................................................... 33 
+Assign a UDP Value to an Arrow ........................................................... 34 
+Integration of Process Models with Data Models................................................. 34 
+Overview of Data Modeling ................................................................ 35 
+Data Usage............................................................................... 40 
+ 
+ 
+vi  User Guide 
+ 
+Additional Diagrams .......................................................................... 44 
+For Exposition Only (FEO) Diagrams ....................................................... 44 
+Node Tree Diagrams ...................................................................... 47 
+Organization Charts ....................................................................... 49 
+Swim Lane Diagrams...................................................................... 50 
+Glossary 51 
+Index 61 
+  
+ 
+Introduction to AllFusion Process Modeler  7  
+ 
+Chapter 1: Introduction to AllFusion 
+Process Modeler 
+ 
+This section contains the following topics: 
+Overview of Process Modeling (see page 7) 
+Supported Process Modeling Methods (see page 8) 
+Supported Features (see page 9) 
+Supported Arrow Styles (see page 11) 
+The Workplace (see page 12) 
+ 
+Overview of Process Modeling 
+AllFusion Process Modeler (AllFusion PM) is a comprehensive business 
+modeling environment that helps you visualize, analyze, and improve business 
+processes. You can use AllFusion PM to reduce the total costs and risks 
+associated with adapting to operational changes. Using this product you can: 
+ Assess current business operations 
+ Formulate and evaluate alternative responses to market pressures 
+ Communicate operation changes quickly and intuitively 
+Process modeling provides an integrated picture of how your organization gets 
+things done, from small departments to the entire organization. 
+Whether you are in a small or large organization, it is the process by which 
+you deliver goods or services that defines quality and ultimately the success of 
+the business. Business process improvement includes mapping and modeling 
+the many interactions in an organization to better understand and improve its 
+operation. You can reengineer an entire organization or a distinct part of the 
+organization. For example, you can align business requirements to the existing 
+information technology. 
+Modeling is one of the most effective techniques for understanding and 
+communicating business rules and processes. In a process model, extraneous 
+detail is eliminated and important information is highlighted, thereby reducing 
+the apparent complexity of the system under study. Graphics (namely boxes 
+and arrows) are used to provide much of the structure, which is why most 
+people think of process models as pictorial representations. With process 
+modeling you can view a system of interest in depth, so that you can analyze 
+and understand subtle nuances of your organization and perhaps most 
+importantly, communicate them to others. 
+ 
+Supported Process Modeling Methods 
+ 
+8  User Guide 
+ 
+Supported Process Modeling Methods 
+This product supports three modeling methods that you can use to model your 
+business: 
+Business Process Modeling (IDEF0) 
+Analyzes your business, focusing on the normal day-to-day functions and 
+the controls that support these functions. 
+Process Flow Modeling (IDEF3) 
+Describes and documents processes graphically by capturing information 
+about process flow, the relationships between processes, and important 
+objects that are part of the process. This method is also called workflow 
+modeling. Use this method to create workflow diagrams to assist business 
+process reengineering efforts, develop a measure for determining the 
+completeness of deliverables, and collect information about policies and 
+procedures in the company. 
+Data Flow Diagramming (DFD) 
+Focuses on the flow of data between various tasks. This method helps 
+ensure that your organization can maximize data availability while 
+minimizing response times. 
+You can create models using these methods to provide a framework that helps 
+you gain a better understanding of your business processes and determine 
+how these processes interact with the data flowing through the organization.  
+ 
+Supported Features 
+ 
+Introduction to AllFusion Process Modeler  9  
+ 
+Supported Features 
+This product has the following features: 
+Automated design process 
+Provides object highlighting to guide you as you build your model, helping 
+to eliminate common modeling errors and to ensure correct and consistent 
+design results. 
+User-defined properties 
+Enables you to create user-defined properties (UDPs) and apply UDP 
+values to diagram objects such as activities and arrows. For example, you 
+can create a text UDP called EMPLOYEES to list the names of employees 
+who work in departments represented by diagram activities. You can 
+create UDPs that use different datatypes such as text boxes, multi-select 
+lists, and commands that run other Windows applications. 
+Cost and performance metric analysis 
+Enables you to implement activity-based costing (ABC) by assigning 
+currency or time unit values to cost centers in diagram activities in any 
+process model. For example, you can assign dollar cost values to a cost 
+center in all leaf-level activities in a model to automatically calculate the 
+specific cost of each diagram decomposition. In an IDEF0 model, you can 
+view the cost of the context level activity as the calculated cost of the 
+entire model. You can also override the calculated costs for any 
+decomposition activity if you are not satisfied with the calculated results of 
+its decomposition. 
+US Government FIPS standard 
+Incorporates Federal Information Processing Standards (FIPS) for process 
+modeling. These standards are used by the Department of Defense and 
+other US government agencies. 
+Swim Lane Diagrams 
+Enables you to add a Swim Lane diagram to any model that contains an 
+IDEF3 diagram. In a Swim Lane diagram, you can better visualize the 
+process flow because you can see additional process properties as 
+separate lanes in the diagram.  
+Organization Charts 
+Enables you to create hierarchical organization charts based on Roles, Role 
+Groups, and Resources that you define. You can also select various display 
+options to view and print organization charts using Role names, Role 
+Group names, Resource names, bitmaps, shapes, and colors. 
+Supported Features 
+ 
+10  User Guide 
+ 
+Node Tree Diagrams 
+Enables you to add a Node Tree diagram to a model to show all parent-
+child activity relationships in a single easy-to-view diagram. A Node Tree 
+diagram uses a traditional tree hierarchy where the top node (box) 
+corresponds to the context diagram activity, and lower level nodes 
+correspond to child decompositions. You can also create a Node Tree 
+diagram of a model section by using a child decomposition as the top node 
+in the diagram. 
+For Exposition Only (FEO) Diagrams 
+Enables you to add a For Exposition Only (FEO) diagram to an IDEF3 or 
+DFD model. You can use FEO diagrams to illustrate different scenarios, 
+show different viewpoints, or highlight other functional details, without 
+affecting the original model diagram. You can add any number of FEO 
+diagrams to a context diagram or decomposition diagram in an AllFusion 
+PM model. 
+IDEF3 Scenario Diagrams 
+Enables you to create an IDEF3 Scenario diagram of either the IDEF3 
+model context diagram or an IDEF3 decomposition diagram. You can copy 
+diagram objects and arrows from the source diagram to the IDEF3 
+Scenario diagram.  
+Model Explorer 
+Provides an interface that includes tabs for Activities, Objects, and 
+Diagrams. You can drag dictionary objects from the Objects tab onto the 
+diagram. From the Diagrams tab, you can view the entire diagram 
+hierarchy and access other AllFusion PM diagrams including organization 
+chart, Node Tree, Swim Lane, FEO, and IDEF3 Scenario diagrams. 
+API interface 
+Provides an open interface for integration to other software so you can 
+access the internal AllFusion PM operations, permitting modeling 
+operations from another environment. 
+Merge features 
+Enables you to use features merged from a source model in any diagram 
+type (IDEF0, DFD, IDEF3) and lets you merge either entire model 
+dictionaries or portions of model dictionaries used in the diagram subtree 
+of a source model. 
+Report Template Builder (RTB) 
+Enables you to quickly and easily create reports about your model. You 
+can create reusable report templates and export reports in CSV, HTML, 
+PDF, and RTF formats. 
+Supported Arrow Styles 
+ 
+Introduction to AllFusion Process Modeler  11  
+ 
+Graphics extensions 
+Enables you to import bitmap files and apply them to diagram objects and 
+provides various display options. Graphics extensions also let you assign 
+shapes to diagram objects and display UDP markers on activities. 
+Model synchronization 
+Enables you to easily synchronize models when AllFusion PM and AllFusion 
+ERwin DM are installed on the same machine and you have shared entities 
+and attributes. Instead of exporting a file from one application and then 
+reading it in the other, you simply specify the model from which to import 
+or update entities and attributes. 
+ 
+Supported Arrow Styles 
+Using correct arrow styles is imperative to the integrity of every type of 
+diagram you create. When you click Default Arrow Types from the Model 
+menu, you can change the arrow style default for all new arrows that you add 
+to a diagram. You can also change the arrow thickness and style default in the 
+Style tab in the Arrow Properties dialog. 
+Each time you change an arrow style default, the Arrow tool button changes to 
+reflect the new arrow style. 
+You can use the following arrow styles: 
+Precedence 
+Changes the arrow type to a solid line to illustrate precedence. You can 
+draw this arrow from left to right or top to bottom. This arrow is the most 
+commonly used. 
+ 
+Relational 
+Changes the arrow type to a dashed line. Use this arrow to connect a 
+referent to a UOW in IDEF3 modeling. You can draw this arrow in any 
+direction from one object to another. This arrow is used primarily in IDEF3 
+and DFD modeling. 
+ 
+Object Flow 
+Changes the arrow type to a double-headed arrow. You can draw this 
+arrow in any direction between two objects. This arrow is used primarily in 
+IDEF3 and DFD modeling. 
+ 
+The Workplace 
+ 
+12  User Guide 
+ 
+Bi-directional 
+Changes the arrow type to a directional arrow. You can draw this arrow in 
+any direction between two objects. This arrow is mainly used in DFD 
+modeling, however, you can choose to allow bi-directional arrows in IDEF3 
+modeling.  
+ 
+Referent 
+Changes the arrow type to a referent arrow. You can draw this arrow in 
+any direction between two objects. Connects outputs of UOWs to junctions 
+as inputs and connects referents to UOWs. 
+ 
+ 
+ 
+The Workplace 
+The following illustration shows a typical environment in which a model is 
+created: 
+ 
+ 
+The Workplace 
+ 
+Introduction to AllFusion Process Modeler  13  
+ 
+Model Explorer Overview 
+Use the Model Explorer to globally view and access activity, diagram, and 
+dictionary objects in any open model. With one or more models open, you can 
+view all diagrams, activities, and dictionary objects as graphical objects in a 
+collapsible and expandable hierarchy similar to the one shown in the following 
+illustration. For any modeling methodology you use, the Model Explorer gives 
+you a total perspective of the entire model. 
+ 
+You can click the Activities tab or the Diagrams tab in the Model Explorer to 
+view the activity hierarchy or diagram hierarchy of all activities and diagrams 
+in any open model. In the Activities tab, you can open Activity Property 
+Dialogs, cut and paste activities, and create decompositions in a single model 
+or across multiple models. In the Diagrams tab you can view and open 
+Diagram Property Dialogs for all diagram types including Node Tree, FEO, 
+IDEF3 Scenario, Swim Lane, and organization charts. 
+When you click the Objects tab in the Model Explorer, you can view unused 
+dictionary names (diagram object names not used in a diagram) and drag 
+unused dictionary names to a diagram as diagram objects. For example, if you 
+have a RECEIVE ORDER activity name in the dictionary, you can simply drag 
+the RECEIVE ORDER name to the diagram to create the activity complete with 
+all the other dictionary properties. 
+To display and hide the Model Explorer, click Model Explorer from the View 
+menu. The Model Explorer appears in an adjustable and dockable pane to the 
+left of the current model diagram. 
+ 
+
+ 
+Installation  15  
+ 
+Chapter 2: Installation 
+ 
+This section contains the following topics: 
+Before You Install (see page 15) 
+Install AllFusion PM (see page 15) 
+ 
+Before You Install 
+Before you begin the AllFusion PM installation, make sure your system meets 
+the minimum hardware and software requirements documented in the Readme 
+file. 
+ 
+Install AllFusion PM 
+Install AllFusion PM as needed for your environment. 
+To install AllFusion PM 
+1. Insert the installation media into the appropriate drive. 
+If Autorun is enabled, you are prompted to begin the installation. If 
+autorun is disabled, use Windows Explorer to locate the setup.exe file in 
+the contents of the installation media, and double-click it. 
+The installation wizard opens, displaying the Welcome to the InstallShield 
+Wizard for AllFusion Process Modeler r7 dialog. 
+2. Click Next.   
+The License Agreement dialog appears. 
+3. Review the License Agreement and click I agree. 
+The Customer Information dialog appears. 
+4. Provide the user and destination folder information and click Next. 
+The Destination Folder dialog appears. 
+5. Do one of the following: 
+ Click Next to install the program to the default location.  
+ Click Change to browse for and select a different location, then click 
+Next. 
+The Setup Type dialog appears. 
+Install AllFusion PM 
+ 
+16  User Guide 
+ 
+6. Select one of the following options on the Setup Type dialog: 
+Complete 
+Installs all program features. Click Next after you select this option. 
+Custom 
+Installs specific features. Click Next after you select this option to open 
+the Custom Setup dialog and select specific features and locations. 
+After you select the features to install and the locations in which to 
+install them, click Next. 
+The Ready to Install the Program dialog appears. 
+7. Click Install. 
+The Installing AllFusion Process Modeler r7 dialog appears so you can view 
+the status of the installation process. When it completes, the InstallShield 
+Wizard Completed dialog appears. 
+8. (Optional) Select either or both of the following options on the 
+InstallShield Wizard Completed dialog, and click Finish. 
+Launch AllFusion Process Modeler r7 
+Closes the installation wizard and starts AllFusion PM. If you have not 
+already licensed this program, this selection starts the License 
+Verification process first. 
+Show the Readme file 
+Opens the Readme file in your default Web browser. 
+AllFusion PM installation is complete. 
+ 
+ 
+Basic Concepts and Features  17  
+ 
+Chapter 3: Basic Concepts and Features 
+ 
+This section contains the following topics: 
+Structured Analysis and Design (see page 18) 
+Business Process Modeling Method (IDEF0) (see page 18) 
+Data Flow Diagramming (DFD) (see page 22) 
+Process Flow Modeling Method (IDEF3) (see page 24) 
+Create a Model (see page 29) 
+Activity-Based Cost and Performance Metrics (ABC) (see page 30) 
+Overview of Customizing Models (see page 31) 
+Integration of Process Models with Data Models (see page 34) 
+Additional Diagrams (see page 44) 
+ 
+Structured Analysis and Design 
+ 
+18  User Guide 
+ 
+Structured Analysis and Design 
+Structured analysis and design is the name given to a class of somewhat 
+formal methods (processes) used to analyze and design systems. Although it 
+is possible to develop activity models outside of a structured analysis project, 
+it is important to understand the context in which activity models are normally 
+built. In addition to activity models, structured analysis includes information 
+models, which model data, and state-transition diagrams (STD), which model 
+the time-dependent behavior of a system. 
+A basic principle of structured analysis and design is that a thorough analysis 
+of the current system is necessary to design an optimum solution. A significant 
+amount of data is collected and analyzed as part of the process. Traditionally, 
+information is gathered by an analyst formally interviewing domain experts, 
+people who are knowledgeable about the system of interest. Over time, some 
+domain experts have learned to build activity models, and new activity 
+modeling techniques (such as IDEF3) were developed to facilitate the capture 
+of information from domain experts. However, the analyst's central role in a 
+structured analysis and design project remains largely intact. 
+Often, models are first developed to document the current situation (known as 
+AS-IS models). These models are later used to aid in the development of the 
+design models (known as TO-BE models). They are also used as the 
+benchmark against which the TO-BE models are compared, to ensure that the 
+proposed design is really an improvement. 
+In addition to guiding the design of the proposed system, TO-BE models are 
+used for capacity planning, budgeting, and resource acquisition. The models 
+are also used to derive the project implementation plan, which specifies how 
+the system is transformed from the AS-IS situation to the TO-BE situation. 
+The benefits of developing AS-IS models need to be weighed against the cost 
+and time to develop them. Business literature is replete with examples of 
+systems being built that solve the wrong problem, an issue that AS-IS 
+modeling can help clarify. On the other hand, if the problem is generally well 
+understood (as is often the case when building computer systems), then the 
+cost-effectiveness of AS-IS modeling is less apparent. 
+ 
+Business Process Modeling Method (IDEF0) 
+Business process modeling, or IDEF0, models entire systems as a set of 
+interrelated activities or functions so you can analyze the functions of a system 
+independently of the objects performing those functions. IDEF0 utilizes only 
+two graphical symbols: boxes and arrows. 
+Business Process Modeling Method (IDEF0) 
+ 
+Basic Concepts and Features  19  
+ 
+IDEF0 uses activities and arrows to graphically describe and document 
+business processes. To do this, it captures information about the business or 
+process and displays the information and resources that are included in each 
+step. IDEF0 activity modeling is best utilized as an analysis and logical design 
+technique. As such, it is generally performed early in a project, and to provide 
+analysis for the Process Flow Modeling (IDEF3) method for data collection and 
+AS-IS process modeling. 
+Before you start building an IDEF0 model, you should identify its purpose (that 
+is, the set of questions your model is intended to answer), its scope (the 
+appropriate breadth and depth of the model), and its viewpoint (the 
+perspective from which the model will view the system; for example, 
+customer, supplier, or store owner). After you have defined these essential 
+elements, you can lay the groundwork for your model. 
+IDEF0 modeling always starts with a context diagram. When you create a 
+business process model, a context diagram is created with one activity that 
+defines your model. You can then add decomposition diagrams that can 
+contain activities, arrows, and related properties. The context diagram depicts 
+the highest-level activity in a model, and represents the boundary of the 
+process under study with respect to purpose, scope, and viewpoint. You can 
+summarize the scope statement as the activity name that appears in the 
+model's context diagram. 
+ 
+Graphical Notations Used in Business Process Modeling 
+IDEF0 models a system as a set of activities (functions) using only two graphic 
+symbols: boxes and arrows. 
+ Activities are represented by boxes containing a single, active verb plus a 
+common noun that clarifies the objective of the activity from the viewpoint 
+of the model (for example, Obtain Driver's License). You can use an 
+adjective to further qualify the noun. 
+ Arrows represent four types of information that are connected to an 
+activity, and that are captured in IDEF0 models: 
+Input arrow 
+Shows what an activity consumes or transforms. 
+Output arrow 
+Shows what an activity produces or creates. 
+Business Process Modeling Method (IDEF0) 
+ 
+20  User Guide 
+ 
+Control arrow 
+Represents objects that govern the manner in which inputs are 
+transformed but are not themselves transformed by the activity. 
+Mechanism arrow 
+Represents objects that actually perform the transformation of inputs 
+to outputs but are not themselves transformed by the activity. 
+Arrows are typically labeled with nouns (for example, Birth Certificate or 
+Driver's License).  
+The acronym ICOM describes the four types of information and the four 
+arrow types. The following illustration shows the specific box side of an 
+IDEF0 activity to which each arrow type must connect: 
+ 
+ 
+Business Process Modeling Method (IDEF0) 
+ 
+Basic Concepts and Features  21  
+ 
+Example: Business Process Model 
+This example shows an IDEF0 model representing the activity Obtain Driver's 
+License. Note the input arrows to the left of the activity box (the box labeled 
+Obtain Driver's License), the control arrows above, the output arrows to the 
+right, and the mechanism arrows below.  
+ 
+ 
+Data Flow Diagramming (DFD) 
+ 
+22  User Guide 
+ 
+Data Flow Diagramming (DFD) 
+Data flow diagramming (DFD) is similar to IDEF0 and models systems as a 
+network of activities connected to one another by pipelines of objects. Data 
+flow diagramming also models holding tanks called data stores and external 
+entities which represent interfaces with objects outside the system being 
+modeled. The arrows used by DFD represent the movement of data to and 
+from an activity.  
+Data flow diagramming is mostly associated with the development of software 
+applications because it originated for that purpose. The particular box shape 
+used in the examples is that adopted by Chris Gane and Trish Sarson, authors 
+of the Gane and Sarson DFD method. Activities are represented as boxes with 
+rounded corners. The discussion equally applies to the Yourdon/DeMarco DFD 
+method in which circles (also called bubbles) represent activities.  
+You can use DFD to document the movement and processing of information in 
+your business or organization. Modelers also use DFD to complement existing 
+IDEF0 models. You can describe data processing functions (such as Input 
+Customer Data); data used or created by the data processing system (such as 
+Invoice); objects, persons, or departments that interact with sales (such as 
+Vendor); and data processing tables (such as Inventory table). Data 
+processing functions are represented by DFD objects that include activities, 
+arrows, data stores, and external references. You can also associate entities 
+that you create in AllFusion PM, or that you import from AllFusion ERwin DM, 
+with external references and data stores. 
+ 
+Objects Used in Data Flow Diagramming 
+The following objects are used in data flow diagrams: 
+Activity 
+Represents a function that processes or transforms inputs to outputs. 
+Although generally drawn as rounded-corner boxes, activities in DFDs are 
+synonymous with activities in IDEF0 and IDEF3. Like IDEF3 activities, DFD 
+activities have inputs and outputs, but do not support controls or 
+mechanisms as arrows, as in IDEF0. 
+ 
+Data Flow Diagramming (DFD) 
+ 
+Basic Concepts and Features  23  
+ 
+ 
+Arrow 
+Describes the movement (flow) of objects from one part of the system to 
+another. Because DFD activity box sides do not have a dedicated function 
+(as in IDEF0, where each box side has a specific meaning), arrows can 
+originate from any side of the activity. DFD diagrams and optionally IDEF3 
+diagrams also use a double-headed arrow to indicate a coordinated 
+command-response dialogue between two activities, between an activity 
+and an external reference, and between external references.  
+0
+Quill Computer
+Business System
+1
+Cust omer
+ 
+ 
+Data store 
+Represents objects at rest, similar to the way in which flows represent 
+objects in motion. In a material-handling system, data stores are places 
+where in-process work is inventoried throughout the factory, such as 
+queues. In a data processing system, data stores represent any 
+mechanism by which data is held for subsequent processing. 
+1 Customer data  
+ 
+External reference 
+Provides inputs into the system (acting as a supplier), or receives the 
+outputs (acting as a customer), or both. External references are depicted 
+as shadowed boxes and typically appear at the edges of a diagram. A 
+single external reference (such as Customer) can appear multiple times in 
+a diagram. This is often used to reduce the clutter of long lines cutting 
+across a diagram. 
+3
+Ad
+Agency
+ 
+ 
+Process Flow Modeling Method (IDEF3) 
+ 
+24  User Guide 
+ 
+Example: Data Flow Diagram 
+The following illustration is an example of a typical Data Flow Diagram: 
+ 
+1 
+Process Order 
+2 
+Collect Payment
+3 
+Ship Products
+1 
+Customers 
+2 
+Fulfillm ent 
+1 
+Customers 
+2 Invoices 
+3 Customers 
+1 Orders 
+orders 
+order information
+customer name,
+customer address customer name, customer address
+shipping
+inform ation
+product 
+product 
+invoices, statements /
+payments, inquiries
+customer name,
+customer address
+billing information
+billing inform ation
+ 
+ 
+Process Flow Modeling Method (IDEF3) 
+Process flow modeling, or IDEF3, provides a structured method by which a 
+domain expert can describe a situation as an ordered sequence of events. It 
+graphically describes and documents processes by capturing information about 
+process flow, the relationships between processes, and important objects that 
+are part of the process. 
+IDEF3 is well suited to collecting data as part of structured analysis and 
+design. Unlike some process modeling techniques, IDEF3 does not discourage 
+the capture of incomplete or inconsistent system descriptions through rigid 
+syntax or semantics. In addition, the model author (analyst) need not include 
+personal assumptions with the assumptions of the domain expert to fill gaps in 
+the process descriptions. 
+ 
+Process Flow Modeling Method (IDEF3) 
+ 
+Basic Concepts and Features  25  
+ 
+You can use IDEF3 as a process design method, to model a process that may 
+not yet be complete. IDEF3 modeling complements IDEF0 modeling and can 
+be a good way to build design models that will be further analyzed using 
+simulation. Simulation is commonly used to judge the performance of a 
+system currently under design. 
+You can also use IDEF3 to assist with business process reengineering efforts, 
+develop a measure for determining the completeness of deliverables, and 
+collect information about policies and procedures in your company. You can 
+also model real-life scenarios; for example, you can map emergency 
+procedures or contingency plans based on your business needs and events. 
+Each scenario provides a description of a process, and can be used to better 
+communicate and document how your business functions. 
+ 
+Graphical Notations and Terms Used in Process Flow Modeling 
+IDEF3 models graphically describe and document processes by capturing 
+information about process flow, the relationships between processes, and 
+important objects that are part of the process. The terms and notations used 
+in IDEF3 models include the following: 
+Diagram 
+A diagram is the basic organizing unit of an IDEF3 model. Organization of 
+the diagrams in an IDEF3 model is more important if the model will be 
+published or read by others, which is the case for most design models. 
+Unit of Work (UOW) 
+A unit of work, or UOW, is a process, action, decision, or other procedure 
+performed in a system or business in an IDEF3 model. UOWs in IDEF3 
+modeling are equivalent to Activities in IDEF0 modeling. 
+Link 
+Links denote significant constraining relationships among activities. All 
+links in IDEF3 are unidirectional (unless you enable the allow bi-directional 
+arrows option), and although an arrow may originate or terminate at any 
+side of an activity box, IDEF3 diagrams are generally organized from left 
+to right so that links typically originate from the right side and terminate 
+at the left side of activity boxes. 
+ 
+Process Flow Modeling Method (IDEF3) 
+ 
+26  User Guide 
+ 
+Junction 
+Junctions graphically show branching or joining in the process logic, 
+alternative paths in the process flow, or multiple events that can or must 
+be completed before the next UOW process can begin. There are two types 
+of junctions: 
+ A fan-out junction branches one arrow into multiple arrows to show 
+activities that occur in parallel. The following is an example of a fan-
+out junction: 
+ 
+ A fan-in junction consolidates multiple arrows into a single arrow to 
+show the completion of the activities. The following is an example of a 
+fan-in junction: 
+ 
+Note: A junction cannot be both fan-in and fan-out at the same time. 
+Referent 
+A referent is an object in an IDEF3 model where additional information is 
+stored outside the process flow. For example, if a credit check was 
+processed and a determination was made to set the credit rating to "low," 
+the information from that credit check would reside in a Bad Credit List. In 
+this case, the Bad Credit List is considered a referent. Referents are used 
+in IDEF3 modeling to support junctions and other process flow objects, or 
+to represent repeating UOWs. There are five types of referents: 
+ OBJECT 
+ GOTO 
+ UOB (Unit of Behavior) 
+ NOTE 
+ ELAB (elaboration) 
+Activity Decomposition 
+Activity decomposition is used to express more detail about IDEF3 
+activities. The IDEF3 method allows an activity to be decomposed multiple 
+times (that is, to have multiple children). This enables a single model to 
+document alternative process flows. 
+ 
+Process Flow Modeling Method (IDEF3) 
+ 
+Basic Concepts and Features  27  
+ 
+Links in Process Flow Modeling 
+IDEF3 modeling uses the following types of links: 
+Temporal Precedence 
+Indicates that the source activity must complete before the destination 
+activity can begin. 
+Object Flow 
+Indicates that the output of the source activity is input to the destination 
+activity. This implies that the source activity must complete before the 
+destination activity can begin. 
+Relational 
+Indicates that the constraining relationship between the source and 
+destination activities must be user-defined for each instance of a relational 
+link. 
+ 
+Junctions in Process Flow Modeling 
+The following list describes and illustrates the types of junctions available in 
+IDEF3 modeling: 
+Asynchronous AND 
+ In a fan-in setting, all preceding processes must be complete. 
+ In a fan-out setting, all following processes must start. 
+ 
+Synchronous AND 
+ In a fan-in setting, all preceding processes complete simultaneously. 
+ In a fan-out setting, all following processes start simultaneously. 
+ 
+Asynchronous OR 
+ In a fan-in setting, one or more preceding processes must be 
+completed. 
+ In a fan-out setting, one or more following processes must start. 
+ 
+Process Flow Modeling Method (IDEF3) 
+ 
+28  User Guide 
+ 
+Synchronous OR 
+ In a fan-in setting, one or more preceding processes complete 
+simultaneously. 
+ In a fan-out setting, one or more following processes start 
+simultaneously. 
+ 
+Exclusive OR (XOR) 
+ In a fan-in setting, exactly one preceding process completes. 
+ In a fan-out setting, exactly one following process starts. 
+ 
+ 
+Example: Process Flow Model 
+This example shows an IDEF3 model representing the process Issue Cashier's 
+Check: 
+ 
+1.2 
+Verify Customer 
+Status 
+1.1 
+Verify Account 
+Balance & 
+Record 
+Withdrawal
+1.3 
+Verify Check 
+1.4 
+Count Cash 
+Payment 
+1.5 
+Print &  Issue 
+Check 
+J1 
+J2 J3 
+J4 
+Issue Cashier’s Check
+UOW/Activity
+Arrow/Link 
+Junction 
+O O
+X &
+ 
+ 
+Create a Model 
+ 
+Basic Concepts and Features  29  
+ 
+Create a Model 
+You can create a model using any of the three supported modeling methods. 
+Create a business process model to describe and document a business 
+process, a data flow diagram to describe and document the flow of data in a 
+system, and a process flow model to describe and document the flow of a 
+process. 
+To create a model 
+1. Click New from the File menu. 
+The AllFusion Process Modeler r7 dialog opens. 
+2. Enter a name for the model you are creating in the Name text box, select 
+one of the following options for model type, and then click OK. 
+Business Process (IDEF0) 
+Lets you create an IDEF0 model. 
+Data Flow (DFD) 
+Lets you create a DFD model. 
+Process Flow (IDEF3) 
+Lets you create an IDEF3 model. 
+The Properties for New Models dialog opens. 
+ 
+3. Complete the following fields on the General tab of the Properties for New 
+Models dialog, and click OK: 
+Author 
+Defines the name of the model author. 
+Author initials 
+Defines the initials of the model author. 
+Apply CRUD/IRUN restrictions 
+Specifies whether to enforce CRUD and IRUN restrictions on Call 
+arrows and Mechanism arrows. When you clear this check box, CRUD 
+and IRUN restrictions are not enforced, so you can specify CRUD and 
+IRUN data to Mechanism arrows and Call arrows. 
+ The model opens, showing the Activity Box that is your context activity. 
+Note: You can continue to add objects, or use the Model Properties dialog to 
+add or edit properties for your model. 
+Activity-Based Cost and Performance Metrics (ABC) 
+ 
+30  User Guide 
+ 
+More information:  
+Example: Business Process Model (see page 21) 
+Example: Data Flow Diagram (see page 24) 
+Example: Process Flow Model (see page 28) 
+ 
+Activity-Based Cost and Performance Metrics (ABC) 
+Activity-Based Costing (ABC) is a technique for capturing and analyzing 
+activity costs and can be used with the results of other system, object, and 
+activity models. ABC captures the costs of resources (such as materials or 
+labor), allocates these costs to various activities, and allocates activities to 
+various system outputs called cost objects. Compared to traditional cost 
+accounting, which systematically under-costs low-volume products and over-
+costs high-volume ones, ABC provides a more exact calculation of the cost to 
+produce a specific product based on the cost to perform all of the activities 
+involved in creating it.  
+You can implement ABC in any process model by assigning currency or time 
+unit values to cost centers in diagram activities. For example, you can assign 
+dollar cost values to a cost center in all leaf-level activities in a model to 
+automatically calculate the specific cost of each diagram decomposition. In an 
+IDEF0 model, you can view the cost of the context-level activity as the 
+calculated cost of the entire model. You can also override the calculated costs 
+for any decomposition activity if you are not satisfied with the calculated 
+results of its decomposition. 
+Before you can assign costs to activities, you must define cost centers and set 
+currency and time units. For example, you can create an "Employee Salaries" 
+cost center that uses the U.S. Dollar ($) as a currency unit. You set currency 
+and time units in the ABC tab in the Model Properties dialog, and you define 
+cost centers in the Cost Center Dictionary or the Cost Center Editor. 
+You can define activity costs when you double-click the activity in your model, 
+click the Costs tab in the Activity Properties dialog, and enter the costs by cost 
+center. 
+Note: While you can use the ABC technique in any of the three modeling 
+methods, it is utilized most effectively in IDEF0 modeling. 
+ 
+Overview of Customizing Models 
+ 
+Basic Concepts and Features  31  
+ 
+Overview of Customizing Models 
+With user-defined properties (UDPs), you can customize a model so it contains 
+values specific to your company's activities. 
+To further enhance the value of your model, you can make it as detailed as 
+required. You can create UDPs to associate business-specific information with 
+a diagram object such as an activity or arrow. Various types of UDPs, including 
+pull-down lists, command UDPs, and text lists are supported. 
+ 
+Create a User-Defined Property Using the UDP Dictionary Editor 
+With user-defined properties (UDPs), you can customize a model so it contains 
+values specific to your company's activities. 
+The first step in creating UDPs is to apply UDP values to diagram objects such 
+as activities and arrows. For example, you can create a text UDP called 
+EMPLOYEES to list the names of employees who work in departments 
+represented by diagram activities. You can create UDPs that use different 
+datatypes such as text boxes, multi-select lists, and commands that run other 
+Windows applications.  
+To create a user-defined property using the UDP Dictionary Editor 
+1. Click UDP Definition Editor from the Model menu. 
+The User Defined Property Dictionary Editor opens. 
+2. Assign the property a name and a datatype, and click Add. 
+The UDP is added to the User-Defined Properties list. 
+Overview of Customizing Models 
+ 
+32  User Guide 
+ 
+Note: Depending on the datatype, you may need to define additional 
+properties. For example, if the datatype is a list, you must specify the list 
+values. In doing so, you are providing the details of specific characteristics 
+that are relevant to your quality cycle. 
+ 
+ 
+3. Click Close. 
+The UDP is created and the User Defined Property Dictionary Editor closes. 
+ 
+Create a User-Defined Property Using the UDP Dictionary 
+With user-defined properties (UDPs), you can customize a model so it contains 
+values specific to your company's activities. Another way to create UDPs is 
+using the UDP Dictionary. 
+To create a user-defined property using the UDP Dictionary 
+1. Click UDP from the Dictionary menu. 
+The UDP Dictionary opens. 
+ 
+Overview of Customizing Models 
+ 
+Basic Concepts and Features  33  
+ 
+2. Enter a UDP name and a datatype. 
+The UDP is displayed in the grid. 
+Note: Depending on the datatype, you may need to define additional 
+properties. For example, if the datatype is a list, you must specify the list 
+values. In doing so, you are providing the details of specific characteristics 
+that are relevant to your quality cycle. 
+3. Click Save from the Dictionary menu. 
+The UDP you created is saved and the UDP Dictionary remains open. 
+4. Click Close from the Dictionary menu. 
+The UDP Dictionary closes. 
+ 
+Assign a UDP Value to an Activity 
+After you have created a UDP to associate business-specific information with 
+an activity, you need to assign a value to that UDP associated with the 
+activity.   
+To assign a UDP value to an activity 
+1. Right-click an activity in your diagram and click UDP from the shortcut 
+menu. 
+The Activity Properties dialog opens. 
+ 
+Integration of Process Models with Data Models 
+ 
+34  User Guide 
+ 
+2. Click the UDP Values tab, specify each value to assign to the selected 
+activity in the Value column, and click OK. 
+The value is assigned and the Activity Properties dialog closes. 
+ 
+Assign a UDP Value to an Arrow 
+After you have created a UDP to associate business-specific information with 
+an arrow, you need to assign a value to that UDP associated with the arrow.   
+To assign a UDP value to an arrow 
+1. Right-click an arrow in your diagram and click UDP from the shortcut 
+menu. 
+The Arrow Properties dialog opens. 
+2. Click the UDP Values tab, specify each value to assign to the selected 
+arrow in the Value column, and click OK. 
+The value is assigned and the Arrow Properties dialog closes. 
+ 
+Integration of Process Models with Data Models 
+Before an activity model is built, it is important to understand the model's 
+purpose, that is, why we are building this model. The purpose of a model is to 
+answer a set of questions. If an activity model is to be integrated with a data 
+model, then it is important to note this fact as part of the model's purpose. 
+Documenting this fact helps focus the modeling team and help prevent 
+inconsistencies. 
+The first step is to rationalize and standardize the names used in the models. 
+For example, customer must always mean the same thing regardless of where 
+it appears in any activity or data model. Because of the difficulty of this step, 
+and the enormous consequences, coordination of the model building activities 
+is essential.  
+Integration of models cannot be practically performed as an after modeling 
+activity. Standardizing names across the various models should ideally occur 
+as part of the modeling process. This is true regardless of the kinds of models 
+that are integrated. However, the modeling teams must make sure that the 
+names used in a given activity model accurately represent the system from 
+the chosen viewpoint. Cross-references can be developed to map homonyms 
+(that is, two words spelled and pronounced alike but having different 
+meanings) and other relationships. This is not to say that the models must be 
+developed concurrently. Rather, the development of the models must be 
+coordinated in order to reuse the results of previous efforts. 
+ 
+Integration of Process Models with Data Models 
+ 
+Basic Concepts and Features  35  
+ 
+The second step is to associate entities and attributes from the data model 
+with arrows in the activity models. If the activity models are in sufficient 
+detail, then some of the arrows will be named the same as entities and 
+perhaps attributes as well. It is possible for most, if not all, of the arrows to be 
+aggregates of several entities in the data model, particularly when the activity 
+models are business models (as opposed to computer systems models). Arrow 
+bundling, which is largely a construct for simplifying diagrams by reducing the 
+number of parallel arrows, creates even larger aggregates. 
+Finally, the lowest-level activities are analyzed, and the data usage is assigned 
+to the entities flowing in and out along the arrows.  
+It is not essential, or even practical, that all of the arrows are associated with 
+entities and attributes before determining data usage. In fact, it is common for 
+the process of assigning usage to identify missing entity/attribute/arrow 
+associations in the activity model. 
+If data models and activity models are developed in parallel and kept relatively 
+integrated, then these steps can be performed at each level in the activity 
+hierarchy. Even if there may be an additional cost to do this, there is less 
+likelihood of finding significant errors at the end of the model-building process.  
+ 
+Overview of Data Modeling 
+Just as activity models view a system as a collection of activities connected by 
+objects, data models view a system as a collection of objects connected by 
+relationships. Data and activity models can be integrated, which helps to 
+integrate related activity models. Integration of models is a valuable 
+mechanism for ensuring consistency (of name usage) and completeness 
+among the integrated models. Just as there are several similar activity 
+methods, there are several data modeling methods. The most popular are 
+IDEF1X and Information Engineering (IE). 
+ 
+Entities and Attributes 
+Data models use a box and line notation similar to activity models. The top of 
+the box lists the name of the object called an entity. An entity name is always 
+a noun. An entity's attributes are listed inside the box. Attributes are the 
+specific properties of the entity. Attribute names are also nouns and they 
+further describe the entity. 
+Data is often described in terms of a series of rows that contain one or more 
+named columns similar to a spreadsheet. For example, for the entity named 
+CUSTOMER, each piece of data is stored in a single field, or attribute. Attribute 
+names can be name, city, and state. Each instance of a customer is contained 
+in a single row of data. The entire collection of rows is a table, or entity. 
+ 
+Integration of Process Models with Data Models 
+ 
+36  User Guide 
+ 
+In the following illustration, the entity name (CUSTOMER) is located at the top 
+of the entity box. Although the entity CUSTOMER represents many customers, 
+entity names are always singular. In addition, entity names are usually always 
+written in all capital letters. The entity's attributes are listed inside the box. A 
+horizontal line separates the attributes into two kinds; primary key attributes 
+and attributes. Primary key attributes are listed above the line in what is called 
+the primary key area of the entity box, while attributes are listed below the 
+line in the non-key area of the entity box. The set of primary key attributes in 
+a single entity must uniquely identify a single instance of the entity, for 
+example, a single CUSTOMER. Sometimes, when it is not easy to find a good 
+set of attributes to serve as a primary key, an attribute is added to serve 
+solely as an identifier, which is shown in the following illustration. The primary 
+key attribute is called Customer ID. Attribute names are always singular and 
+are usually written with an initial capital letter. 
+ 
+ 
+Relationships 
+Entities are associated with one another by relationships. For example, an 
+entity called ORDER stores information about all of the orders placed by 
+customers. In the following illustration, the relationship verb phrase <places> 
+associates CUSTOMER with ORDER. The relationship can be easily read as a 
+sentence CUSTOMER places ORDER. Relationship verb phrases are singular 
+and usually written in all lowercase letters. 
+The relationship that is shown in the next illustration is usually called a parent-
+child relationship. One parent, in this case CUSTOMER, places many ORDERs. 
+The attribute Customer ID appears in the ORDER entity. The primary key of 
+the parent entity migrates along the relationship to the child entity. In this 
+way, it is possible to identify the customer who placed the order. In the child 
+entity, migrated attributes are collectively referred to as foreign keys. 
+ 
+Integration of Process Models with Data Models 
+ 
+Basic Concepts and Features  37  
+ 
+Cardinality 
+Cardinality refers to the number of children and parents involved in a 
+relationship. Is a customer really a customer if they have yet to place an 
+order? If the answer is yes, then the places relationship can be read one 
+(CUSTOMER) places zero or more ORDERs. The following illustration shows 
+this relationship: 
+ 
+ 
+If the answer is no, then the places relationship would be read one 
+(CUSTOMER) places one or more ORDERs. To distinguish this cardinality from 
+the other, a capital P is placed next to the ball at the child end of the 
+relationship. This is shown in the following illustration: 
+ 
+The letter Z is shown if the relationship cardinality is one to zero or one. If the 
+cardinality is an exact number, then that number is shown. 
+ 
+Integration of Process Models with Data Models 
+ 
+38  User Guide 
+ 
+Identifying and Non-Identifying Relationships 
+In the previous illustration, Customer ID appears in the ORDER entity as just 
+another attribute. Sometimes it is necessary for the primary key attributes of 
+the parent to be part of the child's primary key. This is shown in the following 
+illustration. The primary key of LINE ITEM is actually made up solely of foreign 
+keys--Order ID from the ORDER entity and Product ID from the PRODUCT 
+entity. The rounded shape of the LINE ITEM entity box highlights the fact that 
+this entity depends on other entities for its primary key. The relationships 
+between ORDER and LINE ITEM and PRODUCT and LINE ITEM are called 
+identifying relationships, because the primary keys of these parent entities 
+help to identify a particular instance of a child. The relationship lines are solid 
+lines, to distinguish them from non-identifying relationships, which appear as 
+dashed lines. 
+ 
+ 
+Optional Relationships 
+Identifying relationships are always mandatory, that is, each instance of the 
+child entity must be associated with an instance of the parent entity. 
+Otherwise, part or all of the child's primary key would be null (that is, have no 
+value). In the case of non-identifying relationships, however, there may be 
+times when it is unnecessary for each instance of the child to be associated 
+with an instance of the parent. This kind of relationship is optional and is 
+denoted by a diamond at the parent end of the relationship. 
+ 
+Integration of Process Models with Data Models 
+ 
+Basic Concepts and Features  39  
+ 
+An example of an optional non-identifying relationship is shown in the 
+following illustration. Some products, because of their small size, are stored in 
+bins, others are not. The relationship in the illustration is read zero or one 
+PRODUCT is stored in zero or one BIN. The first zero or one comes from the 
+diamond at the parent end of the relationship, which designates this 
+relationship as optional. The second zero or one comes from the Z at the child 
+end of the relationship. 
+Z
+ 
+ 
+Categories 
+In addition to parent-child relationships, data modeling supports category 
+relationships, also known as subtype/supertype, or hierarchy relationships. 
+The following illustration shows a simple category. The entity SELLABLE ITEM 
+has two subtypes--PRODUCT and SERVICE. The primary key attributes of 
+these entities are identical to each other but the non-key attributes are 
+different. This is the situation for which categories are intended. The circle with 
+the two lines underneath denotes a category relationship. Note that category 
+relationships are not named. Instead, is a is the implied name and a category 
+relationship can be read from the subtype to the supertype. For example, the 
+relationship in the illustration is read PRODUCT is a SELLABLE ITEM. 
+ 
+ 
+Integration of Process Models with Data Models 
+ 
+40  User Guide 
+ 
+This illustration is an example of a complete category. All of the subtypes are 
+known and shown in the diagram. In other situations, however, some of the 
+subtypes are either not known or not needed. This is called an incomplete 
+category, which is denoted by a single line underneath the circle. An attribute 
+known as the discriminator determines the subtype to which a particular 
+instance belongs, which can be any attribute in the supertype. 
+ 
+Data Usage 
+In an activity model, an arrow can map directly to a single attribute of an 
+entity, an entity and some or all of its attributes, or multiple entities and some 
+or all of their attributes. Because the same arrow name maps to the same set 
+of attributes and entities, the interface between an activity and an arrow 
+represents objects being used by, or created by that particular activity. In the 
+case of those arrows that represent data, activities use or create specific 
+instances of entities and attributes. 
+ 
+Arrow Rules 
+Data cannot be used arbitrarily by an activity. Only certain operations (create, 
+retrieve, update, or delete) are allowed for each of the four arrow types in an 
+IDEF0 model. The rules are summarized as follows: 
+Input arrow rules 
+Represent objects that the function transforms into output or consumes. 
+To transform data, it must always be retrieved. In an activity model, input 
+entities must always be updated or deleted. This test can be used to 
+determine if an arrow is actually an input or a control. Input data can 
+never be created by the activity. However, the activity can create new 
+instances of the same entities, which is documented on the output arrows. 
+Control arrow rules 
+Represent the conditions required to produce correct output. For data to 
+control an activity, it must be retrieved. Control data can never be 
+created, updated, or deleted by the activity. 
+Integration of Process Models with Data Models 
+ 
+Basic Concepts and Features  41  
+ 
+Output arrow rules 
+Represent objects created or modified (or both) by the activity. If an 
+output represents data that is updated, it must contain data that is 
+provided by a corresponding input arrow. Output arrows can also 
+represent data that is created but do not usually represent data that is 
+retrieved or deleted. It is possible to model an output arrow that 
+represents deleted (disposed) data. 
+Mechanism arrow rules 
+Represent the means used to perform an activity and may not correspond 
+with elements in the data model that is developed. It can, however, 
+correspond with elements in another data model that models the support 
+activities of the organization. 
+Note: It is possible that an arrow in the activity model was designated as an 
+input but upon integration with the data model, it was discovered that it is a 
+control. The converse is also possible. 
+ 
+Entity and Attribute Rules 
+There are usage rules for entities and attributes. There are slight differences 
+between the operations performed on entities and those performed on their 
+attributes. These differences are summarized in the following table for each 
+operation.  The acronym for the allowed operations on entities is CRUD and for 
+attributes it is IRUN. These terms are often used instead of the term data 
+usage. 
+ 
+Entities Attributes Differences 
+Create Insert Only entities can be created; attribute values are inserted into their 
+owner-entity. 
+Retrieve Retrieve None 
+Update Update None 
+Delete Nullify Only entity instances (entire rows or records) can be deleted. 
+Deleting an attribute actually consists of setting the attribute's value 
+to NULL (that is, having no value). 
+Integration of Process Models with Data Models 
+ 
+42  User Guide 
+ 
+Create Operation for Entities 
+When an entity instance is created, a new row is added to the database. In 
+order for the database management system (DBMS) to accept it, the new 
+record must meet certain requirements. Since data entities are often related, 
+adding an instance to one entity may require that you add an instance to 
+others. These additional entity instances must also satisfy all of the 
+appropriate requirements. In some cases, you may need to insert instances in 
+several entities to complete your transaction. 
+For example, if the entity that is inserted is the generic parent in a complete 
+subcategory, then an instance has to be inserted in one of the category 
+members. The exact one is determined by the value of the category's 
+discriminator. If the entity that is inserted is the generic parent in an 
+incomplete subcategory, then an instance may have to be inserted in one of 
+the category members, depending on the value of the category's discriminator. 
+If, when inserting an instance in a dependent child entity, the values of the 
+foreign key attributes do not match the values in any instance of the parent 
+entity, you must first insert an instance containing these values in the parent. 
+Some DBMSs, particularly relational DBMSs, automatically add instances to 
+other entities for you in certain cases or disallow or reject the addition of a 
+record. This information is sometimes documented in the information model 
+and is known as referential integrity. You must ensure that the actions of the 
+DBMS are appropriately specified for your particular business situation. 
+ 
+Insert Operation for Attributes 
+Special rules exist for attributes when you use the Insert operation. When you 
+perform an Insert, certain fields are mandatory and must have a value. At a 
+minimum, this includes all attributes that are part of the entity's primary key 
+as well as foreign keys from mandatory relationships. In addition, since every 
+attribute is of a certain data type, its values must be appropriate to that type. 
+For instance, an attribute of type DATE must contain values that are valid 
+dates. 
+Certain attributes are further restricted to specific values or a range of values 
+(also referred to as the attribute's domain). For example, male and female 
+constitute the domain for the attribute gender. Foreign key attributes are 
+similarly restricted because their values must match values in the entity to 
+which they relate. 
+ 
+Integration of Process Models with Data Models 
+ 
+Basic Concepts and Features  43  
+ 
+Retrieve Operation 
+There are no special rules when you perform a Retrieve operation. It is 
+common practice for modelers to mark an entity as retrieved and to not mark 
+the individual attributes of that entity as retrieved. The underlying assumption 
+is that unless a subset of an entity's attributes are specifically marked as 
+retrieved, all of the attributes of that entity are retrieved. The benefit to this 
+approach is that it shortens the task of assigning usage. The disadvantage is 
+that it may hide important usage information and hinder proper data usage 
+analysis. It also increases the difficulty in determining whether the task of 
+recording data usage is complete. 
+ 
+Update Operation for Entities 
+When you perform an Update on an entity instance, the record must meet the 
+same requirements as for a new record. Updates involving the primary key are 
+the same as deleting a row and adding a new one (since one of the rules for a 
+primary key is that a new key is, in fact, a new instance; this enables you to 
+track an object through its life without losing relevant information). 
+ 
+Update Operation for Attributes 
+Special rules exist for attributes when you use the Update operation. When an 
+entity instance is updated, each attribute may be updated (the value is 
+changed to another), nullified (the attribute no longer has a value), or not 
+affected. The value of an updated attribute must be valid, that is, part of the 
+attribute's domain. If an attribute is nullified, this must be permitted in the 
+database schema. 
+ 
+Delete Operation for Entities 
+When you perform a Delete operation on an entity, it may require the deletion 
+of other records. Some DBMSs, particularly relational DBMSs, automatically 
+delete instances in other entities or restrict deletion if it would invalidate 
+referential integrity. Just as in the case of creating new records, you must 
+ensure that the actions of the DBMS are appropriately specified for your 
+particular business situation. 
+ 
+Nullify Operation for Attributes 
+Special rules exist for attributes when you use the Nullify operation. When a 
+row is deleted, all of its attributes' values are deleted and need not be 
+individually specified. Otherwise, the value of individual attributes can be set 
+to NULL, which means no value. 
+ 
+Additional Diagrams 
+ 
+44  User Guide 
+ 
+Data Usage Reports 
+Data usage reports are often created in matrix format in which the activity 
+names are located in rows on the left side of the matrix, entity or attribute 
+names in columns at the top of the matrix, and the data usage (the letters 
+CRUD or IRUN) appearing at the appropriate intersection of the rows and 
+columns. Such a report is referred to as an affinity matrix. 
+ 
+Additional Diagrams 
+Additional diagrams can be used to further enhance your modeling efforts. 
+ 
+For Exposition Only (FEO) Diagrams 
+A For Exposition Only (FEO) diagram explains part of a process to show a 
+different viewpoint or highlight other functional details that are not explicitly 
+supported by IDEF0 syntax. FEOs can be annotated with additional 
+explanatory text and are not required to follow IDEF0 rules. 
+You can add an FEO diagram to an IDEF3 or DFD model at any time to 
+illustrate different scenarios, show different viewpoints, or highlight other 
+functional details, without affecting the original model diagram. You can add 
+any number of FEO diagrams to a context diagram or decomposition diagram 
+in an AllFusion PM model. 
+An FEO diagram looks exactly the same as the original diagram except for the 
+name you assign to the FEO diagram and the FEO node reference name. For 
+example, if you add an FEO diagram to a model diagram with the node 
+reference name of A1.3, the corresponding FEO diagram node reference name 
+becomes A1.3F. You can view the FEO diagram name and the FEO node 
+reference name in the border title when the diagram is open. After you add an 
+FEO diagram, you can refer to it as a sibling diagram. 
+Additional Diagrams 
+ 
+Basic Concepts and Features  45  
+ 
+Example: Original Diagram 
+The following illustration shows an example diagram called PROCESS RETURNS 
+upon which a new FEO diagram will be based:  
+ 
+Additional Diagrams 
+ 
+46  User Guide 
+ 
+Example: FEO Diagram 
+The following illustration shows the FEO diagram that was created based on 
+the original PROCESS RETURNS diagram, called Inspect for Damages: 
+ 
+ 
+Additional Diagrams 
+ 
+Basic Concepts and Features  47  
+ 
+Node Tree Diagrams 
+A Node Tree diagram is a hierarchical diagram of an IDEF0 model or part of a 
+model that shows activities and the relationships (parent-child or sibling) 
+between activities. A node tree provides an overview of the entire model. 
+Using a traditional tree hierarchy, the top node (box) corresponds to the 
+context diagram activity, and lower level nodes correspond to child 
+decompositions. You can also create a Node Tree diagram of a model section 
+by using a child decomposition as the top node in the diagram. The top node 
+in the hierarchy corresponds to the context diagram activity and the levels of 
+child decompositions of the context activity comprise the rest of the tree. 
+You can add a Node Tree diagram to a model to show all parent-child activity 
+relationships in a single easy-to-view diagram. After you create a Node Tree 
+diagram, it becomes a sibling of the model diagram upon which it is based. 
+You can utilize Node Tree diagrams in any of the three modeling methods 
+(IDEF0, IDEF3, DFD). 
+The boxes in a Node Tree diagram retain the properties of the corresponding 
+activities in the model. For example, you can open the Activity Properties 
+dialog for an activity by double-clicking the corresponding node tree box. You 
+can also double-click the empty Node Tree diagram area to open the Node 
+Tree Diagram Properties dialog, in which you can set diagram properties such 
+as name, font, and color. 
+Additional Diagrams 
+ 
+48  User Guide 
+ 
+Example: Node Tree Diagram 
+The following illustration shows an example of a Node Tree diagram: 
+ 
+ 
+Additional Diagrams 
+ 
+Basic Concepts and Features  49  
+ 
+Organization Charts 
+Organization charts are based on user-defined roles and provide a convenient 
+graphical view of an organization's structure, which can quickly clarify the 
+business process optimization effort. 
+Organization charts use traditional hierarchy wherein a single box is displayed 
+at the top of the diagram that expands down into a tree of sub-boxes. Each 
+box in the organization chart represents a specific role or responsibility, such 
+as President, Vice-President, or Secretary. 
+Organization structures have an immense impact on how business processes 
+are defined and carried out. Without a clear understanding of roles, 
+relationships, and responsibilities, it is often impossible to successfully 
+optimize business operations. 
+You can utilize organization charts in any of the three modeling methods 
+(IDEF0, IDEF3, DFD). 
+Example: Organization Chart 
+The following illustration shows an example of an organization chart: 
+ 
+ 
+Additional Diagrams 
+ 
+50  User Guide 
+ 
+Swim Lane Diagrams 
+Swim Lane diagrams can provide your organization with an efficient 
+mechanism for visualizing and optimizing processes, and use the Process Flow 
+modeling (IDEF3) method. Swim Lane diagrams organize complex processes 
+across functional boundaries, and help you to conveniently view processes, 
+roles, and responsibilities, and their flows. You can build a new diagram or use 
+one based on existing IDEF3 diagrams. 
+You can add Swim Lane diagrams to any IDEF3 model to better visualize 
+process flow. Swim Lane diagrams display graphical horizontal lanes that 
+represent process dependencies called roles. For example, you could create a 
+Swim Lane diagram to display all activities with the Shipping role in the 
+Shipping swim lane. You can also add bitmaps and a diagram scale or timeline 
+to any Swim Lane diagram. 
+Example: Swim Lane Diagram 
+The following illustration shows an example of a Swim Lane diagram: 
+ 
+ 
+ 
+Basic Concepts and Features  51  
+ 
+Glossary 
+ 
+A-0 context diagram 
+An A-0 context diagram depicts the highest-level activity in a model. The 
+context diagram represents the boundary of the process under study, with 
+respect to purpose, scope, and viewpoint. 
+ 
+A0I3 top-level diagram 
+An A0I3 top-level diagram depicts the highest level in an IDEF3 model. The 
+top diagram represents the boundary of the workflow under study, with 
+respect to objects, facts, description, and constraints. 
+ 
+activity 
+An activity is a verb phrase that describes an action that processes or 
+transforms data or resources (such as Process Orders, Run Video Store). An 
+IDEF0 model highlights inefficient activities (those that do not have controls or 
+outputs, or both) and assists business process reengineering efforts 
+accordingly. In IDEF3, an activity is called a unit of behavior or unit of work, 
+and it describes a process, action, decision, or other procedure performed in a 
+system or business. In DFD, an activity depicts an action that processes or 
+transforms data. 
+ 
+activity-based costing (ABC) 
+Activity-based costing (ABC) is a technique for capturing and analyzing activity 
+costs. Work center costs are identified and allocated to activities. Parent 
+activities generally consolidate the costs of all related child activities. 
+ 
+affinity matrix 
+An affinity matrix is a table that helps in system analysis and design by listing 
+the arrows in a model, the entities and attributes associated with arrows in a 
+model, and the IRUN or CRUD assignments for each arrow. 
+ 
+arrow 
+An arrow on an IDEF0 diagram represents an input, control, output, or 
+mechanism (ICOM) of an activity. In IDEF3, arrows represent order or 
+precedence between activities (drawn with a solid line), relationships (drawn 
+with a dashed line), or object flow (drawn with two heads on a solid line 
+arrow). In a DFD, the arrow represents the flow of data between activities, 
+data stores, and external references. 
+ 
+arrow association 
+An arrow association is the CRUD or IRUN data for an entity or attribute that is 
+assigned to an IDEF0 arrow. 
+ 
+Additional Diagrams 
+ 
+52  User Guide 
+ 
+arrow segment 
+An arrow segment is a portion of an arrow; the head, middle, or tail of a 
+branched or split arrow. 
+ 
+arrow stub 
+An arrow stub is the portion of an arrow drawn to show the existence of an 
+incomplete off-page reference or unresolved arrow. 
+ 
+AS-IS model 
+An AS-IS model represents how the business or organization currently works. 
+ 
+author 
+The author is the person, department, or business that entered the activity, 
+arrow, datastore, or external reference information in the diagram or the 
+original IDEF0, IDEF3, or DFD document. 
+ 
+BPX 
+BPX is the file format used to export entity and attribute information to 
+AllFusion ERwin Data Modeler. 
+ 
+border arrow 
+A border arrow is an arrow that runs between an activity and the diagram 
+border. 
+ 
+business function 
+The term business function describes the activities performed by the business. 
+IDEF0 provides support for modeling business functions through notations that 
+support activities and ICOMs. 
+ 
+business process 
+The term business process describes how the business performs activities. 
+IDEF3 provides support for modeling business processes through notations 
+that support the ideas of precedence and activity timing. 
+ 
+C-number 
+A C-number is a chronological creation number used to uniquely identify a 
+diagram and trace its history. You can use a C-number as a Detail Reference 
+Expression to specify a particular version of a diagram. 
+ 
+CRUD 
+CRUD is the acronym for the actions you can perform on instances of a 
+database entity (create, read, update, delete). 
+ 
+call arrow 
+A call arrow is a type of mechanism arrow on an IDEF0 diagram that 
+references a related model or an existing model in a model library. It exits the 
+bottom of an activity box and runs to the bottom border of the diagram. 
+ 
+Additional Diagrams 
+ 
+Basic Concepts and Features  53  
+ 
+child box 
+A child box is a box on a child diagram. 
+ 
+child diagram 
+A child diagram shows two or more subprocesses in a single parent activity. A 
+child diagram is also called a decomposition diagram. 
+ 
+color palette 
+A color palette is a set of colors defined and used to standardize the use of 
+color in a set of related diagrams. 
+ 
+constraints 
+In IDEF3 modeling, constraints represent the section of an IDEF3 elaboration 
+document that lists the assertions about the limiting factors on the UOW 
+process, such as conditions that must be met for the process to start, 
+continue, or end. Constraints are typically facts about the UOW that bound it 
+or govern its occurrence, by describing factors that impact the UOW before, 
+during, or after its execution, or that must always or never be present for the 
+execution to occur. 
+ 
+context 
+The context is the immediate environment in which a function (or set of 
+functions on a diagram) operates. 
+ 
+context diagram 
+A context diagram depicts the highest-level activity in a model. The context 
+diagram represents the boundary of the process under study, with respect to 
+purpose, scope, and viewpoint. 
+ 
+control arrow 
+A control arrow is an arrow that enters the top of an IDEF0 activity box and 
+represents a constraint on the activity with respect to how, when, or if an 
+activity is performed (such as rules, regulations, policies, procedures, or 
+standards). The function does not transform data or objects modeled as 
+controls. Control arrows are associated with the top side of an IDEF0 box. 
+ 
+cost center 
+A cost center is any defined business unit, function, or condition (such as 
+labor, materials, manufacturing, administration, or overhead) that contributes 
+to the actual cost of completing an activity. 
+ 
+data flow 
+The term data flow refers to an arrow that runs between symbols on a 
+diagram to indicate the flow of data. Each arrow must have both a source and 
+a destination. Unlike IDEF0 arrows (ICOMs), data flow arrows can enter or exit 
+any side of the activity. 
+ 
+Additional Diagrams 
+ 
+54  User Guide 
+ 
+data flow diagram 
+A data flow diagram is a graphical representation (flowchart) of a data 
+processing system that describes the data in the system and the actions that 
+process or transform it. 
+ 
+data flow diagramming (DFD) 
+Data flow diagramming (DFD) is the method used to represent the movement 
+and processing of information in a business or organization. It is generally 
+used for application analysis and design. 
+ 
+data store 
+A data store is a representation used in a DFD to show the flow of data to and 
+from a database table or AllFusion ERwin Data Modeler entity. 
+ 
+decompose 
+The term decompose refers to breaking an activity into its composite steps or 
+subprocesses. 
+ 
+decomposition 
+Decomposition is the process of partitioning a modeled function into its 
+component functions. 
+ 
+decomposition diagram 
+A decomposition diagram is a diagram that shows two or more subprocesses 
+(sibling activities) of a parent activity and their associated arrows. A 
+decomposition diagram is also called a child decomposition. 
+ 
+description 
+In IDEF3 modeling, the description is the section of an IDEF3 elaboration 
+document that contains a textual description of the UOW that is used as a 
+glossary entry for it. The description recounts the information in the object, 
+fact, and constraint lists. 
+ 
+diagram 
+A diagram is a single unit in an IDEF0, IDEF3, or DFD model. An IDEF0 model 
+that presents the details of an activity. An IDEF0 model comprises four basic 
+types of diagrams: context, decomposition, node tree, and for exposition only 
+(FEO). 
+ 
+duration 
+Duration is the average amount of time required to complete an activity. 
+ 
+elab referent 
+In IDEF3 modeling, an elab referent is a referent that adds an elaboration with 
+a junction, so you can describe additional facts, constraints, and decision logic 
+for that junction. 
+ 
+Additional Diagrams 
+ 
+Basic Concepts and Features  55  
+ 
+entity 
+An entity is a logical representation of a database table. An entity can be 
+created in AllFusion PM or AllFusion ERwin Data Modeler. 
+ 
+external reference 
+An external reference is a location, entity, person, or department that is a 
+source or destination of data but is outside the scope of a data flow diagram 
+(DFD). An external reference can be internal to a company, such as Accounts 
+Payable, or outside it, such as Vendor or Bank. This is similar to the concept of 
+an external entity found in the Gane and Sarson notation. 
+ 
+facts 
+In IDEF3 modeling, the facts are the section of an IDEF3 elaboration document 
+that lists the assertions about the UOW or objects participating in the UOW, 
+including object properties and relationships that are maintained between 
+objects during the process. Facts about the UOW can also include UOW 
+properties, including duration, frequency, or cost. 
+ 
+fan-in 
+The term fan-in refers to a type of junction that depicts the joining or 
+convergence of multiple processing paths into a single process. 
+ 
+fan-out 
+The term fan-out refers to a type of junction that depicts the split or 
+divergence of a process into multiple alternative processing paths. 
+ 
+for exposition only (FEO) diagram 
+A for exposition only (FEO) diagram is used as a tool to explain part of a 
+process, to show a different viewpoint or highlight other functional details that 
+are not explicitly supported by IDEF0 syntax. FEOs can be annotated with 
+additional explanatory text and need not follow IDEF0 rules. 
+ 
+foreign key 
+A foreign key is an attribute that relates a row in a table to primary key 
+attributes in another table. 
+ 
+frequency 
+The frequency is the average number of times an activity occurs for each 
+single occurrence of its parent activity. 
+ 
+function 
+A function is an activity, process, or transformation (modeled by an IDEF0 
+box) identified by a verb or verb phrase that describes what must be 
+accomplished. 
+ 
+Additional Diagrams 
+ 
+56  User Guide 
+ 
+go-to referent 
+In IDEF3 modeling, a go-to referent enables a diagram to span multiple pages 
+and supports looping between diagrams and loop-back (return) to a UOW 
+earlier in the diagram. It indicates the UOW or junction that starts after the 
+completion of the referenced process. 
+ 
+ICOM 
+ICOM is the acronym for the categories of information (input, control, output, 
+or mechanism) captured in an IDEF0 model. ICOMs represent a variety of 
+objects that affect an activity, from raw materials to finished products, 
+consumable and non-consumable resources, machinery, and rules governing 
+the activity. “Under control, an activity transforms inputs into outputs, using 
+mechanisms.” 
+ 
+IDEF0 
+IDEF0 (business process modeling) is the modeling method that supports the 
+graphical description of business functions as a set of interrelated activities 
+and the information or resources required for each activity. The purpose of an 
+IDEF0 model is to document and restructure the functions for better efficiency 
+and effectiveness. 
+ 
+IDEF3 
+IDEF3 (process flow modeling) is the process modeling method that supports 
+the graphical description of what a system or business does. IDEF3 provides 
+rules for development of both process flow network diagrams and object state 
+transition network diagrams. 
+ 
+IDL 
+IDL is the standard file format used for importing and exporting IDEF0 model 
+data. 
+ 
+IRUN 
+IRUN is the acronym for the actions (insert, read, update, nullify) that can be 
+performed on an attribute of a database entity. 
+ 
+input 
+The term input refers to an arrow that enters the left side of an IDEF0 activity 
+box and represents material or information transformed or consumed by the 
+process to produce output. 
+ 
+interface 
+An interface is a shared boundary across which data or objects pass. It is the 
+connection between two or more model components for the purpose of passing 
+data or objects from one to the other. 
+ 
+internal arrow 
+An internal arrow is an input, control, or output arrow connected at both ends 
+(source and use) to a box on a diagram. 
+ 
+Additional Diagrams 
+ 
+Basic Concepts and Features  57  
+ 
+join 
+The term join refers to the junction at which an IDEF0 arrow segment 
+(connecting source with use) merges with one or more other arrow segments 
+to form a single arrow segment. It may denote bundling of arrow segment 
+meanings. 
+ 
+junction 
+A junction is an IDEF3 construct that indicates process branching. Different 
+junction types are available to indicate AND, OR, and EXCLUSIVE OR 
+conditions, and further highlight the timing (synchronous or asynchronous 
+start and completion) of associated activities. 
+ 
+junction referent 
+In IDEF3 modeling, a junction referent associates special constraint sets to 
+junctions. That is, it associates an elaboration with a junction that contains 
+additional facts, constraints, or decision logic that describes how that junction 
+works. 
+ 
+kit 
+A kit is a complete set of the printed diagrams, supporting text, and a glossary 
+for an IDEF0 model that is used as a means of gathering feedback on the 
+model through reviewer comments. The term also refers to the top section of 
+the diagram frame. 
+ 
+leaf corner 
+A leaf corner is a line drawn diagonally across the top left corner of an IDEF0 
+activity to indicate that it has no related decomposition diagrams. 
+ 
+link 
+A link is an IDEF3 arrow. A precedence link (
+ ) depicts a significant 
+constraining relationship among activities (UOBs), such as the flow of objects 
+or precedence between activities. A relational link (
+ ) shows a 
+relationship between activities. An object flow link (
+ ) highlights the 
+participation of an object in two activities. 
+ 
+mechanism arrow 
+A mechanism arrow is an arrow that enters the bottom of an IDEF0 activity 
+box and represents a person, machine, or other non-consumable resource 
+used to perform the activity. It also includes the special case of Call Arrow. 
+ 
+model 
+A model is a set of diagrams and any supporting text or glossary required to 
+fully explain a business process or function. Models have a defined scope, 
+purpose, and viewpoint. 
+ 
+model dictionary 
+A model dictionary is a construct that stores information such as name, status, 
+author, definition, note, source, color, and font for each IDEF0 or DFD object 
+in the model. 
+ 
+Additional Diagrams 
+ 
+58  User Guide 
+ 
+node number 
+The node number is a diagram number that corresponds to the number of the 
+diagram’s parent activity. 
+ 
+node tree diagram 
+A node tree diagram is a hierarchical diagram of some or all an IDEF0 model 
+that shows activities and the relationships (parent-child, sibling) between 
+activities. A node tree provides an overview of the entire model in which the 
+top node in the hierarchy corresponds to the context diagram activity and 
+several levels of child decompositions of the context activity comprise the rest 
+of the tree. 
+ 
+note referent 
+In IDEF3 modeling, a note referent refers to additional information associated 
+with the workflow object. 
+ 
+object referent 
+In IDEF3 modeling, an object referent emphasizes the participation of specific 
+objects or relations in a UOW. 
+ 
+object state transition (OSTN) diagram 
+An object state transition (OSTN) diagram models the state of an object 
+through a specific process or workflow. 
+ 
+objects 
+In IDEF3 modeling, objects represent the section of an IDEF3 elaboration 
+document that lists physical objects that participate in the UOW process. 
+Object descriptions for the UOW should define whether the object is an agent 
+(does the process), is altered by the process, participates without causing the 
+process or being transformed by it, or is created or destroyed during the 
+process. 
+ 
+off-page reference 
+An off-page reference is a reference from one activity to a related activity in a 
+different diagram in the model (for example, from process number 2.4 to 
+process number 5.3.3). 
+ 
+output 
+An output is an arrow that exits from the right of an IDEF0 activity box. It 
+represents material or information produced by the activity. 
+ 
+parent activity 
+A parent activity is an activity that is decomposed into a child diagram 
+containing two or more subprocesses. 
+ 
+Additional Diagrams 
+ 
+Basic Concepts and Features  59  
+ 
+primary key 
+A primary key is an attribute or set of attributes that uniquely identifies a 
+single row in a table and is used to relate that row to other tables. 
+ 
+purge 
+The purge action eliminates unused activity, data store, external reference, or 
+arrow names from the model dictionary. 
+ 
+purpose 
+The purpose explains why a process is under study, what the model shows, 
+and what readers can do with the model. 
+ 
+referent 
+A referent is an external reference used in IDEF3 to support looping, off-page 
+references, constraints on junctions, or references between process flow 
+diagrams and object state transition diagrams. 
+ 
+scope 
+The scope is the breadth (lateral borders) and depth (level of detail) of the 
+subject of the model. 
+ 
+source 
+The source is the person, department, or business that provided the 
+information about an activity, arrow, data store, or external reference. 
+ 
+square tunnel 
+A square tunnel is a symbol that represents an unresolved arrow. An 
+unresolved arrow occurs when you create a border arrow in a child 
+decomposition with no equivalent reference in the parent diagram, or in the 
+parent diagram with no equivalent reference in the child decomposition. It 
+serves as a reminder to the modeler to either continue the arrow on a different 
+diagram (resolve it) or leave the arrow off the related diagram (tunnel it). 
+ 
+squiggle 
+A squiggle is a small jagged line that relates an arrow name to the arrow 
+symbol on an IDEF0 diagram. It can also associate a model note with a 
+component of a diagram. 
+ 
+status 
+The status refers to the current state of completion of the IDEF0 model, 
+diagram, activity, or arrow. Standard options include Working, Draft, 
+Recommended, and Publication. 
+ 
+subprocess 
+A subprocess is a process that occurs within the context of a larger process. 
+ 
+Additional Diagrams 
+ 
+60  User Guide 
+ 
+TO-BE model 
+A TO-BE model represents how the process will work in the future. 
+ 
+tunneled arrow 
+A tunneled arrow is a symbol that indicates an intentionally truncated arrow 
+(that is, an arrow that appears in the parent diagram but not the child 
+decomposition, or that appears in the child decomposition but not the parent 
+diagram). You can truncate an arrow to improve clarity. 
+ 
+UOW referent 
+In IDEF3 modeling, a UOW referent refers to a previously defined UOW 
+without duplicating its definition to indicate that another instance of a 
+previously defined UOW occurs at a specific point in the process (without loop-
+back). 
+ 
+unit of measure 
+The term unit of measure defines the unit used to calculate duration or 
+frequency for an activity. Units of measure are specified for time and cost 
+information. 
+ 
+unit of work (UOW) 
+In IDEF3 modeling, a unit of work (UOW) describes a process, action, decision, 
+or other procedure performed in a system or business in a workflow model. It 
+is also called a unit of behavior. 
+ 
+unresolved arrow 
+An unresolved arrow is a border arrow in a child decomposition with no 
+equivalent reference in the parent diagram, or a border arrow in the parent 
+diagram with no equivalent reference in the child decomposition. 
+ 
+user-defined property (UDP) 
+The modeler creates a user-defined property (UDP) to associate business-
+specific information with an activity or an arrow. Various types of UDPs are 
+supported, including pull-down lists for storing information such as 
+organization or level of automation, command UDPs that attach multimedia 
+references, and text lists for storing information such as critical success 
+factors. 
+ 
+viewpoint 
+A viewpoint defines a job title, department, or role (such as Department 
+Manager, Foreman, Machinist) that serves as the basis for developing and 
+viewing the process model. 
+ 
+ 
+Index  61 
+ 
+Index 
+ 
+A 
+activity decomposition • 27 
+activity-based costing (ABC) • 33 
+arrows • 11, 22 
+asynchronous AND junction • 29 
+asynchronous OR junction • 29 
+B 
+business process model 
+business process model, creating • 31 
+business process model, defined • 21 
+business process model, example • 23 
+D 
+data flow diagram 
+data flow diagram, creating • 31 
+data flow diagram, defined • 24 
+data flow diagram, example • 26 
+data store 
+data store, data flow diagram • 24 
+DFD model 
+DFD model, creating • 31 
+DFD model, defined • 24 
+DFD model, example • 26 
+E 
+exclusive OR junction • 29 
+external reference 
+external reference, data flow diagram • 24 
+F 
+For Exposition Only (FEO) diagrams • 48 
+I 
+ICOM • 22 
+IDEF0 model 
+IDEF0 model, creating • 31 
+IDEF0 model, defined • 21 
+IDEF0 model, example • 23 
+IDEF3 model 
+IDEF3 model, creating • 31 
+IDEF3 model, example • 30 
+installation procedure • 16 
+J 
+junctions • 27, 29 
+L 
+links • 27, 29 
+M 
+mechanism arrow • 22 
+modeling methods 
+modeling methods, DFD • 24 
+modeling methods, IDEF0 • 21 
+N 
+node tree diagrams • 50 
+O 
+object flow link • 29 
+organization charts • 52 
+output arrow • 22 
+P 
+process flow model 
+process flow model, creating • 31 
+process flow model, example • 30 
+R 
+referents • 27 
+relational link • 29 
+S 
+swim lane diagrams • 53 
+synchronous AND junction • 29 
+synchronous OR junction • 29 
+T 
+temporal precedence link • 29 
+U 
+UDP value 
+UDP value, assigning to an activity • 36 
+UDP value, assigning to an arrow • 37 
+unit of work (UOW) • 27 
+user-defined properties (UDPs) 
+ 
+ 
+62  User Guide 
+ 
+user-defined properties, creating • 34 
+user-defined properties, overview • 33 
+W 
+workplace 
+workplace, Model Explorer • 13 
+ 
