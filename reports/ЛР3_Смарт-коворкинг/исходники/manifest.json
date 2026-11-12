@@ -1,0 +1,112 @@
+[
+  {
+    "key": "01_IDEF0_A-0",
+    "title": "IDEF0 — контекст A-0",
+    "png": "01_IDEF0_A-0.png"
+  },
+  {
+    "key": "02_IDEF0_A0",
+    "title": "IDEF0 — декомпозиция A0",
+    "png": "02_IDEF0_A0.png"
+  },
+  {
+    "key": "03_DFD_context",
+    "title": "DFD — контекст системы P0",
+    "png": "03_DFD_context.png"
+  },
+  {
+    "key": "04_DFD_P1",
+    "title": "DFD, уровень 1 — P1 Управлять пользователями и доступом",
+    "png": "04_DFD_P1.png"
+  },
+  {
+    "key": "05_DFD_P2",
+    "title": "DFD, уровень 1 — P2 Вести каталог и рассчитывать стоимость",
+    "png": "05_DFD_P2.png"
+  },
+  {
+    "key": "06_DFD_P3",
+    "title": "DFD, уровень 1 — P3 Управлять бронированием и удержаниями",
+    "png": "06_DFD_P3.png"
+  },
+  {
+    "key": "06b_DFD_P4",
+    "title": "DFD, уровень 1 — P4 Обрабатывать платежи и возвраты",
+    "png": "06b_DFD_P4.png"
+  },
+  {
+    "key": "06c_DFD_P5",
+    "title": "DFD, уровень 1 — P5 Выдавать QR и регистрировать посещение",
+    "png": "06c_DFD_P5.png"
+  },
+  {
+    "key": "06d_DFD_P6",
+    "title": "DFD, уровень 1 — P6 Обеспечивать настройки и контроль",
+    "png": "06d_DFD_P6.png"
+  },
+  {
+    "key": "07_IDEF1X_identity",
+    "title": "IDEF1X — Пользователи и роли",
+    "png": "07_IDEF1X_identity.png"
+  },
+  {
+    "key": "08_IDEF1X_catalog",
+    "title": "IDEF1X — Каталог и версии тарифов",
+    "png": "08_IDEF1X_catalog.png"
+  },
+  {
+    "key": "09_IDEF1X_booking",
+    "title": "IDEF1X — Бронирование и история",
+    "png": "09_IDEF1X_booking.png"
+  },
+  {
+    "key": "10_IDEF1X_finance",
+    "title": "IDEF1X — Финансовые операции",
+    "png": "10_IDEF1X_finance.png"
+  },
+  {
+    "key": "11_IDEF1X_control",
+    "title": "IDEF1X — Хранение, задания и аудит",
+    "png": "11_IDEF1X_control.png"
+  },
+  {
+    "key": "12_IDEF3_S1",
+    "title": "IDEF3 S1 — Регистрация и управление сессией",
+    "png": "12_IDEF3_S1.png"
+  },
+  {
+    "key": "13_IDEF3_S2",
+    "title": "IDEF3 S2 — Поиск и создание удержания",
+    "png": "13_IDEF3_S2.png"
+  },
+  {
+    "key": "14_IDEF3_S3",
+    "title": "IDEF3 S3 — Платёж, подтверждение и поздний результат",
+    "png": "14_IDEF3_S3.png"
+  },
+  {
+    "key": "15_IDEF3_S4",
+    "title": "IDEF3 S4 — Истечение времени оплаты",
+    "png": "15_IDEF3_S4.png"
+  },
+  {
+    "key": "16_IDEF3_S5",
+    "title": "IDEF3 S5 — Отмена и полный возврат",
+    "png": "16_IDEF3_S5.png"
+  },
+  {
+    "key": "17_IDEF3_S6",
+    "title": "IDEF3 S6 — QR-допуск, неявка и завершение",
+    "png": "17_IDEF3_S6.png"
+  },
+  {
+    "key": "18_IDEF3_S7",
+    "title": "IDEF3 S7 — Администрирование тарифов и хранения",
+    "png": "18_IDEF3_S7.png"
+  },
+  {
+    "key": "19_IDEF3_S8",
+    "title": "IDEF3 S8 — Удаление аккаунта и обработка сроков",
+    "png": "19_IDEF3_S8.png"
+  }
+]

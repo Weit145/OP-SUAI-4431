@@ -1,0 +1,11 @@
+{
+  "pages": 75,
+  "functional_requirements": 94,
+  "diagrams": 22,
+  "stores": 8,
+  "entities": 21,
+  "relationships": 26,
+  "scenarios": 8,
+  "dfd_directed_edges": 67,
+  "checks": "passed"
+}
